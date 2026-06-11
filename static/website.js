@@ -1,19 +1,26 @@
 const topbar = document.querySelector("[data-topbar]");
 const fab = document.querySelector(".sticky-whatsapp");
-const revealItems = document.querySelectorAll(".reveal");
 const leadForm = document.querySelector("[data-lead-form]");
 const leadStatus = document.querySelector("[data-lead-status]");
 const leadSubmitButton = document.querySelector("[data-lead-submit]");
-
 const WHATSAPP_NUMBER = "526634875859";
+
+const revealEls = Array.from(document.querySelectorAll(".reveal:not(.in)"));
+const processTrack = document.getElementById("process-track");
+let processTrackDone = false;
 
 const updateTopbar = () => {
     if (!topbar) return;
-    topbar.classList.toggle("is-scrolled", window.scrollY > 16);
+    topbar.classList.toggle("is-scrolled", window.scrollY > 24);
 };
 
 const updateFab = () => {
-    fab?.classList.toggle("is-visible", window.scrollY > 260);
+    if (!fab) return;
+    const hero = document.getElementById("hero");
+    const lead = document.getElementById("lead-capture");
+    const pastHero = window.scrollY > (hero ? hero.offsetHeight * 0.62 : 600);
+    const nearLead = lead && lead.getBoundingClientRect().top < window.innerHeight * 0.9;
+    fab.classList.toggle("is-visible", pastHero && !nearLead);
 };
 
 const setLeadStatus = (message, type) => {
@@ -64,27 +71,51 @@ const setupLeadCapture = () => {
     });
 };
 
-const revealObserver = new IntersectionObserver(
-    (entries) => {
-        entries.forEach((entry) => {
-            if (!entry.isIntersecting) return;
-            entry.target.classList.add("is-visible");
-            revealObserver.unobserve(entry.target);
-        });
-    },
-    { threshold: 0.12 }
-);
+const lightProcess = () => {
+    if (!processTrack || processTrackDone) return;
+    processTrackDone = true;
+    processTrack.style.setProperty("--progress", window.innerWidth <= 980 ? "100%" : "100%");
+    Array.from(processTrack.querySelectorAll(".pstep")).forEach((step, index) => {
+        setTimeout(() => {
+            step.classList.add("lit");
+        }, 180 + index * 220);
+    });
+};
 
-revealItems.forEach((item) => revealObserver.observe(item));
+const checkReveals = () => {
+    const vh = window.innerHeight || document.documentElement.clientHeight;
 
-window.addEventListener(
-    "scroll",
-    () => {
-        updateTopbar();
-        updateFab();
-    },
-    { passive: true }
-);
+    for (let i = revealEls.length - 1; i >= 0; i -= 1) {
+        const rect = revealEls[i].getBoundingClientRect();
+        if (rect.top < vh * 0.92) {
+            revealEls[i].classList.add("in", "is-visible");
+            revealEls.splice(i, 1);
+        }
+    }
+
+    if (processTrack && !processTrackDone) {
+        const rect = processTrack.getBoundingClientRect();
+        if (rect.top < vh * 0.85 && rect.bottom > 0) {
+            lightProcess();
+        }
+    }
+};
+
+const setupWantList = () => {
+    const wantList = document.getElementById("want-list");
+    if (!wantList || !window.matchMedia("(hover: none)").matches) return;
+
+    Array.from(wantList.querySelectorAll("li")).forEach((li) => {
+        li.addEventListener(
+            "touchstart",
+            () => {
+                Array.from(wantList.children).forEach((child) => child.classList.remove("on"));
+                li.classList.add("on");
+            },
+            { passive: true }
+        );
+    });
+};
 
 document.querySelectorAll('a[href*="wa.me"]').forEach((el) => {
     el.addEventListener("click", () => {
@@ -97,6 +128,32 @@ document.querySelectorAll('a[href*="wa.me"]').forEach((el) => {
     });
 });
 
+window.addEventListener(
+    "scroll",
+    () => {
+        updateTopbar();
+        updateFab();
+        checkReveals();
+    },
+    { passive: true }
+);
+
+window.addEventListener("resize", checkReveals, { passive: true });
+window.addEventListener("load", () => {
+    updateTopbar();
+    updateFab();
+    checkReveals();
+});
+
+setTimeout(checkReveals, 400);
+
+const revealPoll = setInterval(() => {
+    checkReveals();
+    if (revealEls.length === 0 && processTrackDone) clearInterval(revealPoll);
+}, 450);
+
 updateTopbar();
 updateFab();
+checkReveals();
+setupWantList();
 setupLeadCapture();
