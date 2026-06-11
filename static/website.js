@@ -1,7 +1,6 @@
 const topbar = document.querySelector("[data-topbar]");
 const fab = document.querySelector(".sticky-whatsapp");
 const revealItems = document.querySelectorAll(".reveal");
-const parallaxItems = document.querySelectorAll("[data-parallax]");
 const leadForm = document.querySelector("[data-lead-form]");
 const leadStatus = document.querySelector("[data-lead-status]");
 const leadSubmitButton = document.querySelector("[data-lead-submit]");
@@ -14,7 +13,7 @@ const updateTopbar = () => {
 };
 
 const updateFab = () => {
-    fab?.classList.toggle("is-visible", window.scrollY > 200);
+    fab?.classList.toggle("is-visible", window.scrollY > 260);
 };
 
 const setLeadStatus = (message, type) => {
@@ -33,7 +32,7 @@ const setupLeadCapture = () => {
 
         const formData = new FormData(leadForm);
         const honeypot = String(formData.get("honeypot") || "").trim();
-        if (honeypot) return; // bot trap
+        if (honeypot) return;
 
         const name = String(formData.get("full_name") || "").trim();
         const phone = String(formData.get("phone") || "").trim();
@@ -43,7 +42,6 @@ const setupLeadCapture = () => {
 
         if (leadSubmitButton) leadSubmitButton.disabled = true;
 
-        // Track conversion in GA4
         if (typeof gtag === "function") {
             gtag("event", "lead_form_submit", {
                 event_category: "lead",
@@ -51,44 +49,43 @@ const setupLeadCapture = () => {
             });
         }
 
-        const message = `Hola, me interesa agendar una evaluación en PhysioPro.\n\nNombre: ${name}\nWhatsApp: ${phone}\nBusco: ${goal}`;
+        const message = `Hola, me interesa agendar una evaluacion en PhysioPro.\n\nNombre: ${name}\nWhatsApp: ${phone}\nBusco: ${goal}`;
         const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 
         leadForm.classList.add("is-submitted");
         setLeadStatus(
-            "Listo. Te redirigimos a WhatsApp para coordinar tu primera sesión.",
+            "Listo. Te redirigimos a WhatsApp para coordinar tu primera sesion.",
             "success"
         );
 
         setTimeout(() => {
             window.open(waUrl, "_blank", "noopener,noreferrer");
-        }, 800);
+        }, 700);
     });
 };
 
 const revealObserver = new IntersectionObserver(
     (entries) => {
         entries.forEach((entry) => {
-            if (entry.isIntersecting) entry.target.classList.add("is-visible");
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add("is-visible");
+            revealObserver.unobserve(entry.target);
         });
     },
-    { threshold: 0.18 }
+    { threshold: 0.12 }
 );
 
 revealItems.forEach((item) => revealObserver.observe(item));
 
-window.addEventListener("scroll", () => {
-    updateTopbar();
-    updateFab();
+window.addEventListener(
+    "scroll",
+    () => {
+        updateTopbar();
+        updateFab();
+    },
+    { passive: true }
+);
 
-    const scrollY = window.scrollY;
-    parallaxItems.forEach((item, index) => {
-        const shift = (scrollY * (0.03 + index * 0.01)).toFixed(2);
-        item.style.transform = `translateY(${shift}px)`;
-    });
-});
-
-// Track WhatsApp CTA clicks
 document.querySelectorAll('a[href*="wa.me"]').forEach((el) => {
     el.addEventListener("click", () => {
         if (typeof gtag === "function") {
@@ -103,55 +100,3 @@ document.querySelectorAll('a[href*="wa.me"]').forEach((el) => {
 updateTopbar();
 updateFab();
 setupLeadCapture();
-
-/* Hero entry animation */
-const heroEntry = document.querySelector("[data-hero-entry]");
-if (heroEntry) {
-    const children = heroEntry.querySelectorAll(
-        ".hero-badge, .eyebrow, h1, .hero-text, .hero-actions, .hero-points"
-    );
-    children.forEach((el, i) => {
-        el.style.opacity = "0";
-        el.style.transform = "translateY(18px)";
-        el.style.transition = `opacity 0.65s cubic-bezier(0.22,1,0.36,1) ${0.05 + i * 0.08}s, transform 0.65s cubic-bezier(0.22,1,0.36,1) ${0.05 + i * 0.08}s`;
-        requestAnimationFrame(() => {
-            requestAnimationFrame(() => {
-                el.style.opacity = "1";
-                el.style.transform = "translateY(0)";
-            });
-        });
-    });
-}
-
-/* Count-up animation */
-const countupEls = document.querySelectorAll("[data-countup]");
-if (countupEls.length) {
-    const easeOut = (t) => 1 - Math.pow(1 - t, 3);
-    const animateCountup = (el) => {
-        const target = parseInt(el.dataset.target, 10);
-        const prefix = el.dataset.prefix || "";
-        const suffix = el.dataset.suffix || "";
-        const duration = 1400;
-        const start = performance.now();
-        const step = (now) => {
-            const elapsed = now - start;
-            const progress = Math.min(elapsed / duration, 1);
-            const value = Math.round(easeOut(progress) * target);
-            el.textContent = prefix + value.toLocaleString("es-MX") + suffix;
-            if (progress < 1) requestAnimationFrame(step);
-        };
-        requestAnimationFrame(step);
-    };
-    const countupObserver = new IntersectionObserver(
-        (entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    animateCountup(entry.target);
-                    countupObserver.unobserve(entry.target);
-                }
-            });
-        },
-        { threshold: 0.5 }
-    );
-    countupEls.forEach((el) => countupObserver.observe(el));
-}
