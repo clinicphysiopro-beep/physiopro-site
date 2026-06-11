@@ -49,12 +49,12 @@ const setupLeadCapture = () => {
             });
         }
 
-        const message = `Hola, me interesa agendar una evaluacion en PhysioPro.\n\nNombre: ${name}\nWhatsApp: ${phone}\nBusco: ${goal}`;
+        const message = `Hello, I'm interested in booking an evaluation at PhysioPro.\n\nName: ${name}\nWhatsApp: ${phone}\nLooking for: ${goal}`;
         const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 
         leadForm.classList.add("is-submitted");
         setLeadStatus(
-            "Listo. Te redirigimos a WhatsApp para coordinar tu primera sesion.",
+            "Done. We’re sending you to WhatsApp to coordinate your first session.",
             "success"
         );
 
