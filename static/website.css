@@ -783,11 +783,47 @@ p {
     margin: 18px 0 22px;
 }
 
+.final-note {
+    color: var(--text);
+    font-weight: 600;
+}
+
 .lead-grid {
     gap: clamp(32px, 5vw, 72px);
     padding: clamp(28px, 4vw, 42px);
     border: 1px solid var(--line);
     background: var(--surface);
+}
+
+.bridge-card,
+.follow-grid {
+    border: 1px solid var(--line);
+    background: rgba(18, 18, 18, 0.88);
+}
+
+.bridge-card {
+    display: grid;
+    gap: 0.9rem;
+    margin-top: 1.6rem;
+    padding: 1.25rem;
+}
+
+.bridge-card h3 {
+    font-size: 1rem;
+}
+
+.bridge-label,
+.footer-socials__title {
+    color: var(--orange);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+
+.lead-keywords {
+    margin-top: 1.25rem;
+    max-width: 48ch;
 }
 
 .lead-capture__form {
@@ -861,6 +897,26 @@ p {
     border-color: rgba(255, 138, 0, 0.32);
 }
 
+.lead-capture__consent {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    color: var(--text-2);
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.lead-capture__consent input {
+    margin-top: 0.2rem;
+    accent-color: var(--orange);
+}
+
+.lead-capture__privacy {
+    font-size: 13px;
+    color: var(--text-2);
+    margin: 0;
+}
+
 .lead-capture__honeypot {
     position: absolute;
     width: 1px;
@@ -884,7 +940,8 @@ p {
 }
 
 .footer-tagline,
-.footer-contact p {
+.footer-contact p,
+.footer-socials__group span {
     color: var(--text-2);
 }
 
@@ -892,6 +949,60 @@ p {
     font-size: 12px;
     font-weight: 600;
     letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+
+.footer-contact a,
+.footer-socials__group a {
+    color: var(--text);
+}
+
+.footer-socials {
+    display: grid;
+    gap: 1.1rem;
+}
+
+.footer-socials__group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem 1rem;
+    margin-top: 0.55rem;
+    font-size: 14px;
+}
+
+.section-follow {
+    padding-top: 0;
+}
+
+.follow-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+    gap: clamp(24px, 4vw, 48px);
+    padding: clamp(28px, 4vw, 40px);
+}
+
+.follow-copy p:last-child {
+    max-width: 50ch;
+}
+
+.follow-links {
+    display: grid;
+    gap: 0.75rem;
+    align-content: start;
+}
+
+.follow-links a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 54px;
+    padding: 0 1rem;
+    border: 1px solid var(--line);
+    background: rgba(8, 8, 8, 0.92);
+    color: var(--text);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
 }
 
@@ -982,6 +1093,7 @@ p {
     .inside-layout,
     .location-grid,
     .lead-grid,
+    .follow-grid,
     .footer-grid,
     .process-track {
         grid-template-columns: 1fr;
