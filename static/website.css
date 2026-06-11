@@ -981,6 +981,12 @@ p {
     padding: clamp(28px, 4vw, 40px);
 }
 
+.follow-columns {
+    display: grid;
+    gap: 1.25rem;
+    align-content: start;
+}
+
 .follow-copy p:last-child {
     max-width: 50ch;
 }
@@ -991,7 +997,8 @@ p {
     align-content: start;
 }
 
-.follow-links a {
+.follow-links a,
+.follow-links span {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -1004,6 +1011,10 @@ p {
     font-weight: 700;
     letter-spacing: 0.12em;
     text-transform: uppercase;
+}
+
+.follow-links--muted span {
+    color: var(--text-2);
 }
 
 .footer-bottom {
