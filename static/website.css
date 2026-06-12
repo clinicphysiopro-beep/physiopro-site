@@ -9,6 +9,7 @@
     --text-2: #a1a1a1;
     --line: rgba(245, 245, 245, 0.09);
     --font: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+    --font-body: "Manrope", "Helvetica Neue", Arial, sans-serif;
     --pad-x: clamp(20px, 5vw, 72px);
     --sec-y: clamp(88px, 13vw, 180px);
     --photo-bright: 0.78;
@@ -128,6 +129,7 @@ h3 {
 }
 
 p {
+    font-family: var(--font-body);
     color: var(--text-2);
     line-height: 1.7;
     text-wrap: pretty;
@@ -171,6 +173,12 @@ p {
     background: linear-gradient(135deg, var(--orange), #ffb06e);
     color: #091018;
     font-weight: 800;
+}
+
+.brand-mark-img {
+    height: 38px;
+    width: auto;
+    display: block;
 }
 
 .brand-copy {
@@ -1184,5 +1192,145 @@ p {
         animation: none;
         opacity: 1;
         transform: none;
+    }
+}
+
+/* ---------- marquee band ---------- */
+
+.marquee {
+    overflow: hidden;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    background: var(--surface);
+    padding: 0;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.marquee-track {
+    display: flex;
+    width: max-content;
+    gap: 0;
+    animation: marquee-scroll 28s linear infinite;
+}
+
+.marquee-track span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0;
+    padding: 18px clamp(24px, 4vw, 48px);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--text-2);
+    white-space: nowrap;
+}
+
+.marquee-track span::after {
+    content: "";
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    background: var(--orange);
+    transform: rotate(45deg);
+    margin-left: clamp(24px, 4vw, 48px);
+}
+
+@keyframes marquee-scroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+}
+
+.marquee:hover .marquee-track { animation-play-state: paused; }
+
+@media (prefers-reduced-motion: reduce) {
+    .marquee-track { animation: none; }
+}
+
+/* ---------- Google Review CTA ---------- */
+
+.review-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 14px;
+    padding: 12px 20px;
+    border: 1px solid var(--line);
+    background: rgba(255, 255, 255, 0.035);
+    color: var(--text);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    transition: border-color 0.25s, background 0.25s;
+}
+
+.review-cta:hover {
+    border-color: rgba(255, 138, 0, 0.45);
+    background: rgba(255, 138, 0, 0.06);
+}
+
+.review-cta::before {
+    content: "★";
+    color: var(--orange);
+    font-size: 14px;
+}
+
+/* ---------- social ecosystem enhancements ---------- */
+
+.section-follow .follow-links a::after {
+    content: "→";
+    color: var(--orange);
+    transition: transform 0.25s var(--ease);
+}
+
+.section-follow .follow-links a:hover::after {
+    transform: translateX(4px);
+}
+
+/* ---------- responsive QA ---------- */
+
+@media (max-width: 820px) {
+    .inside-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .inside-side img {
+        aspect-ratio: 16 / 9;
+    }
+
+    .follow-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .lead-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .location-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .location-image img {
+        aspect-ratio: 16 / 9;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .hero-meta strong {
+        font-size: 16px;
+    }
+
+    .final-wrap {
+        padding: clamp(24px, 5vw, 40px);
+    }
+
+    .marquee-track {
+        animation-duration: 18s;
     }
 }

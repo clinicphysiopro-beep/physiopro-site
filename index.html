@@ -74,7 +74,7 @@
     <!-- TODO: Add YouTube, LinkedIn, X/Twitter, Google Business Profile, Spotify/Podcast, and Newsletter URLs to schema once the real accounts exist. -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./static/website.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-PXDTD1M7WK"></script>
     <script>
@@ -88,7 +88,7 @@
     <div class="site-shell">
         <header class="topbar" data-topbar>
             <a class="brand" href="#hero">
-                <span class="brand-mark">PP</span>
+                <img class="brand-mark-img" src="./static/physiopro-mark.png" alt="PhysioPro logo mark">
                 <span class="brand-copy">
                     <strong>PhysioPro</strong>
                     <span>Performance Rehabilitation · Tijuana</span>
@@ -113,7 +113,7 @@
                         endless rest, generic protocols, or short-term pain relief.
                     </p>
                     <div class="hero-actions hero-reveal">
-                        <a class="button button-primary" href="https://wa.me/526634875859?text=Hello%2C%20I%27m%20interested%20in%20booking%20an%20evaluation%20at%20PhysioPro" target="_blank" rel="noopener noreferrer">Book Your Evaluation</a>
+                        <a class="button button-primary" href="https://wa.me/526634875859?text=Hello%2C%20I%27m%20interested%20in%20booking%20an%20evaluation%20at%20PhysioPro" target="_blank" rel="noopener noreferrer">Book Your Promo Session Today</a>
                         <a class="button button-secondary" href="#rest-plan">See the Approach</a>
                     </div>
                     <div class="hero-meta hero-foot hero-reveal">
@@ -150,6 +150,23 @@
                     </figure>
                 </div>
             </section>
+
+            <div class="marquee" aria-hidden="true">
+                <div class="marquee-track" id="marquee-track">
+                    <span>Sports Rehabilitation</span>
+                    <span>Return to Sport</span>
+                    <span>Orthopedic Rehab</span>
+                    <span>Biomechanical Analysis</span>
+                    <span>Strength-Based Recovery</span>
+                    <span>Movement Assessment</span>
+                    <span>Sports Rehabilitation</span>
+                    <span>Return to Sport</span>
+                    <span>Orthopedic Rehab</span>
+                    <span>Biomechanical Analysis</span>
+                    <span>Strength-Based Recovery</span>
+                    <span>Movement Assessment</span>
+                </div>
+            </div>
 
             <section class="section section-story" id="rest-plan">
                 <div class="section-head reveal">
@@ -284,15 +301,15 @@
                 <div class="inside-layout">
                     <figure class="inside-main reveal">
                         <img src="./static/images/v3/lobby.jpg" alt="PhysioPro lobby and reception area" loading="lazy">
-                        <figcaption>Reception and entry into the clinical environment.</figcaption>
+                        <figcaption>Reception — where the work begins.</figcaption>
                     </figure>
                     <figure class="inside-side reveal">
                         <img src="./static/images/v3/treatment-room.jpg" alt="PhysioPro treatment room" loading="lazy">
-                        <figcaption>Treatment that matches the phase and the actual need.</figcaption>
+                        <figcaption>Treatment room — clinical precision, every session.</figcaption>
                     </figure>
                     <figure class="inside-side reveal">
-                        <img src="./static/images/v3/treatment-tech.jpg" alt="Treatment technology at PhysioPro" loading="lazy">
-                        <figcaption>Technology as support, not as a substitute for the process.</figcaption>
+                        <img src="./static/images/v3/treatment-back.jpg" alt="Hands-on treatment at PhysioPro" loading="lazy">
+                        <figcaption>Manual therapy — targeted, purposeful, progressive.</figcaption>
                     </figure>
                 </div>
             </section>
@@ -337,6 +354,7 @@
                         <div class="hero-actions">
                             <a class="button button-secondary" href="https://maps.google.com/?q=Jose+Maria+Velazco+2632,+Zona+Urbana+Rio+Tijuana,+22010+Tijuana,+B.C." target="_blank" rel="noopener noreferrer">View on Google Maps</a>
                         </div>
+                        <a class="review-cta" href="https://maps.google.com/?q=Jose+Maria+Velazco+2632,+Zona+Urbana+Rio+Tijuana,+22010+Tijuana,+B.C." target="_blank" rel="noopener noreferrer">Leave a Google Review</a>
                     </div>
                     <figure class="location-image reveal">
                         <img src="./static/images/v3/coaching.jpg" alt="Leonardo Machado working with a patient at PhysioPro" loading="lazy">
@@ -355,7 +373,7 @@
                     <p class="final-note">
                         Some appointment slots may require a deposit to confirm. The deposit is applied to your first session.
                     </p>
-                    <a class="button button-primary" href="https://wa.me/526634875859?text=Hello%2C%20I%27m%20interested%20in%20booking%20an%20evaluation%20at%20PhysioPro" target="_blank" rel="noopener noreferrer">Book on WhatsApp</a>
+                    <a class="button button-primary" href="https://wa.me/526634875859?text=Hello%2C%20I%27m%20interested%20in%20booking%20an%20evaluation%20at%20PhysioPro" target="_blank" rel="noopener noreferrer">Book Your Promo Session Today</a>
                 </div>
             </section>
 
@@ -380,12 +398,15 @@
                             </div>
                         </div>
                         <div>
-                            <p class="footer-socials__title">Coming Soon</p>
+                            <p class="footer-socials__title">Reviews</p>
+                            <div class="follow-links" aria-label="PhysioPro review links">
+                                <a href="https://maps.google.com/?q=Jose+Maria+Velazco+2632,+Zona+Urbana+Rio+Tijuana,+22010+Tijuana,+B.C." target="_blank" rel="noopener noreferrer">★ Leave a Google Review</a>
+                            </div>
+                            <p class="footer-socials__title" style="margin-top: 1.25rem;">Coming Soon</p>
                             <div class="follow-links follow-links--muted" aria-label="PhysioPro coming soon social links">
                                 <span>YouTube</span>
                                 <span>LinkedIn</span>
                                 <span>X / Twitter</span>
-                                <span>Google Business Profile</span>
                                 <span>Spotify / Podcast</span>
                                 <span>Newsletter / Substack</span>
                             </div>
@@ -461,7 +482,7 @@
             <div class="footer-grid">
                 <div class="footer-brand">
                     <a class="brand footer-brand-link" href="#hero">
-                        <span class="brand-mark">PP</span>
+                        <img class="brand-mark-img" src="./static/physiopro-mark.png" alt="PhysioPro logo mark">
                         <span class="brand-copy">
                             <strong>PhysioPro</strong>
                             <span>Performance Rehabilitation · Tijuana</span>
@@ -511,7 +532,7 @@
             </div>
         </footer>
 
-        <a class="sticky-whatsapp" href="https://wa.me/526634875859?text=Hello%2C%20I%27m%20interested%20in%20booking%20an%20evaluation%20at%20PhysioPro" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+        <a class="sticky-whatsapp" href="https://wa.me/526634875859?text=Hello%2C%20I%27m%20interested%20in%20booking%20an%20evaluation%20at%20PhysioPro" target="_blank" rel="noopener noreferrer">Book Promo Session</a>
     </div>
 
     <script src="./static/website.js"></script>
