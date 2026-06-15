@@ -2,6 +2,8 @@
     --bg: #0a0a0a;
     --surface: #121212;
     --surface-2: #181818;
+    --cool-surface: #0d0d12;
+    --warm-surface: #111110;
     --navy: #0e2a47;
     --navy-deep: #081a2e;
     --orange: #ff8a00;
@@ -1601,15 +1603,217 @@ p {
     }
 }
 
-/* override portrait lock on mobile — capped height is sufficient */
+/* ---------- V4 hero photo ---------- */
+
+.hero-photo {
+    position: relative;
+    overflow: hidden;
+    align-self: stretch;
+    margin-right: calc(-1 * var(--pad-x));
+    min-height: 480px;
+}
+
+.hero-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 30%;
+    filter: brightness(0.72) saturate(0.85) contrast(1.15);
+}
+
+.hero-photo::after {
+    content: "";
+    position: absolute;
+    inset: auto -14px -14px auto;
+    width: 56%;
+    height: 56%;
+    border-right: 2px solid var(--orange);
+    border-bottom: 2px solid var(--orange);
+    pointer-events: none;
+}
+
+.hero-photo figcaption {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: 1;
+    background: var(--bg);
+    padding: 12px 20px 0 0;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--text-2);
+}
+
+/* ---------- V4 position section ---------- */
+
+.section-position {
+    background: var(--surface);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+}
+
+.position-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(24px, 4vw, 56px);
+}
+
+.position-grid p {
+    padding: 20px 0;
+    border-top: 1px solid var(--line);
+    font-size: clamp(16px, 1.6vw, 18px);
+}
+
+.position-close {
+    margin-top: clamp(32px, 5vw, 56px);
+    font-size: clamp(17px, 2vw, 21px) !important;
+    font-weight: 600;
+    color: var(--text) !important;
+    line-height: 1.5;
+    max-width: 52ch;
+}
+
+.position-bridge {
+    margin-top: 20px;
+    font-size: 12px !important;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-2) !important;
+}
+
+/* ---------- V4 founder section ---------- */
+
+.section-founder {
+    background: var(--cool-surface);
+    border-top: 1px solid rgba(245, 245, 245, 0.12);
+    border-bottom: 1px solid rgba(245, 245, 245, 0.12);
+}
+
+.founder-credential {
+    font-size: 12px !important;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-2) !important;
+    margin-top: -4px;
+}
+
+/* ---------- V4 proof assertions ---------- */
+
+.proof-assertions {
+    display: grid;
+    gap: 18px;
+    margin-bottom: 28px;
+}
+
+.proof-assertion {
+    font-size: clamp(16px, 1.8vw, 20px) !important;
+    font-weight: 600;
+    color: var(--text) !important;
+    line-height: 1.5;
+    border-left: 2px solid var(--line);
+    padding-left: 16px;
+    margin: 0;
+}
+
+.proof-cta-row {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    margin-top: 24px;
+    flex-wrap: wrap;
+}
+
+.soft-link {
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: var(--text-2);
+    transition: color 0.2s;
+}
+
+.soft-link:hover {
+    color: var(--text);
+}
+
+/* ---------- V4 want back ---------- */
+
+.want-intro {
+    font-family: var(--font-body);
+    font-size: clamp(15px, 1.6vw, 18px);
+    color: var(--text-2);
+    margin-bottom: clamp(24px, 4vw, 40px);
+    text-align: center;
+}
+
+/* ---------- V4 before you book ---------- */
+
+.section-before-book {
+    background: var(--surface);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+}
+
+.before-book-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(40px, 6vw, 80px);
+    align-items: start;
+}
+
+.before-book-faq {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.before-book-location {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding-top: clamp(40px, 5vw, 72px);
+}
+
+.before-book-location h3 {
+    font-size: clamp(22px, 2.8vw, 34px);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: -0.015em;
+    color: var(--text);
+}
+
+/* ---------- V4 lead heading ---------- */
+
+.lead-heading {
+    font-family: var(--font-body) !important;
+    font-size: clamp(18px, 2.2vw, 24px) !important;
+    font-weight: 600;
+    color: var(--text) !important;
+    text-transform: none;
+    line-height: 1.4;
+}
+
+/* ---------- V4 mobile overrides ---------- */
+
 @media (max-width: 980px) {
-    .hero-media {
-        max-width: 100%;
-        margin-left: 0;
+    .hero-photo {
+        margin-right: 0;
+        min-height: 0;
+        height: clamp(260px, 40vh, 400px);
+        align-self: auto;
     }
 
-    .hero-video-card {
-        aspect-ratio: unset;
-        height: clamp(260px, 40vh, 400px);
+    .position-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .before-book-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .before-book-location {
+        padding-top: 0;
     }
 }
