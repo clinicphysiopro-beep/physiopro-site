@@ -1,5 +1,7 @@
 const topbar = document.querySelector("[data-topbar]");
 const fab = document.querySelector(".sticky-whatsapp");
+const navToggle = document.querySelector("[data-nav-toggle]");
+const navMenu = document.querySelector(".nav");
 const leadForm = document.querySelector("[data-lead-form]");
 const leadStatus = document.querySelector("[data-lead-status]");
 const leadSubmitButton = document.querySelector("[data-lead-submit]");
@@ -152,8 +154,34 @@ const revealPoll = setInterval(() => {
     if (revealEls.length === 0 && processTrackDone) clearInterval(revealPoll);
 }, 450);
 
+const setupHamburger = () => {
+    if (!navToggle || !navMenu) return;
+
+    const closeNav = () => {
+        navMenu.classList.remove("is-open");
+        navToggle.classList.remove("is-open");
+        navToggle.setAttribute("aria-expanded", "false");
+    };
+
+    navToggle.addEventListener("click", () => {
+        const opening = !navMenu.classList.contains("is-open");
+        navMenu.classList.toggle("is-open", opening);
+        navToggle.classList.toggle("is-open", opening);
+        navToggle.setAttribute("aria-expanded", String(opening));
+    });
+
+    navMenu.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", closeNav);
+    });
+
+    document.addEventListener("keydown", e => {
+        if (e.key === "Escape") closeNav();
+    });
+};
+
 updateTopbar();
 updateFab();
 checkReveals();
 setupWantList();
 setupLeadCapture();
+setupHamburger();
