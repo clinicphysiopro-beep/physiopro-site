@@ -239,7 +239,7 @@ p {
     display: grid;
     grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
     gap: clamp(24px, 3vw, 40px);
-    align-items: end;
+    align-items: center;
     padding: 140px var(--pad-x) clamp(48px, 8vh, 88px);
     isolation: isolate;
 }
@@ -324,6 +324,16 @@ p {
 
 .button-secondary:hover {
     box-shadow: inset 0 0 0 1px rgba(245, 245, 245, 0.6);
+}
+
+.hero-cta-note {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    color: var(--text-2);
+    line-height: 1.5;
+    margin: 0;
+    max-width: 48ch;
 }
 
 .hero-foot,
@@ -541,6 +551,22 @@ p {
 .pstep p {
     font-size: 14px;
     max-width: 24ch;
+}
+
+.process-cta {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    margin-top: clamp(40px, 6vw, 64px);
+    flex-wrap: wrap;
+}
+
+.process-cta-note {
+    font-size: 13px;
+    color: var(--text-2);
+    max-width: 38ch;
+    margin: 0;
+    line-height: 1.6;
 }
 
 .leonardo-grid {
@@ -1085,6 +1111,7 @@ p {
     .hero-copy .hero-reveal:nth-child(3) { animation-delay: 0.16s; }
     .hero-copy .hero-reveal:nth-child(4) { animation-delay: 0.22s; }
     .hero-copy .hero-reveal:nth-child(5) { animation-delay: 0.3s; }
+    .hero-copy .hero-reveal:nth-child(6) { animation-delay: 0.38s; }
 }
 
 @keyframes hero-enter {
