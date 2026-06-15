@@ -242,6 +242,7 @@ p {
     align-items: center;
     padding: 140px var(--pad-x) clamp(48px, 8vh, 88px);
     isolation: isolate;
+    overflow: hidden;
 }
 
 .hero::before {
@@ -1305,10 +1306,15 @@ p {
 
 .hero-media {
     display: block;
+    max-width: 520px;
+    width: 100%;
+    align-self: center;
+    margin-left: auto;
 }
 
 .hero-video-card {
-    height: clamp(440px, 68vh, 780px);
+    aspect-ratio: 9 / 13;
+    height: auto;
 }
 
 .founder-video {
@@ -1440,36 +1446,43 @@ p {
     color: var(--text);
 }
 
-.proof-honest {
-    padding: 28px;
-    border: 1px solid var(--line);
-    background: rgba(255, 255, 255, 0.015);
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+.proof-image {
+    position: relative;
+    overflow: hidden;
+    align-self: start;
 }
 
-.proof-pending-label {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
+.proof-image img {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    filter: brightness(var(--photo-bright)) saturate(var(--photo-sat)) contrast(var(--photo-con));
+}
+
+.proof-image figcaption {
+    padding-top: 14px;
     font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.18em;
+    font-weight: 600;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: var(--orange);
-}
-
-.proof-pending-label::before {
-    content: "";
-    width: 20px;
-    height: 2px;
-    background: var(--orange);
-    flex: none;
+    color: var(--text-2);
 }
 
 @media (max-width: 820px) {
     .proof-grid {
         grid-template-columns: 1fr;
+    }
+}
+
+/* override portrait lock on mobile — capped height is sufficient */
+@media (max-width: 980px) {
+    .hero-media {
+        max-width: 100%;
+        margin-left: 0;
+    }
+
+    .hero-video-card {
+        aspect-ratio: unset;
+        height: clamp(260px, 40vh, 400px);
     }
 }
