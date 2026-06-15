@@ -429,6 +429,10 @@ p {
     background: rgba(18, 18, 18, 0.7);
 }
 
+.hero-video-card {
+    background: url("./images/v3/gym.jpg") center 40% / cover no-repeat;
+}
+
 .hero-environment img,
 .founder-video {
     width: 100%;
@@ -529,9 +533,31 @@ p {
     padding: 28px;
     background: rgba(255, 255, 255, 0.025);
     border: 1px solid var(--line);
+    position: relative;
+    overflow: hidden;
 }
 
-.philosophy-item span,
+.philosophy-item span {
+    display: block;
+    position: absolute;
+    top: -0.15em;
+    left: -0.03em;
+    font-size: clamp(80px, 10vw, 128px);
+    font-weight: 800;
+    color: rgba(245, 245, 245, 0.055);
+    line-height: 1;
+    letter-spacing: -0.05em;
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+}
+
+.philosophy-item h3,
+.philosophy-item > p {
+    position: relative;
+    z-index: 1;
+}
+
 .pn {
     display: inline-block;
     color: var(--orange);
@@ -540,7 +566,10 @@ p {
     letter-spacing: 0.1em;
 }
 
-.philosophy-item h3,
+.philosophy-item h3 {
+    margin: 32px 0 8px;
+}
+
 .pstep h3 {
     margin: 8px 0 8px;
 }
