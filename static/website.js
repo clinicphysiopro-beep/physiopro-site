@@ -2,6 +2,7 @@ const topbar = document.querySelector("[data-topbar]");
 const fab = document.querySelector(".sticky-whatsapp");
 const navToggle = document.querySelector("[data-nav-toggle]");
 const navMenu = document.querySelector(".nav");
+const heroEl = document.querySelector(".hero");
 const leadForm = document.querySelector("[data-lead-form]");
 const leadStatus = document.querySelector("[data-lead-status]");
 const leadSubmitButton = document.querySelector("[data-lead-submit]");
@@ -14,6 +15,11 @@ let processTrackDone = false;
 const updateTopbar = () => {
     if (!topbar) return;
     topbar.classList.toggle("is-scrolled", window.scrollY > 24);
+};
+
+const updateParallax = () => {
+    if (!heroEl || window.scrollY > window.innerHeight * 1.4) return;
+    heroEl.style.setProperty("--parallax-y", `${window.scrollY * -0.10}px`);
 };
 
 const updateFab = () => {
@@ -136,6 +142,7 @@ window.addEventListener(
         updateTopbar();
         updateFab();
         checkReveals();
+        updateParallax();
     },
     { passive: true }
 );
@@ -145,6 +152,7 @@ window.addEventListener("load", () => {
     updateTopbar();
     updateFab();
     checkReveals();
+    updateParallax();
 });
 
 setTimeout(checkReveals, 400);
