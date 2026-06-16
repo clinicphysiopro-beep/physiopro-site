@@ -1871,6 +1871,216 @@ p {
     padding-bottom: clamp(48px, 6vw, 80px);
 }
 
+/* ---------- Expanded nav ---------- */
+
+/* Shrinks gap fluidly so 6 nav items fit from 981px up */
+@media (min-width: 981px) {
+    .nav {
+        gap: clamp(16px, 2vw, 34px);
+    }
+}
+
+/* ---------- Sub-page hero ---------- */
+
+.page-hero {
+    padding: clamp(120px, 16vw, 200px) var(--pad-x) clamp(60px, 8vw, 100px);
+    border-bottom: 1px solid var(--line);
+}
+
+.page-hero h1 {
+    font-size: clamp(38px, 7vw, 96px);
+    max-width: 20ch;
+    margin-top: 18px;
+}
+
+.page-hero-sub {
+    max-width: 52ch;
+    font-size: clamp(16px, 1.8vw, 20px) !important;
+    margin-top: 22px;
+    color: rgba(245, 245, 245, 0.82) !important;
+    line-height: 1.65 !important;
+}
+
+.page-hero .hero-actions {
+    margin-top: 36px;
+}
+
+/* ---------- Hub content grid ---------- */
+
+.hub-section {
+    padding: var(--sec-y) var(--pad-x);
+}
+
+.hub-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+}
+
+.hub-card {
+    background: var(--surface);
+    padding: clamp(28px, 4vw, 52px);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.hub-card h2 {
+    font-size: clamp(16px, 1.8vw, 22px);
+    letter-spacing: 0.03em;
+}
+
+.hub-card p {
+    font-size: 15px;
+    max-width: 46ch;
+    line-height: 1.75;
+}
+
+.hub-card-treat h2 {
+    padding-top: 18px;
+    border-top: 2px solid var(--orange);
+}
+
+@media (max-width: 640px) {
+    .hub-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ---------- Hub closing CTA ---------- */
+
+.hub-cta-section {
+    background: var(--surface);
+    border-top: 1px solid var(--line);
+}
+
+.hub-cta-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    max-width: 640px;
+}
+
+.hub-cta-wrap h2 {
+    font-size: clamp(32px, 5vw, 60px);
+}
+
+.hub-cta-note {
+    font-size: clamp(15px, 1.6vw, 18px) !important;
+    color: rgba(245, 245, 245, 0.75) !important;
+    max-width: 44ch;
+}
+
+/* ---------- Videos page ---------- */
+
+.videos-channels {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+}
+
+.channel-card {
+    background: var(--surface);
+    padding: clamp(24px, 3.5vw, 44px);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    text-decoration: none;
+    transition: background 0.25s;
+}
+
+.channel-card:hover {
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.channel-name {
+    display: block;
+    font-family: var(--font);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text);
+}
+
+.channel-handle {
+    display: block;
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: var(--orange);
+}
+
+.channel-desc {
+    font-size: 13px !important;
+    color: var(--text-2) !important;
+    max-width: 28ch;
+    line-height: 1.65 !important;
+}
+
+.channel-arrow {
+    display: block;
+    font-size: 20px;
+    color: var(--orange);
+    margin-top: 8px;
+}
+
+.videos-notice {
+    margin-top: clamp(40px, 6vw, 72px);
+    padding: clamp(28px, 4vw, 48px);
+    border: 1px solid var(--line);
+    background: var(--surface);
+    max-width: 640px;
+}
+
+.videos-notice p {
+    font-size: 15px;
+    line-height: 1.75;
+    max-width: 48ch;
+}
+
+.videos-notice p + p {
+    margin-top: 14px;
+}
+
+@media (max-width: 820px) {
+    .videos-channels {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .videos-channels {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ---------- Sub-page footer nav ---------- */
+
+.footer-nav-subpage {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.footer-nav-subpage a {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-2);
+    transition: color 0.2s;
+}
+
+.footer-nav-subpage a:hover {
+    color: var(--text);
+}
+
 /* ---------- Who We Help ---------- */
 
 .section-who {
