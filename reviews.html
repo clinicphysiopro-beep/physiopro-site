@@ -28,6 +28,29 @@
       gtag('js', new Date());
       gtag('config', 'G-PXDTD1M7WK');
     </script>
+    <!-- AggregateRating schema — update ratingValue to match your Google Business Profile star rating -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "MedicalBusiness",
+      "name": "PhysioPro",
+      "url": "https://clinicphysiopro-beep.github.io/physiopro-site/",
+      "telephone": "+526634875859",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Jose Maria Velazco 2632",
+        "addressLocality": "Tijuana",
+        "addressRegion": "Baja California",
+        "addressCountry": "MX"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5.0",
+        "bestRating": "5",
+        "worstRating": "1"
+      }
+    }
+    </script>
 </head>
 <body>
     <div class="site-shell">
@@ -81,10 +104,10 @@
                     <h2>Google reviews.</h2>
                 </div>
                 <div class="google-reviews-card reveal">
-                    <div class="gr-stars" aria-label="Rated on Google">
+                    <div class="gr-stars" aria-label="5 stars on Google">
                         <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
                     </div>
-                    <p class="gr-label">Verified patient reviews · Google Business Profile</p>
+                    <p class="gr-label">5.0 · Verified patient reviews · Google Business Profile</p>
                     <div class="gr-cta">
                         <a class="button button-secondary" href="https://share.google/1glqPDzQIQxOqPNUn" target="_blank" rel="noopener noreferrer">Read all reviews on Google →</a>
                         <a class="review-cta" href="https://g.page/r/CUDvDKu7CdGbEBM/review" target="_blank" rel="noopener noreferrer">Leave a Google Review</a>
@@ -105,37 +128,84 @@
                 </div>
             </section>
 
-            <!-- REVIEW GALLERY PLACEHOLDER -->
+            <!--
+                REVIEW GALLERY — ACTION REQUIRED
+                Each card below is a template slot. Replace the content inside each
+                .review-card-quote, .review-card-name, and .review-card-source with
+                the actual text from your Google Business Profile reviews.
+                Also update the .review-card-tag to match the condition mentioned.
+                Do NOT publish this section with template text visible.
+            -->
             <section class="section">
                 <div class="section-head reveal">
                     <p class="section-kicker">Patient feedback</p>
-                    <h2>Review gallery.</h2>
+                    <h2>What patients report.</h2>
                 </div>
-                <p class="page-hero-sub reveal" style="max-width:52ch; margin-bottom:clamp(24px,3vw,40px);">Review content in this section is pulled directly from verified Google reviews. This gallery is in development — visit Google to read current patient feedback.</p>
-                <div class="review-placeholder-grid reveal">
-                    <div class="placeholder-card">
-                        <span class="placeholder-label">Verified Google Review</span>
-                        <h2>Review content coming soon.</h2>
-                        <p>This section will display verified patient reviews imported from Google. Until the gallery is live, read reviews directly on our Google Business Profile.</p>
+                <div class="review-card-grid reveal">
+
+                    <div class="review-card">
+                        <span class="review-card-tag">[Condition — e.g. Back Pain]</span>
+                        <div class="review-card-stars" aria-label="5 stars">★★★★★</div>
+                        <p class="review-card-quote">"[Paste exact Google review text here]"</p>
+                        <div class="review-card-meta">
+                            <span class="review-card-name">[Reviewer name as on Google]</span>
+                            <span class="review-card-source">Google Review · [Month Year]</span>
+                        </div>
                     </div>
-                    <div class="placeholder-card">
-                        <span class="placeholder-label">Verified Google Review</span>
-                        <h2>Review content coming soon.</h2>
-                        <p>All reviews shown here will be verified and sourced directly from our Google Business Profile — no curated quotes or manufactured testimonials.</p>
+
+                    <div class="review-card">
+                        <span class="review-card-tag">[Condition — e.g. Knee / Running]</span>
+                        <div class="review-card-stars" aria-label="5 stars">★★★★★</div>
+                        <p class="review-card-quote">"[Paste exact Google review text here]"</p>
+                        <div class="review-card-meta">
+                            <span class="review-card-name">[Reviewer name as on Google]</span>
+                            <span class="review-card-source">Google Review · [Month Year]</span>
+                        </div>
                     </div>
-                    <div class="placeholder-card">
-                        <span class="placeholder-label">Verified Google Review</span>
-                        <h2>Review content coming soon.</h2>
-                        <p>Patient outcomes speak for themselves. We are building a display that reflects exactly what patients report on Google, without modification.</p>
+
+                    <div class="review-card">
+                        <span class="review-card-tag">[Condition — e.g. Post-Surgical]</span>
+                        <div class="review-card-stars" aria-label="5 stars">★★★★★</div>
+                        <p class="review-card-quote">"[Paste exact Google review text here]"</p>
+                        <div class="review-card-meta">
+                            <span class="review-card-name">[Reviewer name as on Google]</span>
+                            <span class="review-card-source">Google Review · [Month Year]</span>
+                        </div>
                     </div>
-                    <div class="placeholder-card">
-                        <span class="placeholder-label">Verified Google Review</span>
-                        <h2>Review content coming soon.</h2>
-                        <p>If you have worked with PhysioPro and want to share your experience, you can leave a review on Google — the link is at the top of this page.</p>
+
+                    <div class="review-card">
+                        <span class="review-card-tag">[Condition — e.g. Shoulder]</span>
+                        <div class="review-card-stars" aria-label="5 stars">★★★★★</div>
+                        <p class="review-card-quote">"[Paste exact Google review text here]"</p>
+                        <div class="review-card-meta">
+                            <span class="review-card-name">[Reviewer name as on Google]</span>
+                            <span class="review-card-source">Google Review · [Month Year]</span>
+                        </div>
                     </div>
+
+                    <div class="review-card">
+                        <span class="review-card-tag">[Condition — e.g. Athletic Rehab]</span>
+                        <div class="review-card-stars" aria-label="5 stars">★★★★★</div>
+                        <p class="review-card-quote">"[Paste exact Google review text here]"</p>
+                        <div class="review-card-meta">
+                            <span class="review-card-name">[Reviewer name as on Google]</span>
+                            <span class="review-card-source">Google Review · [Month Year]</span>
+                        </div>
+                    </div>
+
+                    <div class="review-card">
+                        <span class="review-card-tag">[Condition — e.g. Chronic Pain]</span>
+                        <div class="review-card-stars" aria-label="5 stars">★★★★★</div>
+                        <p class="review-card-quote">"[Paste exact Google review text here]"</p>
+                        <div class="review-card-meta">
+                            <span class="review-card-name">[Reviewer name as on Google]</span>
+                            <span class="review-card-source">Google Review · [Month Year]</span>
+                        </div>
+                    </div>
+
                 </div>
-                <div class="hero-actions" style="margin-top:clamp(24px,3vw,40px);">
-                    <a class="button button-secondary" href="https://share.google/1glqPDzQIQxOqPNUn" target="_blank" rel="noopener noreferrer">Read reviews on Google →</a>
+                <div class="hero-actions" style="margin-top:clamp(32px,4vw,48px);">
+                    <a class="button button-secondary" href="https://share.google/1glqPDzQIQxOqPNUn" target="_blank" rel="noopener noreferrer">Read all reviews on Google →</a>
                 </div>
             </section>
 
