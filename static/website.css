@@ -3039,3 +3039,186 @@ p {
         grid-template-columns: 1fr;
     }
 }
+
+/* ---------- Nav dropdown / mega-menu ---------- */
+
+.nav-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.nav-trigger {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-2);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px 0;
+    transition: color 0.2s;
+    white-space: nowrap;
+    line-height: 1;
+}
+
+.nav-trigger:hover {
+    color: var(--text);
+}
+
+.nav-trigger:focus-visible {
+    color: var(--text);
+    outline: 2px solid var(--orange);
+    outline-offset: 3px;
+    border-radius: 2px;
+}
+
+.nav-chevron {
+    font-size: 9px;
+    opacity: 0.55;
+    transition: transform 0.2s;
+    display: inline-block;
+}
+
+.nav-home {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-2);
+    transition: color 0.2s;
+    padding: 8px 0;
+    white-space: nowrap;
+}
+
+.nav-home:hover {
+    color: var(--text);
+}
+
+/* Dropdown panel — hidden by default on all breakpoints */
+.nav-dropdown {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 0;
+    min-width: 210px;
+    background: rgba(10, 10, 10, 0.97);
+    backdrop-filter: blur(18px);
+    border: 1px solid var(--line);
+    padding: 6px 0;
+    z-index: 300;
+}
+
+/* Show on hover, focus-within (keyboard tab), or JS .is-open */
+@media (min-width: 981px) {
+    .nav-item:hover .nav-chevron,
+    .nav-item:focus-within .nav-chevron,
+    .nav-item.is-open .nav-chevron {
+        transform: rotate(180deg);
+        opacity: 1;
+    }
+
+    .nav-item:hover .nav-dropdown,
+    .nav-item:focus-within .nav-dropdown,
+    .nav-item.is-open .nav-dropdown {
+        display: flex;
+    }
+
+    .nav-dropdown a {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--text-2);
+        padding: 10px 18px;
+        white-space: nowrap;
+        transition: color 0.15s, background 0.15s;
+    }
+
+    .nav-dropdown a:hover,
+    .nav-dropdown a:focus-visible {
+        color: var(--text);
+        background: rgba(255, 255, 255, 0.05);
+        outline: none;
+    }
+
+    /* Tighten gap to fit 8 top-level items */
+    .nav {
+        gap: clamp(8px, 1.1vw, 20px);
+    }
+}
+
+/* Mobile dropdown — accordion style */
+@media (max-width: 980px) {
+    .nav-home {
+        display: block;
+        padding: 15px 0;
+        font-size: 13px;
+        border-bottom: 1px solid var(--line);
+        color: var(--text-2);
+    }
+
+    .nav-trigger {
+        width: 100%;
+        justify-content: space-between;
+        padding: 15px 0;
+        font-size: 13px;
+        border-bottom: 1px solid var(--line);
+        color: var(--text-2);
+        letter-spacing: 0.14em;
+    }
+
+    .nav-chevron {
+        font-size: 11px;
+        opacity: 0.7;
+    }
+
+    .nav-item {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .nav-item.is-open .nav-chevron {
+        transform: rotate(180deg);
+        opacity: 1;
+    }
+
+    .nav-item.is-open .nav-dropdown {
+        display: flex;
+    }
+
+    /* Mobile dropdown as indented accordion */
+    .nav-dropdown {
+        position: static;
+        backdrop-filter: none;
+        background: none;
+        border: none;
+        border-left: 2px solid var(--line);
+        padding: 4px 0 4px 16px;
+        margin-bottom: 4px;
+        min-width: 0;
+    }
+
+    .nav-dropdown a {
+        display: block;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--text-2);
+        padding: 10px 0;
+        border-bottom: none;
+        white-space: normal;
+        transition: color 0.15s;
+    }
+
+    .nav-dropdown a:hover {
+        color: var(--text);
+    }
+}

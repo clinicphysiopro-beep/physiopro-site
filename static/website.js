@@ -369,4 +369,50 @@ const setupChatWidget = () => {
     document.addEventListener("keydown", (e) => { if (e.key === "Escape" && isOpen) closeChat(); });
 };
 
+const setupDropdowns = () => {
+    const items = Array.from(document.querySelectorAll('[data-nav-item]'));
+    if (!items.length) return;
+
+    const closeAll = () => {
+        items.forEach(item => {
+            item.classList.remove('is-open');
+            const t = item.querySelector('.nav-trigger');
+            if (t) t.setAttribute('aria-expanded', 'false');
+        });
+    };
+
+    items.forEach(item => {
+        const trigger = item.querySelector('.nav-trigger');
+        if (!trigger) return;
+
+        trigger.addEventListener('click', () => {
+            const isMobile = window.innerWidth <= 980;
+            if (!isMobile) {
+                // Desktop: toggle is-open for keyboard users (hover handles mouse)
+                const opening = !item.classList.contains('is-open');
+                closeAll();
+                item.classList.toggle('is-open', opening);
+                trigger.setAttribute('aria-expanded', String(opening));
+            } else {
+                // Mobile: accordion toggle
+                const opening = !item.classList.contains('is-open');
+                closeAll();
+                item.classList.toggle('is-open', opening);
+                trigger.setAttribute('aria-expanded', String(opening));
+            }
+        });
+    });
+
+    // Escape closes all open dropdowns
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape') closeAll();
+    });
+
+    // Click outside closes all
+    document.addEventListener('click', e => {
+        if (!e.target.closest('[data-nav-item]')) closeAll();
+    }, true);
+};
+
+setupDropdowns();
 setupChatWidget();
