@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- UPDATE ALL <loc> URLs to https://www.YOURDOMAIN.com/ after domain purchase and canonical URL migration -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- HOMEPAGE -->
+  <url>
+    <loc>https://clinicphysiopro-beep.github.io/physiopro-site/</loc>
+    <lastmod>2026-06-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- PRIMARY CONVERSION PAGES -->
+  <url>
+    <loc>https://clinicphysiopro-beep.github.io/physiopro-site/first-session.html</loc>
+    <lastmod>2026-06-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://clinicphysiopro-beep.github.io/physiopro-site/contact.html</loc>
+    <lastmod>2026-06-17</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://clinicphysiopro-beep.github.io/physiopro-site/about-leonardo.html</loc>
+    <lastmod>2026-06-17</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- CONDITION/SERVICE PAGES -->
+  <url>
+    <loc>https://clinicphysiopro-beep.github.io/physiopro-site/knee-pain.html</loc>
+    <lastmod>2026-06-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://clinicphysiopro-beep.github.io/physiopro-site/back-pain.html</loc>
+    <lastmod>2026-06-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://clinicphysiopro-beep.github.io/physiopro-site/shoulder-pain.html</loc>
+    <lastmod>2026-06-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://clinicphysiopro-beep.github.io/physiopro-site/sports-injuries.html</loc>
+    <lastmod>2026-06-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://clinicphysiopro-beep.github.io/physiopro-site/post-surgical-rehab.html</loc>
+    <lastmod>2026-06-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://clinicphysiopro-beep.github.io/physiopro-site/return-to-sport.html</loc>
+    <lastmod>2026-06-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://clinicphysiopro-beep.github.io/physiopro-site/return-to-running.html</loc>
+    <lastmod>2026-06-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://clinicphysiopro-beep.github.io/physiopro-site/combat-sports-rehab.html</loc>
+    <lastmod>2026-06-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- EDUCATIONAL ARTICLES -->
+  <url>
+    <loc>https://clinicphysiopro-beep.github.io/physiopro-site/why-physical-therapy-didnt-work-the-first-time.html</loc>
+    <lastmod>2026-06-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://clinicphysiopro-beep.github.io/physiopro-site/can-you-keep-training-while-injured.html</loc>
+    <lastmod>2026-06-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://clinicphysiopro-beep.github.io/physiopro-site/what-happens-during-your-first-session.html</loc>
+    <lastmod>2026-06-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://clinicphysiopro-beep.github.io/physiopro-site/do-you-need-an-mri-before-physical-therapy.html</loc>
+    <lastmod>2026-06-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://clinicphysiopro-beep.github.io/physiopro-site/how-return-to-sport-testing-works.html</loc>
+    <lastmod>2026-06-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- PROOF AND HUB PAGES -->
+  <url>
+    <loc>https://clinicphysiopro-beep.github.io/physiopro-site/reviews.html</loc>
+    <lastmod>2026-06-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://clinicphysiopro-beep.github.io/physiopro-site/success-stories.html</loc>
+    <lastmod>2026-06-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://clinicphysiopro-beep.github.io/physiopro-site/videos.html</loc>
+    <lastmod>2026-06-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://clinicphysiopro-beep.github.io/physiopro-site/resources.html</loc>
+    <lastmod>2026-06-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- SECONDARY CORE PAGES -->
+  <url>
+    <loc>https://clinicphysiopro-beep.github.io/physiopro-site/who-we-help.html</loc>
+    <lastmod>2026-06-17</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://clinicphysiopro-beep.github.io/physiopro-site/what-we-treat.html</loc>
+    <lastmod>2026-06-17</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://clinicphysiopro-beep.github.io/physiopro-site/faq.html</loc>
+    <lastmod>2026-06-17</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <!-- UTILITY PAGES -->
+  <url>
+    <loc>https://clinicphysiopro-beep.github.io/physiopro-site/ask-leonardo.html</loc>
+    <lastmod>2026-06-17</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+
+</urlset>
