@@ -416,3 +416,42 @@ const setupDropdowns = () => {
 
 setupDropdowns();
 setupChatWidget();
+
+// === SPRINT 1 — Counter animation for trust strip ===
+const setupCounters = () => {
+    const strip = document.querySelector('.trust-strip');
+    if (!strip || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const chips = Array.from(strip.querySelectorAll('.trust-chip strong'));
+    // Only animate chips that contain a + suffix (skip "1:1" and "Day 1")
+    const counters = chips.filter(el => /^\d+\+$/.test(el.textContent.trim()));
+    if (!counters.length) return;
+
+    const animate = (el) => {
+        const target = parseInt(el.textContent.replace('+', ''), 10);
+        if (isNaN(target)) return;
+        const start = Math.floor(target * 0.88);
+        const duration = 1200;
+        const startTime = performance.now();
+        const tick = (now) => {
+            const elapsed = Math.min(now - startTime, duration);
+            const ease = 1 - Math.pow(1 - elapsed / duration, 3);
+            el.textContent = Math.floor(start + (target - start) * ease) + '+';
+            if (elapsed < duration) requestAnimationFrame(tick);
+            else el.textContent = target + '+';
+        };
+        requestAnimationFrame(tick);
+    };
+
+    let fired = false;
+    const obs = new IntersectionObserver((entries) => {
+        if (fired || !entries[0].isIntersecting) return;
+        fired = true;
+        obs.disconnect();
+        counters.forEach((el, i) => setTimeout(() => animate(el), i * 180));
+    }, { threshold: 0.5 });
+
+    obs.observe(strip);
+};
+
+setupCounters();

@@ -375,6 +375,7 @@ p {
 
 .button-secondary:hover {
     box-shadow: inset 0 0 0 1px rgba(245, 245, 245, 0.6);
+    background: rgba(255, 255, 255, 0.04);
 }
 
 .hero-cta-note {
@@ -1390,11 +1391,12 @@ p {
 
 .trust-chip strong {
     font-family: var(--font);
-    font-size: 15px;
+    font-size: clamp(22px, 3vw, 32px);
     font-weight: 800;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.02em;
     text-transform: uppercase;
     color: var(--text);
+    line-height: 1;
 }
 
 .trust-chip span {
@@ -3347,3 +3349,136 @@ p {
 /* === SPRINT A — nav-link style for direct About/Contact links === */
 .nav-link { font-family: var(--font); font-size: 14px; font-weight: 600; color: var(--text); text-decoration: none; letter-spacing: 0.03em; padding: 0.25rem 0; }
 .nav-link:hover { color: var(--orange); }
+
+/* ============================================================
+   SPRINT 1 — Motion Foundation
+   ============================================================ */
+
+/* 1. Card hover states — shared transition */
+.who-card,
+.treat-card,
+.diff-item,
+.hub-card,
+.philosophy-item {
+    transition: transform 0.28s var(--ease), border-color 0.28s ease, box-shadow 0.28s ease;
+}
+
+.who-card:hover,
+.treat-card:hover,
+.diff-item:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255, 138, 0, 0.30);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45), 0 2px 8px rgba(255, 138, 0, 0.08);
+}
+
+.hub-card:hover,
+.philosophy-item:hover {
+    transform: translateY(-3px);
+    border-color: rgba(255, 138, 0, 0.25);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+}
+
+/* 2. Card grid stagger entrance (applied via CSS, works with existing JS reveal) */
+.who-grid .who-card.reveal:nth-child(2),
+.treat-grid .treat-card.reveal:nth-child(2),
+.diff-grid .diff-item.reveal:nth-child(2) { transition-delay: 70ms; }
+
+.who-grid .who-card.reveal:nth-child(3),
+.treat-grid .treat-card.reveal:nth-child(3),
+.diff-grid .diff-item.reveal:nth-child(3) { transition-delay: 140ms; }
+
+.who-grid .who-card.reveal:nth-child(4),
+.treat-grid .treat-card.reveal:nth-child(4),
+.diff-grid .diff-item.reveal:nth-child(4) { transition-delay: 210ms; }
+
+.who-grid .who-card.reveal:nth-child(5),
+.treat-grid .treat-card.reveal:nth-child(5) { transition-delay: 280ms; }
+
+.who-grid .who-card.reveal:nth-child(6),
+.treat-grid .treat-card.reveal:nth-child(6) { transition-delay: 350ms; }
+
+/* 3. Image hover zoom — add overflow:hidden to image containers */
+.inside-main,
+.inside-side,
+.location-image {
+    overflow: hidden;
+}
+
+.inside-main img,
+.inside-side img,
+.location-image img,
+.proof-image img {
+    transition: transform 0.5s ease-out;
+}
+
+.inside-main:hover img,
+.inside-side:hover img,
+.location-image:hover img,
+.proof-image:hover img {
+    transform: scale(1.035);
+}
+
+/* 4. Dropdown transition — desktop only (visibility/opacity for animation) */
+@media (min-width: 981px) {
+    .nav-dropdown {
+        display: flex;
+        visibility: hidden;
+        opacity: 0;
+        transform: translateY(-8px);
+        pointer-events: none;
+        transition: opacity 0.18s ease, transform 0.18s ease, visibility 0s linear 0.18s;
+    }
+
+    .nav-item:hover .nav-dropdown,
+    .nav-item:focus-within .nav-dropdown,
+    .nav-item.is-open .nav-dropdown {
+        visibility: visible;
+        opacity: 1;
+        transform: none;
+        pointer-events: auto;
+        transition: opacity 0.18s ease, transform 0.18s ease;
+    }
+}
+
+/* Mobile: revert to display toggle, disable visibility approach */
+@media (max-width: 980px) {
+    .nav-dropdown {
+        display: none;
+        visibility: visible;
+        opacity: 1;
+        transform: none;
+        pointer-events: auto;
+        transition: none;
+    }
+
+    .nav-item.is-open .nav-dropdown {
+        display: flex;
+    }
+}
+
+/* 5. Mid-page CTA — stronger visual break + larger headline */
+.section-cta-mid {
+    background:
+        radial-gradient(900px 400px at 50% 100%, rgba(255, 138, 0, 0.10), transparent 70%),
+        rgba(255, 138, 0, 0.04);
+    border-top: 1px solid rgba(255, 138, 0, 0.22);
+    border-bottom: 1px solid rgba(255, 138, 0, 0.22);
+    padding: clamp(48px, 8vw, 96px) clamp(16px, 5vw, 48px);
+}
+
+.cta-mid-block {
+    text-align: left;
+    justify-content: space-between;
+    align-items: center;
+    max-width: var(--max-w);
+    margin: 0 auto;
+}
+
+.cta-mid-copy {
+    font-size: clamp(26px, 4vw, 44px);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    max-width: 22ch;
+    margin: 0;
+}
