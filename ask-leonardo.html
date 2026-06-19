@@ -157,45 +157,42 @@
 
             <!-- PAGE HERO -->
             <section class="ask-hero">
-                <p class="eyebrow">Ask Leonardo</p>
-                <h1>Get a direct answer before you book.</h1>
-                <p class="page-hero-sub">Not ready to book? Send your question to Leonardo directly — the physiotherapist who will actually treat you. A real answer, not a template.</p>
+                <div class="ask-hero-content">
+                    <p class="eyebrow">Ask Before You Book</p>
+                    <h1>Your question goes directly to Leonardo.</h1>
+                    <p class="page-hero-sub">A real clinical answer — not a template, not a front desk.</p>
+                    <p class="ask-hero-note">Mon–Fri · 8 AM–8 PM · Usually within a few hours · WhatsApp or email</p>
+                </div>
+                <figure class="ask-hero-image">
+                    <img src="./static/images/v3/founder.jpg" alt="Leonardo Machado, physiotherapist and founder of PhysioPro" loading="eager">
+                </figure>
             </section>
 
-            <!-- WHY ASK LEONARDO -->
-            <section class="section">
+            <!-- SAMPLE Q&A -->
+            <section class="section section-method">
                 <div class="section-head reveal">
-                    <p class="section-kicker">Why this exists</p>
-                    <h2>You deserve a real answer.</h2>
+                    <p class="section-kicker">What a real answer looks like</p>
+                    <h2>A sample exchange.</h2>
                 </div>
-                <div class="ask-why-grid reveal">
-
-                    <div class="ask-why-item">
-                        <span class="ask-why-n">01</span>
-                        <h3>No commitment required</h3>
-                        <p>Asking a question doesn't obligate you to anything. Get the information you need to decide if PhysioPro is the right fit.</p>
+                <div class="ask-qa-block reveal">
+                    <div class="ask-qa-question">
+                        <span class="ask-qa-label">Patient question</span>
+                        <p>"I've had lower back pain for two years and have done physical therapy before with no lasting results. Every time I return to training the pain comes back. Is this actually something that can improve?"</p>
                     </div>
-
-                    <div class="ask-why-item">
-                        <span class="ask-why-n">02</span>
-                        <h3>A real answer, not a template</h3>
-                        <p>Your question goes directly to Leonardo — the clinician who treats every patient at PhysioPro. You get a thoughtful response, not a generic reply.</p>
+                    <div class="ask-qa-answer">
+                        <span class="ask-qa-label">Leonardo's response</span>
+                        <p>That pattern — pain clears, then comes back when load returns — usually means the original treatment addressed the pain but didn't rebuild the capacity. It's not how it has to be.</p>
+                        <p>Two years of recurrence gives us a baseline. First session: assess what's actually weak, overloaded, or compensating. From there we start building it back — not managing it. Send your question and I'll tell you honestly whether this is the right fit for your situation.</p>
+                        <span class="ask-qa-attribution">Leonardo Machado, LFT · PhysioPro · Zona Rio, Tijuana</span>
                     </div>
-
-                    <div class="ask-why-item">
-                        <span class="ask-why-n">03</span>
-                        <h3>Directly from the clinician</h3>
-                        <p>There's no front desk here. Leonardo handles patient communication directly — so your question reaches the person with the clinical context to answer it properly.</p>
-                    </div>
-
                 </div>
             </section>
 
             <!-- QUESTION FORM -->
-            <section class="section section-alt">
+            <section class="section">
                 <div class="section-head reveal">
                     <p class="section-kicker">Your question</p>
-                    <h2>Ask anything.</h2>
+                    <h2>What's your question?</h2>
                 </div>
 
                 <div class="ask-form-wrap reveal">
@@ -213,6 +210,19 @@
                                 required
                                 autocomplete="name"
                             >
+                        </div>
+
+                        <div class="lead-capture__field">
+                            <label class="lead-capture__label" for="ask-question">Your question</label>
+                            <textarea
+                                class="lead-capture__input"
+                                id="ask-question"
+                                name="question"
+                                placeholder="Ask about your condition, what to expect, pricing, location — anything you need to know before you decide."
+                                required
+                                rows="5"
+                                style="resize:vertical;padding-top:0.85rem;padding-bottom:0.85rem;min-height:120px;"
+                            ></textarea>
                         </div>
 
                         <div class="lead-capture__field">
@@ -240,43 +250,19 @@
                             >
                         </div>
 
-                        <div class="lead-capture__field">
-                            <label class="lead-capture__label" for="ask-question">Your question</label>
-                            <textarea
-                                class="lead-capture__input"
-                                id="ask-question"
-                                name="question"
-                                placeholder="Ask about your condition, what to expect, pricing, location — anything you need to know before you decide."
-                                required
-                                rows="5"
-                                style="resize:vertical;padding-top:0.85rem;padding-bottom:0.85rem;min-height:120px;"
-                            ></textarea>
-                        </div>
-
                         <p class="lead-capture__status" data-ask-status hidden></p>
 
-                        <label class="lead-capture__consent" style="margin-bottom:0.75rem;">
+                        <button class="button button-primary" type="submit" data-ask-submit>Send my question →</button>
+
+                        <p class="ask-response-note">Expect a reply within a few hours — Mon–Fri, 8 AM–8 PM · WhatsApp or email.</p>
+
+                        <label class="lead-capture__consent">
                             <input type="checkbox" name="consent" required>
                             <span>I consent to PhysioPro processing the information I submit — including any health-related details I choose to share — to respond to my question. I understand this is pre-consultation information only and does not create a clinical relationship. I understand my response may be delivered via WhatsApp, a platform operated by Meta Platforms. See the <a href="./aviso-privacidad.html" style="color:var(--orange);">Aviso de Privacidad</a>.</span>
                         </label>
 
-                        <button class="button button-primary" type="submit" data-ask-submit>Send my question →</button>
-
                         <p class="lead-capture__privacy">Your information is used only to respond to your question. It is not sold or shared with third parties beyond the platforms used to deliver this service (email, WhatsApp). Submitting health-related information through this form constitutes express consent to process that sensitive data as described in our <a href="./aviso-privacidad.html" style="color:var(--orange);">Aviso de Privacidad</a>.</p>
                     </form>
-                </div>
-            </section>
-
-            <!-- RESPONSE EXPECTATIONS -->
-            <section class="section">
-                <div class="section-head reveal">
-                    <p class="section-kicker">What to expect</p>
-                    <h2>How Leonardo responds.</h2>
-                </div>
-                <div class="ask-expect reveal">
-                    <p>Questions typically receive a response within a few hours on weekdays. Leonardo responds personally via WhatsApp or email — whichever works better for you.</p>
-                    <p>If your question is clinical in nature — about a specific injury, surgical history, or diagnosis — Leonardo may ask for more context before giving a complete answer. That's not a delay; that's how a physiotherapist thinks.</p>
-                    <p>Monday–Friday, 8:00 AM–8:00 PM. Questions submitted outside these hours are reviewed the next business day.</p>
                 </div>
             </section>
 
@@ -284,7 +270,7 @@
             <section class="section hub-cta-section">
                 <div class="hub-cta-wrap">
                     <p class="section-kicker">Already decided?</p>
-                    <h2>Book your first session.</h2>
+                    <h2>Ready to book?</h2>
                     <p class="hub-cta-note">Assessment + treatment from session one. $750 MXN. Zona Rio, Tijuana. No intake-only visits.</p>
                     <div class="hero-actions">
                         <a class="button button-primary" href="https://wa.me/526634875859?text=Hello%2C%20I%27m%20interested%20in%20booking%20an%20evaluation%20at%20PhysioPro" target="_blank" rel="noopener noreferrer">Book on WhatsApp</a>
@@ -411,7 +397,7 @@
             status.textContent = "Thank you. Leonardo will review your question and respond as soon as possible.";
             status.className = "lead-capture__status lead-capture__status--success";
 
-            form.querySelectorAll(".lead-capture__field, .lead-capture__honeypot, [type=submit]").forEach(function (el) {
+            form.querySelectorAll(".lead-capture__field, .lead-capture__honeypot, [type=submit], .lead-capture__consent, .ask-response-note").forEach(function (el) {
                 el.style.display = "none";
             });
             form.querySelector(".lead-capture__privacy").style.display = "none";
