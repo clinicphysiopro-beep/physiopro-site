@@ -3619,3 +3619,126 @@ p {
     max-width: 22ch;
     margin: 0;
 }
+
+/* ---------- Knowledge Base (resources.html) ---------- */
+
+.kb-featured {
+    display: block;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--orange);
+    padding: clamp(32px, 4vw, 56px);
+    text-decoration: none;
+    transition: background 0.25s;
+}
+
+.kb-featured:hover {
+    background: #181818;
+}
+
+.kb-featured-labels {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 16px;
+}
+
+.kb-featured h2 {
+    font-size: clamp(22px, 2.8vw, 36px);
+    letter-spacing: 0.02em;
+    margin-bottom: 14px;
+}
+
+.kb-featured > p {
+    font-size: clamp(14px, 1.5vw, 17px);
+    line-height: 1.75;
+    max-width: 72ch;
+    color: var(--text-2);
+}
+
+.kb-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 28px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
+}
+
+.kb-author {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-2);
+}
+
+.kb-read-time {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--orange);
+    background: rgba(255, 138, 0, 0.1);
+    padding: 4px 10px;
+    border-radius: 2px;
+}
+
+.kb-card-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-top: 12px;
+}
+
+.kb-author-chip {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: var(--text-2);
+}
+
+.kb-read-time-badge {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--orange);
+    background: rgba(255, 138, 0, 0.1);
+    padding: 3px 8px;
+    border-radius: 2px;
+}
+
+.kb-card-related {
+    font-size: 12px;
+    color: var(--text-2);
+    margin-top: 8px;
+    margin-bottom: 4px;
+}
+
+.kb-related-title {
+    color: var(--orange);
+}
+
+.kb-inline-cta {
+    padding: 18px clamp(24px, 3vw, 40px);
+    background: rgba(255, 138, 0, 0.04);
+    border: 1px solid var(--line);
+    border-top: none;
+}
+
+.kb-inline-cta p {
+    font-size: 14px;
+    color: var(--text-2);
+    margin: 0;
+}
+
+.kb-inline-cta a {
+    color: var(--orange);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.kb-inline-cta a:hover {
+    text-decoration: underline;
+}
