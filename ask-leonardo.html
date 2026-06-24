@@ -250,7 +250,7 @@
                             >
                         </div>
 
-                        <p class="lead-capture__status" data-ask-status hidden></p>
+                        <p class="lead-capture__status" data-ask-status aria-live="polite" hidden></p>
 
                         <button class="button button-primary" type="submit" data-ask-submit>Send my question →</button>
 
@@ -377,7 +377,11 @@
 
             if (!name || !email || !question) return;
 
-            if (submitBtn) submitBtn.disabled = true;
+            form.classList.add("is-submitting");
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.textContent = "Preparing WhatsApp...";
+            }
 
             if (typeof gtag === "function") {
                 gtag("event", "ask_leonardo_submit", { event_category: "lead" });
@@ -401,6 +405,8 @@
                 el.style.display = "none";
             });
             form.querySelector(".lead-capture__privacy").style.display = "none";
+            form.classList.remove("is-submitting");
+            form.classList.add("is-submitted", "is-success");
 
             setTimeout(function () {
                 window.open(

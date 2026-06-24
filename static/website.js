@@ -1,3 +1,13 @@
+// ─── Attribution config ──────────────────────────────────────────────────────
+// Replace YOUR_PIXEL_ID with the 15-digit ID from Meta Business Manager →
+// Events Manager → Connect Data Sources → Web → Meta Pixel
+const PHYSIOPRO_META_PIXEL_ID = "YOUR_PIXEL_ID";
+
+// Set to the PhysioPro API base URL when domain + SSL are live (e.g. "https://physiopro.mx").
+// Leave empty to skip the API lead capture (WhatsApp fallback is always active).
+const PHYSIOPRO_API_URL = "";
+// ─────────────────────────────────────────────────────────────────────────────
+
 const topbar = document.querySelector("[data-topbar]");
 const fab = document.querySelector(".sticky-whatsapp");
 const navToggle = document.querySelector("[data-nav-toggle]");
@@ -8,9 +18,61 @@ const leadStatus = document.querySelector("[data-lead-status]");
 const leadSubmitButton = document.querySelector("[data-lead-submit]");
 const WHATSAPP_NUMBER = "526634875859";
 
+// ─── Meta Pixel ──────────────────────────────────────────────────────────────
+const initMetaPixel = () => {
+    if (!PHYSIOPRO_META_PIXEL_ID || PHYSIOPRO_META_PIXEL_ID === "YOUR_PIXEL_ID") return;
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', PHYSIOPRO_META_PIXEL_ID);
+    fbq('track', 'PageView');
+};
+
+// ─── UTM capture ─────────────────────────────────────────────────────────────
+const UTM_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"];
+const SESSION_UTM_KEY = "physiopro_utms";
+const SESSION_LP_KEY  = "physiopro_landing_page";
+
+const captureAndStoreUtms = () => {
+    const params = new URLSearchParams(window.location.search);
+    const utms = {};
+    UTM_KEYS.forEach(k => { if (params.get(k)) utms[k] = params.get(k); });
+    if (Object.keys(utms).length > 0) {
+        try {
+            sessionStorage.setItem(SESSION_UTM_KEY, JSON.stringify(utms));
+            sessionStorage.setItem(SESSION_LP_KEY, window.location.pathname);
+        } catch (_) {}
+    }
+};
+
+const getStoredUtms = () => {
+    try {
+        const raw = sessionStorage.getItem(SESSION_UTM_KEY);
+        const lp  = sessionStorage.getItem(SESSION_LP_KEY);
+        return { utms: raw ? JSON.parse(raw) : {}, landing_page: lp || "" };
+    } catch (_) {
+        return { utms: {}, landing_page: "" };
+    }
+};
+
+const sendLeadToApi = (payload) => {
+    if (!PHYSIOPRO_API_URL) return;
+    try {
+        navigator.sendBeacon(
+            PHYSIOPRO_API_URL + "/api/public/leads",
+            new Blob([JSON.stringify(payload)], { type: "application/json" })
+        );
+    } catch (_) {}
+};
+// ─────────────────────────────────────────────────────────────────────────────
+
 const revealEls = Array.from(document.querySelectorAll(".reveal:not(.in)"));
 const processTrack = document.getElementById("process-track");
+const trustStrip = document.querySelector("[data-trust-strip]");
 let processTrackDone = false;
+let trustStripDone = false;
 
 const updateTopbar = () => {
     if (!topbar) return;
@@ -64,7 +126,30 @@ const setupLeadCapture = () => {
             });
         }
 
-        const message = `Hello, I'm interested in booking an evaluation at PhysioPro.\n\nName: ${name}\nWhatsApp: ${phone}\nLooking for: ${goal}`;
+        const { utms, landing_page } = getStoredUtms();
+
+        if (typeof fbq === "function") {
+            fbq("track", "Lead", { content_category: goal || "general" });
+        }
+
+        sendLeadToApi({
+            full_name: name,
+            phone: phone,
+            goal: goal,
+            source: utms.utm_source || "website",
+            utm_source: utms.utm_source || null,
+            utm_medium: utms.utm_medium || null,
+            utm_campaign: utms.utm_campaign || null,
+            utm_content: utms.utm_content || null,
+            utm_term: utms.utm_term || null,
+            landing_page: landing_page || null,
+            consent_whatsapp: true,
+        });
+
+        const sourceTag = utms.utm_source
+            ? `\nSource: ${[utms.utm_source, utms.utm_medium, utms.utm_campaign].filter(Boolean).join("/")}`
+            : "";
+        const message = `Hello, I'm interested in booking an evaluation at PhysioPro.\n\nName: ${name}\nWhatsApp: ${phone}\nLooking for: ${goal}${sourceTag}`;
         const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 
         leadForm.classList.add("is-submitted");
@@ -82,12 +167,48 @@ const setupLeadCapture = () => {
 const lightProcess = () => {
     if (!processTrack || processTrackDone) return;
     processTrackDone = true;
+    processTrack.classList.add("is-lit");
     processTrack.style.setProperty("--progress", window.innerWidth <= 980 ? "100%" : "100%");
     Array.from(processTrack.querySelectorAll(".pstep")).forEach((step, index) => {
         setTimeout(() => {
             step.classList.add("lit");
         }, 180 + index * 220);
     });
+};
+
+const animateCount = (el) => {
+    if (!el || el.dataset.counted === "true") return;
+    const target = Number(el.dataset.countTo);
+    if (!Number.isFinite(target)) return;
+
+    const suffix = el.dataset.countSuffix || "";
+    const duration = 1200;
+    const start = performance.now();
+    el.dataset.counted = "true";
+
+    const tick = (now) => {
+        const progress = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        el.textContent = `${Math.round(target * eased)}${suffix}`;
+        if (progress < 1) {
+            requestAnimationFrame(tick);
+        } else {
+            el.textContent = `${target}${suffix}`;
+        }
+    };
+
+    requestAnimationFrame(tick);
+};
+
+const lightTrustStrip = () => {
+    if (!trustStrip || trustStripDone) return;
+    const rect = trustStrip.getBoundingClientRect();
+    const vh = window.innerHeight || document.documentElement.clientHeight;
+    if (rect.top >= vh * 0.94 || rect.bottom <= 0) return;
+
+    trustStripDone = true;
+    trustStrip.classList.add("is-visible");
+    trustStrip.querySelectorAll("[data-count-to]").forEach((el) => animateCount(el));
 };
 
 const checkReveals = () => {
@@ -107,6 +228,8 @@ const checkReveals = () => {
             lightProcess();
         }
     }
+
+    lightTrustStrip();
 };
 
 const setupWantList = () => {
@@ -132,6 +255,9 @@ document.querySelectorAll('a[href*="wa.me"]').forEach((el) => {
                 event_category: "lead",
                 event_label: el.textContent.trim(),
             });
+        }
+        if (typeof fbq === "function") {
+            fbq("track", "Contact");
         }
     });
 });
@@ -193,6 +319,21 @@ checkReveals();
 setupWantList();
 setupLeadCapture();
 setupHamburger();
+
+// Attribution init — runs on every page
+initMetaPixel();
+captureAndStoreUtms();
+
+// Ask-Leonardo form — fire Lead pixel event (form is handled by inline script in ask-leonardo.html)
+(function () {
+    const askForm = document.getElementById("ask-form");
+    if (!askForm) return;
+    askForm.addEventListener("submit", function () {
+        if (typeof fbq === "function") {
+            fbq("track", "Lead", { content_category: "ask_leonardo" });
+        }
+    });
+})();
 
 // ---------- PhysioPro chat widget ----------
 
@@ -414,44 +555,23 @@ const setupDropdowns = () => {
     }, true);
 };
 
-setupDropdowns();
-setupChatWidget();
+const setupActiveNav = () => {
+    const currentPath = window.location.pathname.split("/").pop() || "index.html";
+    const navLinks = Array.from(document.querySelectorAll(".nav a[href]"));
 
-// === SPRINT 1 — Counter animation for trust strip ===
-const setupCounters = () => {
-    const strip = document.querySelector('.trust-strip');
-    if (!strip || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-    const chips = Array.from(strip.querySelectorAll('.trust-chip strong'));
-    // Only animate chips that contain a + suffix (skip "1:1" and "Day 1")
-    const counters = chips.filter(el => /^\d+\+$/.test(el.textContent.trim()));
-    if (!counters.length) return;
-
-    const animate = (el) => {
-        const target = parseInt(el.textContent.replace('+', ''), 10);
-        if (isNaN(target)) return;
-        const start = Math.floor(target * 0.88);
-        const duration = 1200;
-        const startTime = performance.now();
-        const tick = (now) => {
-            const elapsed = Math.min(now - startTime, duration);
-            const ease = 1 - Math.pow(1 - elapsed / duration, 3);
-            el.textContent = Math.floor(start + (target - start) * ease) + '+';
-            if (elapsed < duration) requestAnimationFrame(tick);
-            else el.textContent = target + '+';
-        };
-        requestAnimationFrame(tick);
-    };
-
-    let fired = false;
-    const obs = new IntersectionObserver((entries) => {
-        if (fired || !entries[0].isIntersecting) return;
-        fired = true;
-        obs.disconnect();
-        counters.forEach((el, i) => setTimeout(() => animate(el), i * 180));
-    }, { threshold: 0.5 });
-
-    obs.observe(strip);
+    navLinks.forEach((link) => {
+        const href = link.getAttribute("href");
+        if (!href || href.startsWith("http") || href.startsWith("#")) return;
+        const normalized = href === "./" ? "index.html" : href.replace("./", "");
+        if (normalized === currentPath) {
+            link.classList.add("is-current");
+            link.setAttribute("aria-current", "page");
+            const parentItem = link.closest(".nav-item");
+            if (parentItem) parentItem.classList.add("has-current");
+        }
+    });
 };
 
-setupCounters();
+setupDropdowns();
+setupActiveNav();
+setupChatWidget();
