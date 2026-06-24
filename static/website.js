@@ -16,6 +16,7 @@ const heroEl = document.querySelector(".hero");
 const leadForm = document.querySelector("[data-lead-form]");
 const leadStatus = document.querySelector("[data-lead-status]");
 const leadSubmitButton = document.querySelector("[data-lead-submit]");
+const heroScrollCue = document.querySelector(".hero-scroll-cue");
 const WHATSAPP_NUMBER = "526634875859";
 
 // ─── Meta Pixel ──────────────────────────────────────────────────────────────
@@ -77,6 +78,7 @@ let trustStripDone = false;
 const updateTopbar = () => {
     if (!topbar) return;
     topbar.classList.toggle("is-scrolled", window.scrollY > 24);
+    if (heroEl) heroEl.classList.toggle("has-scrolled", window.scrollY > 42);
 };
 
 const updateParallax = () => {
@@ -208,7 +210,12 @@ const lightTrustStrip = () => {
 
     trustStripDone = true;
     trustStrip.classList.add("is-visible");
-    trustStrip.querySelectorAll("[data-count-to]").forEach((el) => animateCount(el));
+    Array.from(trustStrip.querySelectorAll(".trust-chip")).forEach((chip, index) => {
+        setTimeout(() => chip.classList.add("is-live"), index * 110);
+    });
+    trustStrip.querySelectorAll("[data-count-to]").forEach((el, index) => {
+        setTimeout(() => animateCount(el), index * 120);
+    });
 };
 
 const checkReveals = () => {
