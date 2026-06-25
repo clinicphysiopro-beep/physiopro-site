@@ -1,7 +1,7 @@
 // ─── Attribution config ──────────────────────────────────────────────────────
 // Replace YOUR_PIXEL_ID with the 15-digit ID from Meta Business Manager →
 // Events Manager → Connect Data Sources → Web → Meta Pixel
-const PHYSIOPRO_META_PIXEL_ID = "YOUR_PIXEL_ID";
+const PHYSIOPRO_META_PIXEL_ID = "2109959769734919";
 
 // Set to the PhysioPro API base URL when domain + SSL are live (e.g. "https://physiopro.mx").
 // Leave empty to skip the API lead capture (WhatsApp fallback is always active).
