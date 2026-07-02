@@ -266,7 +266,7 @@ export async function verifyTurnstileToken({ token, request, env }) {
   const hostname = new URL(request.url).hostname;
   const isLocal = hostname === "127.0.0.1" || hostname === "localhost";
 
-  if (!env.TURNSTILE_SECRET) {
+  if (!env.TURNSTILE_SECRET_KEY) {
     if (allowInsecureLocal || isLocal) {
       return { success: true, skipped: true };
     }
@@ -283,7 +283,7 @@ export async function verifyTurnstileToken({ token, request, env }) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      secret: env.TURNSTILE_SECRET,
+      secret: env.TURNSTILE_SECRET_KEY,
       response: token,
       remoteip: request.headers.get("cf-connecting-ip") || undefined,
     }),
