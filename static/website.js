@@ -3,8 +3,7 @@
 // Events Manager → Connect Data Sources → Web → Meta Pixel
 const PHYSIOPRO_META_PIXEL_ID = "2109959769734919";
 
-// Set to the PhysioPro API base URL when domain + SSL are live (e.g. "https://physiopro.mx").
-// Leave empty to skip the API lead capture (WhatsApp fallback is always active).
+// Leave empty to use same-origin Pages Functions at /api/*.
 const PHYSIOPRO_API_URL = "";
 // ─────────────────────────────────────────────────────────────────────────────
 
@@ -16,6 +15,9 @@ const heroEl = document.querySelector(".hero");
 const leadForm = document.querySelector("[data-lead-form]");
 const leadStatus = document.querySelector("[data-lead-status]");
 const leadSubmitButton = document.querySelector("[data-lead-submit]");
+const askForm = document.getElementById("ask-form");
+const askStatus = document.querySelector("[data-ask-status]");
+const askSubmitButton = document.querySelector("[data-ask-submit]");
 const heroScrollCue = document.querySelector(".hero-scroll-cue");
 const WHATSAPP_NUMBER = "526634875859";
 
@@ -58,14 +60,116 @@ const getStoredUtms = () => {
     }
 };
 
-const sendLeadToApi = (payload) => {
-    if (!PHYSIOPRO_API_URL) return;
-    try {
-        navigator.sendBeacon(
-            PHYSIOPRO_API_URL + "/api/public/leads",
-            new Blob([JSON.stringify(payload)], { type: "application/json" })
-        );
-    } catch (_) {}
+const apiUrl = (path) => `${PHYSIOPRO_API_URL || window.location.origin}${path}`;
+
+const escapeHtml = (value) =>
+    String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#39;");
+
+let securityConfigPromise;
+const getSecurityConfig = async () => {
+    if (!securityConfigPromise) {
+        securityConfigPromise = fetch(apiUrl("/api/config"), {
+            method: "GET",
+            headers: { Accept: "application/json" },
+        })
+            .then(async (response) => {
+                if (!response.ok) throw new Error("config_unavailable");
+                return response.json();
+            })
+            .catch(() => ({
+                ok: false,
+                turnstileSiteKey: "",
+                canonicalOrigin: window.location.origin,
+                assistantMessageMaxLength: 320,
+            }));
+    }
+    return securityConfigPromise;
+};
+
+const postJson = async (path, payload) => {
+    const response = await fetch(apiUrl(path), {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+        },
+        body: JSON.stringify(payload),
+    });
+    const body = await response.json().catch(() => ({}));
+    if (!response.ok) {
+        const error = new Error(body.message || body.error || "request_failed");
+        error.status = response.status;
+        error.body = body;
+        throw error;
+    }
+    return body;
+};
+
+const turnstileWidgets = new Map();
+
+const waitForTurnstile = () =>
+    new Promise((resolve, reject) => {
+        let attempts = 0;
+        const poll = () => {
+            if (window.turnstile && typeof window.turnstile.render === "function") {
+                resolve(window.turnstile);
+                return;
+            }
+            attempts += 1;
+            if (attempts > 80) {
+                reject(new Error("turnstile_unavailable"));
+                return;
+            }
+            window.setTimeout(poll, 150);
+        };
+        poll();
+    });
+
+const registerTurnstile = async (name) => {
+    const container = document.querySelector(`[data-turnstile-container="${name}"]`);
+    if (!container) return null;
+
+    const config = await getSecurityConfig();
+    if (!config.turnstileSiteKey) {
+        container.innerHTML = '<p class="lead-capture__privacy">Verification is not configured yet for this environment.</p>';
+        return null;
+    }
+
+    const turnstile = await waitForTurnstile();
+    const widgetState = { token: "", widgetId: null };
+    widgetState.widgetId = turnstile.render(container, {
+        sitekey: config.turnstileSiteKey,
+        theme: "dark",
+        callback: (token) => {
+            widgetState.token = token;
+        },
+        "expired-callback": () => {
+            widgetState.token = "";
+        },
+        "error-callback": () => {
+            widgetState.token = "";
+        },
+    });
+
+    turnstileWidgets.set(name, widgetState);
+    return widgetState;
+};
+
+const getTurnstileToken = (name) => {
+    const widget = turnstileWidgets.get(name);
+    return widget ? widget.token : "";
+};
+
+const resetTurnstile = (name) => {
+    const widget = turnstileWidgets.get(name);
+    if (!widget || widget.widgetId === null || !window.turnstile) return;
+    widget.token = "";
+    window.turnstile.reset(widget.widgetId);
 };
 // ─────────────────────────────────────────────────────────────────────────────
 
@@ -103,23 +207,60 @@ const setLeadStatus = (message, type) => {
     if (type) leadStatus.classList.add(`lead-capture__status--${type}`);
 };
 
+const setAskStatus = (message, type) => {
+    if (!askStatus) return;
+    askStatus.hidden = false;
+    askStatus.textContent = message;
+    askStatus.classList.remove("lead-capture__status--success", "lead-capture__status--error");
+    if (type) askStatus.classList.add(`lead-capture__status--${type}`);
+};
+
+const setSubmitting = (form, button, label) => {
+    if (form) form.classList.add("is-submitting");
+    if (button) {
+        button.disabled = true;
+        if (label) button.dataset.originalLabel = button.textContent;
+        if (label) button.textContent = label;
+    }
+};
+
+const clearSubmitting = (form, button) => {
+    if (form) form.classList.remove("is-submitting");
+    if (button) {
+        button.disabled = false;
+        if (button.dataset.originalLabel) {
+            button.textContent = button.dataset.originalLabel;
+        }
+    }
+};
+
 const setupLeadCapture = () => {
     if (!leadForm) return;
 
-    leadForm.addEventListener("submit", (event) => {
+    leadForm.addEventListener("submit", async (event) => {
         event.preventDefault();
+        if (!leadForm.reportValidity()) return;
 
         const formData = new FormData(leadForm);
         const honeypot = String(formData.get("honeypot") || "").trim();
-        if (honeypot) return;
+        if (honeypot) {
+            setLeadStatus("Done. We’re sending you to WhatsApp to coordinate your first session.", "success");
+            return;
+        }
 
         const name = String(formData.get("full_name") || "").trim();
         const phone = String(formData.get("phone") || "").trim();
         const goal = String(formData.get("goal") || "").trim();
+        const consent = Boolean(formData.get("consent"));
+        const turnstileToken = getTurnstileToken("lead");
 
-        if (!name || !phone || !goal) return;
+        if (!name || !phone || !goal || !consent) return;
+        if (!turnstileToken) {
+            setLeadStatus("Please complete the verification before submitting.", "error");
+            return;
+        }
 
-        if (leadSubmitButton) leadSubmitButton.disabled = true;
+        setSubmitting(leadForm, leadSubmitButton, "Preparing WhatsApp...");
 
         if (typeof gtag === "function") {
             gtag("event", "lead_form_submit", {
@@ -134,35 +275,103 @@ const setupLeadCapture = () => {
             fbq("track", "Lead", { content_category: goal || "general" });
         }
 
-        sendLeadToApi({
-            full_name: name,
-            phone: phone,
-            goal: goal,
-            source: utms.utm_source || "website",
-            utm_source: utms.utm_source || null,
-            utm_medium: utms.utm_medium || null,
-            utm_campaign: utms.utm_campaign || null,
-            utm_content: utms.utm_content || null,
-            utm_term: utms.utm_term || null,
-            landing_page: landing_page || null,
-            consent_whatsapp: true,
-        });
+        try {
+            const result = await postJson("/api/lead", {
+                full_name: name,
+                phone: phone,
+                goal: goal,
+                turnstileToken,
+                page_path: window.location.pathname,
+                source: utms.utm_source || "website",
+                utm_source: utms.utm_source || null,
+                utm_medium: utms.utm_medium || null,
+                utm_campaign: utms.utm_campaign || null,
+                utm_content: utms.utm_content || null,
+                utm_term: utms.utm_term || null,
+                landing_page: landing_page || null,
+            });
 
-        const sourceTag = utms.utm_source
-            ? `\nSource: ${[utms.utm_source, utms.utm_medium, utms.utm_campaign].filter(Boolean).join("/")}`
-            : "";
-        const message = `Hello, I'm interested in booking an evaluation at PhysioPro.\n\nName: ${name}\nWhatsApp: ${phone}\nLooking for: ${goal}${sourceTag}`;
-        const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+            leadForm.classList.add("is-submitted");
+            setLeadStatus(result.message || "Done. We’re sending you to WhatsApp to coordinate your first session.", "success");
 
-        leadForm.classList.add("is-submitted");
-        setLeadStatus(
-            "Done. We’re sending you to WhatsApp to coordinate your first session.",
-            "success"
-        );
+            setTimeout(() => {
+                window.open(result.whatsappUrl, "_blank", "noopener,noreferrer");
+            }, 700);
+        } catch (error) {
+            setLeadStatus(
+                (error.body && error.body.message) || "We couldn't validate the form. Please try again.",
+                "error"
+            );
+            resetTurnstile("lead");
+        } finally {
+            clearSubmitting(leadForm, leadSubmitButton);
+        }
+    });
+};
 
-        setTimeout(() => {
-            window.open(waUrl, "_blank", "noopener,noreferrer");
-        }, 700);
+const setupAskForm = () => {
+    if (!askForm) return;
+
+    askForm.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        if (!askForm.reportValidity()) return;
+
+        const formData = new FormData(askForm);
+        const honeypot = String(formData.get("honeypot") || "").trim();
+        if (honeypot) {
+            setAskStatus("Thank you. Leonardo will review your question and respond as soon as possible.", "success");
+            return;
+        }
+
+        const name = String(formData.get("full_name") || "").trim();
+        const email = String(formData.get("email") || "").trim();
+        const phone = String(formData.get("phone") || "").trim();
+        const question = String(formData.get("question") || "").trim();
+        const consent = Boolean(formData.get("consent"));
+        const turnstileToken = getTurnstileToken("ask");
+
+        if (!name || !email || !question || !consent) return;
+        if (!turnstileToken) {
+            setAskStatus("Please complete the verification before submitting.", "error");
+            return;
+        }
+
+        setSubmitting(askForm, askSubmitButton, "Preparing WhatsApp...");
+
+        if (typeof gtag === "function") {
+            gtag("event", "ask_leonardo_submit", { event_category: "lead" });
+        }
+
+        try {
+            const result = await postJson("/api/ask", {
+                full_name: name,
+                email,
+                phone,
+                question,
+                turnstileToken,
+                page_path: window.location.pathname,
+            });
+
+            setAskStatus(result.message || "Thank you. Leonardo will review your question and respond as soon as possible.", "success");
+            askForm.querySelectorAll(".lead-capture__field, .lead-capture__honeypot, .turnstile-wrap, [type=submit], .lead-capture__consent, .ask-response-note").forEach((el) => {
+                el.style.display = "none";
+            });
+            const privacy = askForm.querySelector(".lead-capture__privacy");
+            if (privacy) privacy.style.display = "none";
+            askForm.classList.add("is-submitted", "is-success");
+
+            setTimeout(() => {
+                window.open(result.whatsappUrl, "_blank", "noopener,noreferrer");
+            }, 800);
+        } catch (error) {
+            setAskStatus(
+                (error.body && error.body.message) || "We couldn't validate your question. Please try again.",
+                "error"
+            );
+            resetTurnstile("ask");
+        } finally {
+            clearSubmitting(askForm, askSubmitButton);
+        }
     });
 };
 
@@ -325,7 +534,10 @@ updateFab();
 checkReveals();
 setupWantList();
 setupLeadCapture();
+setupAskForm();
 setupHamburger();
+registerTurnstile("lead").catch(() => {});
+registerTurnstile("ask").catch(() => {});
 
 // Attribution init — runs on every page
 initMetaPixel();
@@ -403,6 +615,7 @@ const setupChatWidget = () => {
             '</div>',
             '<div class="pchat-messages" id="pchat-messages"></div>',
             '<div class="pchat-topics" id="pchat-topics"></div>',
+            '<p class="pchat-status" id="pchat-status" hidden></p>',
             '<div class="pchat-input-row">',
                 '<input type="text" class="pchat-input" id="pchat-input" placeholder="Type a question…" autocomplete="off" aria-label="Your question">',
                 '<button class="pchat-send" id="pchat-send" aria-label="Send">→</button>',
@@ -419,6 +632,7 @@ const setupChatWidget = () => {
     const closeBtn = document.getElementById("pchat-close");
     const msgs     = document.getElementById("pchat-messages");
     const topicsEl = document.getElementById("pchat-topics");
+    const statusEl = document.getElementById("pchat-status");
     const input    = document.getElementById("pchat-input");
     const sendBtn  = document.getElementById("pchat-send");
     let isOpen = false;
@@ -444,6 +658,25 @@ const setupChatWidget = () => {
         return html;
     };
 
+    const buildApiAnswerHtml = (payload) => {
+        let html = "<p>" + escapeHtml(payload.answer) + "</p>";
+        if (payload.ctaHref && payload.ctaLabel) {
+            const external = payload.ctaHref.startsWith("http");
+            html += '<a class="pchat-cta" href="' + payload.ctaHref + '"'
+                + (external ? ' target="_blank" rel="noopener noreferrer"' : "") + ">"
+                + escapeHtml(payload.ctaLabel) + "</a>";
+        }
+        html += '<span class="pchat-escalate">This assistant is limited to public PhysioPro website questions. <a href="' + CHAT_ASK_HREF + '">Ask Leonardo personally →</a></span>';
+        return html;
+    };
+
+    const setChatStatus = (message, type) => {
+        if (!statusEl) return;
+        statusEl.hidden = !message;
+        statusEl.textContent = message || "";
+        statusEl.classList.toggle("pchat-status--error", type === "error");
+    };
+
     const showTopics = () => {
         topicsEl.innerHTML = "";
         PHYSIO_TOPICS.forEach((t) => {
@@ -453,41 +686,53 @@ const setupChatWidget = () => {
             btn.addEventListener("click", () => {
                 topicsEl.innerHTML = "";
                 addMsg(t.label, "pchat-msg--user");
-                addMsg(buildAnswerHtml(t), "pchat-msg--answer");
-                showTopics();
+                void handleMessage(t.label);
             });
             topicsEl.appendChild(btn);
         });
     };
 
-    const matchTopic = (text) => {
-        const lower = text.toLowerCase();
-        for (const t of PHYSIO_TOPICS) {
-            if (t.keywords.some((kw) => lower.includes(kw))) return t;
+    const handleMessage = async (text) => {
+        const trimmed = text.trim();
+        if (!trimmed) return;
+
+        setChatStatus("", null);
+        input.disabled = true;
+        sendBtn.disabled = true;
+
+        try {
+            const result = await postJson("/api/assistant", {
+                message: trimmed,
+                page_path: window.location.pathname,
+            });
+            topicsEl.innerHTML = "";
+            addMsg(buildApiAnswerHtml(result), "pchat-msg--answer");
+            showTopics();
+        } catch (error) {
+            setChatStatus(
+                (error.body && error.body.message) || "The assistant is temporarily unavailable.",
+                "error"
+            );
+            addMsg(
+                "<p>I can’t answer that right now.</p><a class=\"pchat-cta\" href=\"" + CHAT_ASK_HREF + "\">Ask Leonardo →</a>",
+                "pchat-msg--answer"
+            );
+        } finally {
+            input.disabled = false;
+            sendBtn.disabled = false;
         }
-        return null;
+
+        if (typeof gtag === "function") {
+            gtag("event", "chat_message", { event_category: "chat", event_label: trimmed.substring(0, 60) });
+        }
     };
 
     const handleSend = () => {
         const text = input.value.trim();
         if (!text) return;
         input.value = "";
-        addMsg(text, "pchat-msg--user");
-        const match = matchTopic(text);
-        if (match) {
-            topicsEl.innerHTML = "";
-            addMsg(buildAnswerHtml(match), "pchat-msg--answer");
-            showTopics();
-        } else {
-            addMsg(
-                "<p>I’d like Leonardo to answer that personally.</p>"
-                + '<a class="pchat-cta" href="' + CHAT_ASK_HREF + '">Ask Leonardo →</a>',
-                "pchat-msg--answer"
-            );
-        }
-        if (typeof gtag === "function") {
-            gtag("event", "chat_message", { event_category: "chat", event_label: text.substring(0, 60) });
-        }
+        addMsg(escapeHtml(text), "pchat-msg--user");
+        void handleMessage(text);
     };
 
     const openChat = () => {
@@ -496,7 +741,7 @@ const setupChatWidget = () => {
         bubble.setAttribute("aria-expanded", "true");
         if (!initialized) {
             initialized = true;
-            addMsg("Hi — what can I help you with before you book?", "pchat-msg--bot");
+            addMsg("Hi — I can help with public PhysioPro website questions before you book.", "pchat-msg--bot");
             showTopics();
         }
         if (typeof gtag === "function") {

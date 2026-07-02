@@ -10,17 +10,20 @@
     <meta property="og:site_name" content="PhysioPro">
     <meta property="og:title" content="Ask Leonardo | PhysioPro · Performance Rehabilitation Tijuana">
     <meta property="og:description" content="Have a question before booking? Ask Leonardo directly — physiotherapist and founder of PhysioPro. A real answer, not a template.">
-    <meta property="og:url" content="https://clinicphysiopro-beep.github.io/physiopro-site/ask-leonardo.html">
+    <meta property="og:url" content="https://physioprotijuana.com/ask-leonardo.html">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Ask Leonardo | PhysioPro · Performance Rehabilitation Tijuana">
     <meta name="twitter:description" content="Have a question before booking? Ask Leonardo directly — physiotherapist and founder of PhysioPro. A real answer, not a template.">
-    <link rel="canonical" href="https://clinicphysiopro-beep.github.io/physiopro-site/ask-leonardo.html">
+    <link rel="canonical" href="https://physioprotijuana.com/ask-leonardo.html">
     <link rel="icon" type="image/png" href="./static/physiopro-mark.png">
     <link rel="apple-touch-icon" href="./static/physiopro-mark.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://challenges.cloudflare.com" crossorigin>
+    <link rel="preload" as="image" href="./static/images/v3/founder.jpg">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./static/website.css">
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-PXDTD1M7WK"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -33,12 +36,12 @@
       "@context": "https://schema.org",
       "@type": "WebPage",
       "name": "Ask Leonardo | PhysioPro",
-      "url": "https://clinicphysiopro-beep.github.io/physiopro-site/ask-leonardo.html",
+      "url": "https://physioprotijuana.com/ask-leonardo.html",
       "description": "Ask Leonardo Machado, physiotherapist at PhysioPro, a direct question before booking your first session in Tijuana.",
       "about": {
         "@type": "PhysicalTherapy",
         "name": "PhysioPro",
-        "url": "https://clinicphysiopro-beep.github.io/physiopro-site/"
+        "url": "https://physioprotijuana.com/"
       }
     }
     </script>
@@ -47,7 +50,7 @@
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
       "name": "PhysioPro",
-      "url": "https://clinicphysiopro-beep.github.io/physiopro-site/",
+      "url": "https://physioprotijuana.com/",
       "telephone": "+526634875859",
       "address": {
         "@type": "PostalAddress",
@@ -66,9 +69,9 @@
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
       "itemListElement": [
-        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://clinicphysiopro-beep.github.io/physiopro-site/"},
-        {"@type": "ListItem", "position": 2, "name": "New Patients", "item": "https://clinicphysiopro-beep.github.io/physiopro-site/first-session.html"},
-        {"@type": "ListItem", "position": 3, "name": "Ask Leonardo", "item": "https://clinicphysiopro-beep.github.io/physiopro-site/ask-leonardo.html"}
+        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://physioprotijuana.com/"},
+        {"@type": "ListItem", "position": 2, "name": "New Patients", "item": "https://physioprotijuana.com/first-session.html"},
+        {"@type": "ListItem", "position": 3, "name": "Ask Leonardo", "item": "https://physioprotijuana.com/ask-leonardo.html"}
       ]
     }
     </script>
@@ -79,7 +82,7 @@
 
         <header class="topbar" data-topbar>
             <a class="brand" href="./">
-                <img class="brand-mark-img" src="./static/physiopro-mark.png" alt="PhysioPro logo mark">
+                <img class="brand-mark-img" src="./static/physiopro-mark.png" alt="PhysioPro logo mark" width="114" height="134">
                 <span class="brand-copy">
                     <strong>PhysioPro</strong>
                     <span>Performance Rehabilitation · Tijuana</span>
@@ -165,7 +168,7 @@
                     <p class="ask-hero-note">Mon–Fri · 8 AM–8 PM · Usually within a few hours · WhatsApp or email</p>
                 </div>
                 <figure class="ask-hero-image">
-                    <img src="./static/images/v3/founder.jpg" alt="Leonardo Machado, physiotherapist and founder of PhysioPro" loading="eager">
+                    <img src="./static/images/v3/founder.jpg" alt="Leonardo Machado, physiotherapist and founder of PhysioPro" loading="eager" fetchpriority="high" width="880" height="1100">
                 </figure>
             </section>
 
@@ -253,6 +256,10 @@
 
                         <p class="lead-capture__status" data-ask-status aria-live="polite" hidden></p>
 
+                        <div class="turnstile-wrap">
+                            <div class="turnstile-slot" data-turnstile-container="ask"></div>
+                        </div>
+
                         <button class="button button-primary" type="submit" data-ask-submit>Send my question →</button>
 
                         <p class="ask-response-note">Expect a reply within a few hours — Mon–Fri, 8 AM–8 PM · WhatsApp or email.</p>
@@ -286,7 +293,7 @@
             <div class="footer-grid">
                 <div class="footer-brand">
                     <a class="brand footer-brand-link" href="./">
-                        <img class="brand-mark-img" src="./static/physiopro-mark.png" alt="PhysioPro logo mark">
+                        <img class="brand-mark-img" src="./static/physiopro-mark.png" alt="PhysioPro logo mark" width="114" height="134">
                         <span class="brand-copy">
                             <strong>PhysioPro</strong>
                             <span>Performance Rehabilitation · Tijuana</span>
@@ -356,68 +363,5 @@
 
     </div>
     <script src="./static/website.js"></script>
-    <script>
-    (function () {
-        const form     = document.getElementById("ask-form");
-        const status   = document.querySelector("[data-ask-status]");
-        const submitBtn = document.querySelector("[data-ask-submit]");
-        const WA_NUM   = "526634875859";
-
-        if (!form) return;
-
-        form.addEventListener("submit", function (e) {
-            e.preventDefault();
-
-            const data = new FormData(form);
-            if (String(data.get("honeypot") || "").trim()) return;
-
-            const name     = String(data.get("full_name") || "").trim();
-            const email    = String(data.get("email") || "").trim();
-            const phone    = String(data.get("phone") || "").trim();
-            const question = String(data.get("question") || "").trim();
-
-            if (!name || !email || !question) return;
-
-            form.classList.add("is-submitting");
-            if (submitBtn) {
-                submitBtn.disabled = true;
-                submitBtn.textContent = "Preparing WhatsApp...";
-            }
-
-            if (typeof gtag === "function") {
-                gtag("event", "ask_leonardo_submit", { event_category: "lead" });
-            }
-
-            const lines = [
-                "Hi Leonardo, I have a question before booking at PhysioPro.",
-                "",
-                "Name: " + name,
-                "Email: " + email,
-                phone ? "Phone: " + phone : null,
-                "",
-                "Question: " + question
-            ].filter(function (l) { return l !== null; }).join("\n");
-
-            status.hidden = false;
-            status.textContent = "Thank you. Leonardo will review your question and respond as soon as possible.";
-            status.className = "lead-capture__status lead-capture__status--success";
-
-            form.querySelectorAll(".lead-capture__field, .lead-capture__honeypot, [type=submit], .lead-capture__consent, .ask-response-note").forEach(function (el) {
-                el.style.display = "none";
-            });
-            form.querySelector(".lead-capture__privacy").style.display = "none";
-            form.classList.remove("is-submitting");
-            form.classList.add("is-submitted", "is-success");
-
-            setTimeout(function () {
-                window.open(
-                    "https://wa.me/" + WA_NUM + "?text=" + encodeURIComponent(lines),
-                    "_blank",
-                    "noopener,noreferrer"
-                );
-            }, 800);
-        });
-    })();
-    </script>
 </body>
 </html>

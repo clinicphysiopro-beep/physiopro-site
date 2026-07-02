@@ -1,5 +1,3 @@
 User-agent: *
 Allow: /
-
-# UPDATE Sitemap URL to https://www.YOURDOMAIN.com/sitemap.xml after domain purchase
-Sitemap: https://clinicphysiopro-beep.github.io/physiopro-site/sitemap.xml
+Sitemap: https://physioprotijuana.com/sitemap.xml

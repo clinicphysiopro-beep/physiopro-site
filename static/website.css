@@ -1068,6 +1068,24 @@ p {
     margin: 0;
 }
 
+.turnstile-wrap {
+    display: grid;
+    gap: 0.45rem;
+}
+
+.turnstile-slot {
+    min-height: 68px;
+}
+
+.turnstile-slot:empty::before {
+    content: "Loading verification…";
+    display: inline-flex;
+    align-items: center;
+    min-height: 56px;
+    color: var(--text-2);
+    font-size: 13px;
+}
+
 .lead-capture__honeypot {
     position: absolute;
     width: 1px;
@@ -2943,6 +2961,18 @@ p {
     display: flex;
     border-top: 1px solid var(--line);
     flex-shrink: 0;
+}
+
+.pchat-status {
+    padding: 10px 16px 0;
+    color: var(--text-2);
+    font-family: var(--font-body);
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.pchat-status--error {
+    color: #ffb59f;
 }
 
 .pchat-input {
