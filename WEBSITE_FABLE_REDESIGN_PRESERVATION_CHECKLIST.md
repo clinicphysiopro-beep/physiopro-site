@@ -1,0 +1,36 @@
+# WEBSITE FABLE REDESIGN PRESERVATION CHECKLIST
+
+- Homepage still exists at `/`
+- All current public URLs still resolve or redirect correctly
+- Full primary navigation still includes New Patients, Pain & Injury, Sports & Performance, Learn, Results, About, Contact
+- Footer still includes business links and all 4 legal links
+- Homepage still has a lead capture form
+- Homepage lead form still submits to `/api/lead`
+- Ask Leonardo page still exists
+- Ask Leonardo form still submits to `/api/ask`
+- Chat assistant still exists and still uses `/api/assistant`
+- Sticky WhatsApp CTA still exists on desktop and mobile
+- Core WhatsApp booking CTA still exists site-wide
+- Google review read/write links still exist
+- Contact page still includes phone, email, address, hours, and maps link
+- About Leonardo page still exists
+- First Session page still exists
+- Reviews page still exists
+- Success Stories page still exists
+- Resources page still exists
+- Videos page still exists
+- Legal pages still exist:
+  - `aviso-privacidad.html`
+  - `aviso-medico.html`
+  - `aviso-cookies.html`
+  - `derechos-arco.html`
+- GA4 still loads
+- Meta Pixel still loads
+- Microsoft Clarity still loads
+- Turnstile still renders on homepage and Ask Leonardo
+- `_headers`, `_redirects`, `_routes.json`, and `functions/api/*` are still present
+- `robots.txt` still exists
+- `sitemap.xml` still exists
+- Canonical URLs still point to `https://physioprotijuana.com`
+- JSON-LD/schema still exists on public pages
+- Founder-led care, assessment+treatment day one, and `$750 MXN` first-session positioning were not accidentally removed
