@@ -1,3 +1,7 @@
 name = "physiopro-site"
 compatibility_date = "2026-07-02"
 pages_build_output_dir = "."
+
+[[queues.producers]]
+binding = "LEAD_QUEUE"
+queue = "physiopro-lead-intake"
