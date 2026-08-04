@@ -4481,7 +4481,7 @@ p {
 }
 
 /* ============================================================
-   Sprint 2 — Hero Cinematic Polish
+   Sprint 2 — Hero Production Polish
    ============================================================ */
 
 .hero {
@@ -4732,7 +4732,7 @@ p {
     .h1-line {
         transform: translateY(28px);
         clip-path: inset(0 0 100% 0);
-        animation: headline-cinematic 0.88s var(--ease) forwards;
+        animation: headline-reveal 0.88s var(--ease) forwards;
     }
 
     .h1-line:nth-child(1) { animation-delay: 0.12s; }
@@ -4770,7 +4770,7 @@ p {
     }
 }
 
-@keyframes headline-cinematic {
+@keyframes headline-reveal {
     0% {
         opacity: 0;
         transform: translateY(28px);

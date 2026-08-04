@@ -1,3 +1,16 @@
 node_modules/
 .dev.vars*
 .env*
+dist/
+
+# Superseded local source variants; compressed site assets are canonical.
+static/images/fable5/estim.png
+static/images/fable5/founder-video-poster.png
+static/images/fable5/founder.png
+static/images/fable5/treatment-room.png
+
+# Real patient/staff likeness assets; hold local until consent/release is confirmed.
+static/images/fable5/estim.jpg
+static/images/fable5/manual-therapy-primary.jpeg
+static/images/gallery/cupping-treatment.jpg
+static/images/gallery/estim-treatment.jpg

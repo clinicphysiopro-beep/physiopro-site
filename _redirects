@@ -1,9 +1,37 @@
-/node_modules/* / 404
-/EXPERIENCE_GAP_AUDIT.md / 404
-/FINAL_ARCHITECTURE_CLOSE_REPORT.md / 404
-/PHYSIOPRO_HERO_REDESIGN_PLAN.md / 404
-/PHYSIOPRO_PREMIUM_EXPERIENCE_ROADMAP.md / 404
-/PHYSIOPRO_PT_BENCHMARK_GAP_ROADMAP.md / 404
-/WEBSITE_FINAL_LAUNCH_ROADMAP.md / 404
-/DEPLOYMENT_SECURITY_CHECKLIST.md / 404
-/functions/* / 404
+# Legacy .html URLs redirect to the extensionless canonical routes.
+/first-session.html /first-session 308
+/contact.html /contact 308
+/about-leonardo.html /about-leonardo 308
+/knee-pain.html /knee-pain 308
+/back-pain.html /back-pain 308
+/shoulder-pain.html /shoulder-pain 308
+/neck-pain.html /neck-pain 308
+/sports-injuries.html /sports-injuries 308
+/post-surgical-rehab.html /post-surgical-rehab 308
+/return-to-sport.html /return-to-sport 308
+/return-to-running.html /return-to-running 308
+/combat-sports-rehab.html /combat-sports-rehab 308
+/why-physical-therapy-didnt-work-the-first-time.html /why-physical-therapy-didnt-work-the-first-time 308
+/can-you-keep-training-while-injured.html /can-you-keep-training-while-injured 308
+/what-happens-during-your-first-session.html /what-happens-during-your-first-session 308
+/do-you-need-an-mri-before-physical-therapy.html /do-you-need-an-mri-before-physical-therapy 308
+/how-return-to-sport-testing-works.html /how-return-to-sport-testing-works 308
+/reviews.html /reviews 308
+/success-stories.html /success-stories 308
+/videos.html /videos 308
+/resources.html /resources 308
+/who-we-help.html /who-we-help 308
+/what-we-treat.html /what-we-treat 308
+/faq.html /faq 308
+/ask-leonardo.html /ask-leonardo 308
+/aviso-privacidad.html /aviso-privacidad 308
+/aviso-medico.html /aviso-medico 308
+/aviso-cookies.html /aviso-cookies 308
+/derechos-arco.html /derechos-arco 308
+
+# Defense-in-depth if the repository root is ever deployed directly by mistake.
+# The canonical protection is the clean build output, which excludes these files.
+/node_modules/* /404 302
+/functions/* /404 302
+/wrangler.toml /404 302
+/*.md /404 302

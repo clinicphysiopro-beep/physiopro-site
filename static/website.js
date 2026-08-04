@@ -1,11 +1,23 @@
 // ─── Attribution config ──────────────────────────────────────────────────────
 // Replace YOUR_PIXEL_ID with the 15-digit ID from Meta Business Manager →
 // Events Manager → Connect Data Sources → Web → Meta Pixel
-const PHYSIOPRO_META_PIXEL_ID = "2109959769734919";
+const PHYSIOPRO_META_PIXEL_ID = "984249047745055";
 
 // Leave empty to use same-origin Pages Functions at /api/*.
 const PHYSIOPRO_API_URL = "";
 // ─────────────────────────────────────────────────────────────────────────────
+
+// Shared analytics loader so Clarity is injected once across all public pages.
+(function(c, l, a, r, i, t, y) {
+    c[a] = c[a] || function() {
+        (c[a].q = c[a].q || []).push(arguments);
+    };
+    t = l.createElement(r);
+    t.async = 1;
+    t.src = "https://www.clarity.ms/tag/" + i;
+    y = l.getElementsByTagName(r)[0];
+    y.parentNode.insertBefore(t, y);
+})(window, document, "clarity", "script", "xgb53ac4gs");
 
 const topbar = document.querySelector("[data-topbar]");
 const fab = document.querySelector(".sticky-whatsapp");
@@ -24,11 +36,13 @@ const WHATSAPP_NUMBER = "526634875859";
 // ─── Meta Pixel ──────────────────────────────────────────────────────────────
 const initMetaPixel = () => {
     if (!PHYSIOPRO_META_PIXEL_ID || PHYSIOPRO_META_PIXEL_ID === "YOUR_PIXEL_ID") return;
+    if (window.__physioproMetaPixelInitialized) return;
     !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
     n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
     n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
     t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
     document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    window.__physioproMetaPixelInitialized = true;
     fbq('init', PHYSIOPRO_META_PIXEL_ID);
     fbq('track', 'PageView');
 };
@@ -130,6 +144,26 @@ const waitForTurnstile = () =>
         poll();
     });
 
+const reportTurnstileFailure = (name, error) => {
+    // Deliberately explicit, not silent: a swallowed Turnstile init failure
+    // is exactly what let the homepage lead form go unusable with zero
+    // signal (2026-07-23 incident). This must always be visible in the
+    // console even though there is no backend log sink for client JS errors.
+    console.error("[turnstile_init_failed]", {
+        target: name,
+        message: error && error.message ? error.message : String(error),
+        stack: error && error.stack ? error.stack : null,
+        page_path: window.location.pathname,
+        timestamp: new Date().toISOString(),
+    });
+
+    const container = document.querySelector(`[data-turnstile-container="${name}"]`);
+    if (container) {
+        container.innerHTML =
+            '<p class="lead-capture__privacy" role="alert">Verification could not load. Please refresh the page or contact us through WhatsApp.</p>';
+    }
+};
+
 const registerTurnstile = async (name) => {
     const container = document.querySelector(`[data-turnstile-container="${name}"]`);
     if (!container) return null;
@@ -151,8 +185,21 @@ const registerTurnstile = async (name) => {
         "expired-callback": () => {
             widgetState.token = "";
         },
-        "error-callback": () => {
+        // Cloudflare passes a diagnostic error code here (e.g. "110200",
+        // "300030") explaining why the *live challenge* failed after the
+        // widget rendered successfully — a distinct failure mode from
+        // registration failure (handled by reportTurnstileFailure above).
+        // 2026-07-24 investigation found this silently discarded the code
+        // and logged nothing, so a widget that rendered fine but never
+        // produced a token left zero diagnostic trail.
+        "error-callback": (errorCode) => {
             widgetState.token = "";
+            console.error("[turnstile_widget_error]", {
+                target: name,
+                error_code: errorCode !== undefined ? String(errorCode) : "unknown",
+                page_path: window.location.pathname,
+                timestamp: new Date().toISOString(),
+            });
         },
     });
 
@@ -529,15 +576,33 @@ const setupHamburger = () => {
     });
 };
 
-updateTopbar();
-updateFab();
-checkReveals();
-setupWantList();
-setupLeadCapture();
-setupAskForm();
-setupHamburger();
-registerTurnstile("lead").catch(() => {});
-registerTurnstile("ask").catch(() => {});
+const runInit = (name, fn) => {
+    // Each homepage init step is isolated: one throwing (e.g. a DOM lookup
+    // that doesn't exist on a given page variant) must never prevent the
+    // steps after it from running — Turnstile registration in particular
+    // must always get a chance to execute regardless of what ran before it.
+    try {
+        fn();
+    } catch (error) {
+        console.error("[init_failed]", {
+            step: name,
+            message: error && error.message ? error.message : String(error),
+            stack: error && error.stack ? error.stack : null,
+            page_path: window.location.pathname,
+            timestamp: new Date().toISOString(),
+        });
+    }
+};
+
+runInit("updateTopbar", updateTopbar);
+runInit("updateFab", updateFab);
+runInit("checkReveals", checkReveals);
+runInit("setupWantList", setupWantList);
+runInit("setupLeadCapture", setupLeadCapture);
+runInit("setupAskForm", setupAskForm);
+runInit("setupHamburger", setupHamburger);
+registerTurnstile("lead").catch((error) => reportTurnstileFailure("lead", error));
+registerTurnstile("ask").catch((error) => reportTurnstileFailure("ask", error));
 
 // Attribution init — runs on every page
 initMetaPixel();
@@ -824,6 +889,48 @@ const setupActiveNav = () => {
     });
 };
 
+// ─── Scroll depth tracking ───────────────────────────────────────────────────
+const setupScrollDepthTracking = () => {
+    if (typeof gtag !== "function") return;
+    const thresholds = [25, 50, 75, 90];
+    const fired = new Set();
+
+    const checkScrollDepth = () => {
+        const scrollTop = window.scrollY || document.documentElement.scrollTop;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        if (docHeight <= 0) return;
+        const percentScrolled = Math.round((scrollTop / docHeight) * 100);
+
+        thresholds.forEach((threshold) => {
+            if (percentScrolled >= threshold && !fired.has(threshold)) {
+                fired.add(threshold);
+                gtag("event", "scroll_depth", {
+                    event_category: "engagement",
+                    event_label: `${threshold}%`,
+                    value: threshold,
+                });
+            }
+        });
+
+        if (fired.size === thresholds.length) {
+            window.removeEventListener("scroll", onScroll);
+        }
+    };
+
+    let ticking = false;
+    const onScroll = () => {
+        if (ticking) return;
+        ticking = true;
+        window.requestAnimationFrame(() => {
+            checkScrollDepth();
+            ticking = false;
+        });
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+};
+
 setupDropdowns();
 setupActiveNav();
 setupChatWidget();
+setupScrollDepthTracking();

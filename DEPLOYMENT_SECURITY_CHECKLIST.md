@@ -2,11 +2,17 @@
 
 Target domain: `physioprotijuana.com`
 
-> ⚠️ **STATUS (2026-07-06):** Item 6 under Verification ("no route exposes repository files, internal docs, or non-public directories") was confirmed **FAILING** in production during the Phase 1 production-readiness pass — `_redirects` was using an unsupported `404` status token and every internal `.md` doc plus `functions/api/*.js` source was publicly served with HTTP 200. Fixed in this pass by switching to `301` redirects (a universally-supported Cloudflare Pages status); re-verify item 6 against production after the next deploy. This file was also found untracked in git (`git status` shows `??`) despite matching the live Cloudflare Pages config — commit it once reviewed so it isn't lost. See `WEBSITE_PRODUCTION_STATE.md` for the current authoritative state.
+> ⚠️ **STATUS (2026-08-04):** Item 6 under Verification ("no route exposes repository files, internal docs, or non-public directories") was confirmed **FAILING** in production during Phase 0: internal `.md` docs and `wrangler.toml` were publicly served with HTTP 200. Release 1 now has a sanitized local push-candidate branch, `release/live-site-r1-sanitized`, based on `origin/main` and excluding local Fable/cinematic source, gallery media, private/consent-blocked media, generated `dist/`, `node_modules/`, and test-only artifacts. The branch builds a clean `dist` package with `pages_build_output_dir = "dist"`; production remains unverified until Leonardo approves push/deployment and Cloudflare Pages is confirmed to run `npm run build` and publish `dist`. See `WEBSITE_PRODUCTION_STATE.md` for the current authoritative state.
+
+> **Canonical Release 1 deployment strategy:** GitHub `clinicphysiopro-beep/physiopro-site` branch `main` -> Cloudflare Pages production build. Direct Wrangler upload is not the Release 1 deployment method.
 
 ## Cloudflare setup
 
 1. Create a Cloudflare Pages project from this repository, or redeploy the existing Pages project from this repository only.
+   - Build command: `npm run build`
+   - Build output directory: `dist`
+   - Do not publish the repository root.
+   - Confirm the source checkout includes `release/production-homepage.html`; no build-time Git history lookup is required.
 2. Bind the custom domains:
    - `physioprotijuana.com`
    - `www.physioprotijuana.com`
@@ -26,11 +32,11 @@ Target domain: `physioprotijuana.com`
    - `www.physioprotijuana.com`
    - preview hostname if used
 3. Add the following Pages project secrets:
-   - `TURNSTILE_SECRET`
+   - `TURNSTILE_SECRET_KEY`
 4. Add the following Pages project environment variables:
    - `TURNSTILE_SITE_KEY`
    - `CANONICAL_ORIGIN=https://physioprotijuana.com`
-   - `ALLOWED_ORIGINS=https://physioprotijuana.com,https://physioprotijuana.com`
+   - `ALLOWED_ORIGINS=https://physioprotijuana.com`
    - `WHATSAPP_NUMBER=526634875859`
 
 5. Lead delivery goes through the `LEAD_QUEUE` Cloudflare Queue producer binding
