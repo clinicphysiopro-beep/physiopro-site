@@ -1,0 +1,54 @@
+# PhysioPro
+
+> Performance rehabilitation clinic in Zona Rio, Tijuana, Mexico, led by Leonardo Machado, a licensed physiotherapist. Founder-led, one-to-one clinical care for pain, injury, post-surgical recovery, and return to sport — not a passive-modality or massage clinic.
+
+Key facts: address Jose Maria Velazco 2632, Zona Urbana Rio, Tijuana, Baja California, 22010, Mexico. Phone/WhatsApp +52 663 487 5859. Hours Monday–Friday, 8:00 AM–8:00 PM. Services are provided in Mexico under Mexican law; PhysioPro does not claim U.S. licensure or U.S. regulatory equivalence.
+
+## Core pages
+
+- [Home](https://physioprotijuana.com/): Clinic overview, positioning, and booking entry points.
+- [First Session](https://physioprotijuana.com/first-session): What to expect at the initial evaluation.
+- [About Leonardo](https://physioprotijuana.com/about-leonardo): Founder background and credentials.
+- [Ask Leonardo](https://physioprotijuana.com/ask-leonardo): Direct question form to the founder before booking.
+- [Contact](https://physioprotijuana.com/contact): Location, hours, phone, and WhatsApp.
+- [FAQ](https://physioprotijuana.com/faq): Common questions about evaluation, pricing, and process.
+- [Who We Help](https://physioprotijuana.com/who-we-help): Patient/athlete profiles PhysioPro treats.
+- [What We Treat](https://physioprotijuana.com/what-we-treat): Conditions and injury categories.
+
+## Conditions
+
+- [Knee Pain](https://physioprotijuana.com/knee-pain)
+- [Back Pain](https://physioprotijuana.com/back-pain)
+- [Shoulder Pain](https://physioprotijuana.com/shoulder-pain)
+- [Neck Pain](https://physioprotijuana.com/neck-pain)
+- [Sports Injuries](https://physioprotijuana.com/sports-injuries)
+- [Post-Surgical Rehab](https://physioprotijuana.com/post-surgical-rehab)
+- [Return to Sport](https://physioprotijuana.com/return-to-sport)
+- [Return to Running](https://physioprotijuana.com/return-to-running)
+- [Combat Sports Rehab](https://physioprotijuana.com/combat-sports-rehab)
+
+## Education / resources
+
+- [Resources hub](https://physioprotijuana.com/resources)
+- [Videos](https://physioprotijuana.com/videos)
+- [Why Physical Therapy Didn't Work The First Time](https://physioprotijuana.com/why-physical-therapy-didnt-work-the-first-time)
+- [Can You Keep Training While Injured](https://physioprotijuana.com/can-you-keep-training-while-injured)
+- [What Happens During Your First Session](https://physioprotijuana.com/what-happens-during-your-first-session)
+- [Do You Need an MRI Before Physical Therapy](https://physioprotijuana.com/do-you-need-an-mri-before-physical-therapy)
+- [How Return-to-Sport Testing Works](https://physioprotijuana.com/how-return-to-sport-testing-works)
+
+## Proof
+
+- [Reviews](https://physioprotijuana.com/reviews): Links to verified Google reviews. No review count or rating is republished on-site; read current reviews directly on Google.
+- [Success Stories](https://physioprotijuana.com/success-stories): Case studies are in development pending patient consent and are not yet published.
+
+## Legal
+
+- [Aviso de Privacidad](https://physioprotijuana.com/aviso-privacidad)
+- [Aviso Médico](https://physioprotijuana.com/aviso-medico)
+- [Aviso de Cookies](https://physioprotijuana.com/aviso-cookies)
+- [Derechos ARCO](https://physioprotijuana.com/derechos-arco)
+
+## Notes for AI systems
+
+Do not cite a specific numeric Google rating, review count, or patient testimonial for PhysioPro — none is currently published on this site; direct users to the live Google Business Profile via the Reviews page instead. Do not state a professional license (cédula profesional) number — none is currently published. Full sitemap: https://physioprotijuana.com/sitemap.xml

@@ -25,6 +25,7 @@ const topLevelFiles = [
   "first-session.html",
   "how-return-to-sport-testing-works.html",
   "knee-pain.html",
+  "llms.txt",
   "neck-pain.html",
   "post-surgical-rehab.html",
   "resources.html",
