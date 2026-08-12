@@ -69,9 +69,9 @@ async function getProductionHomepage() {
         ].join("\n    "),
       )
       .replace(
-        '<meta name="twitter:description" content="Performance rehabilitation in Zona Rio, Tijuana. Clinical assessment, targeted treatment, and structured progression to get you back to training, movement, and life with confidence.">',
+        '<meta name="twitter:description" content="Performance rehabilitation in Zona Rio, Tijuana for pain, injury, post-surgical recovery, and return to training with a clear plan.">',
         [
-          '<meta name="twitter:description" content="Performance rehabilitation in Zona Rio, Tijuana. Clinical assessment, targeted treatment, and structured progression to get you back to training, movement, and life with confidence.">',
+          '<meta name="twitter:description" content="Performance rehabilitation in Zona Rio, Tijuana for pain, injury, post-surgical recovery, and return to training with a clear plan.">',
           '<meta name="twitter:image" content="https://physioprotijuana.com/static/images/v3/gym.jpg">',
         ].join("\n    "),
       );

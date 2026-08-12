@@ -634,21 +634,21 @@ const PHYSIO_TOPICS = [
         keywords: ["condition", "treat", "injury", "pain", "knee", "back", "shoulder", "ankle", "sports", "surgery", "post-op", "neck", "hip", "tendon", "elbow", "herniat", "rotator", "acl"],
         answer: "We treat musculoskeletal pain, sports injuries, post-operative recovery, chronic pain, and performance limitations. If it involves movement, we can likely help.",
         ctaLabel: "What We Treat →",
-        ctaHref: "./what-we-treat.html"
+        ctaHref: "./what-we-treat"
     },
     {
         label: "Who is this for?",
         keywords: ["who", "athlete", "active", "runner", "gym", "crossfit", "patient", "recover", "suitable", "for me"],
         answer: "Athletes, active people, post-surgical patients, and anyone dealing with pain that's limiting movement or training. If you want to move better, you're in the right place.",
         ctaLabel: "Who We Help →",
-        ctaHref: "./who-we-help.html"
+        ctaHref: "./who-we-help"
     },
     {
         label: "First session",
         keywords: ["first", "session", "expect", "initial", "assessment", "evaluation", "happen", "visit", "intake"],
         answer: "Your first session includes a full clinical assessment and treatment — not just evaluation. You leave with a clear diagnosis and a structured treatment plan.",
         ctaLabel: "First Session →",
-        ctaHref: "./first-session.html"
+        ctaHref: "./first-session"
     },
     {
         label: "Location & hours",
@@ -666,7 +666,7 @@ const PHYSIO_TOPICS = [
     }
 ];
 
-const CHAT_ASK_HREF = "./ask-leonardo.html";
+const CHAT_ASK_HREF = "./ask-leonardo";
 
 const setupChatWidget = () => {
     const host = document.createElement("div");
@@ -879,7 +879,7 @@ const setupActiveNav = () => {
     navLinks.forEach((link) => {
         const href = link.getAttribute("href");
         if (!href || href.startsWith("http") || href.startsWith("#")) return;
-        const normalized = href === "./" ? "index.html" : href.replace("./", "");
+        const normalized = href === "./" ? "index.html" : href.replace("./", "").replace(/\.html$/, "");
         if (normalized === currentPath) {
             link.classList.add("is-current");
             link.setAttribute("aria-current", "page");
