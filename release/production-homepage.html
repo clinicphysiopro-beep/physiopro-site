@@ -82,6 +82,70 @@
       }
     }
     </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Does the first session include assessment and treatment?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. The first session includes clinical assessment, initial treatment, and a clear next-step plan."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What if I've already been told to rest or stop training?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "That may be part of a phase, but it should not automatically be the end of the process. The question here is when and how to return well."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you work with chronic pain, sports injuries, and post-op recovery?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. The approach changes with the case, but the direction stays the same: function, capacity, and confidence."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How many sessions will I need?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "That depends on your condition, history, and goal. After the first session, we give you an honest estimate."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does the reservation deposit work?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Some appointment slots may require a deposit to confirm. The deposit is applied to your first session."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need imaging — an X-ray or MRI — before booking?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Clinical examination is the primary diagnostic tool. If you have existing imaging, bring it — it helps. But it is not required and waiting for a scan before you start is rarely necessary. Assessment begins from what we find in person, not from a report."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "I've tried physio before and it didn't last. Why would this be different?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The most common reason: treatment reduced the pain without rebuilding the capacity. When the load returned, the pain returned. Here, the goal is to restore what the tissue can tolerate — not just to make the pain quiet down temporarily. Assessment identifies the deficit. Treatment builds it back."
+          }
+        }
+      ]
+    }
+    </script>
     <!-- TODO: Add LinkedIn, X/Twitter, Spotify/Podcast, and Newsletter URLs to schema when those accounts are created. -->
     <link rel="icon" type="image/png" href="./static/physiopro-mark.png">
     <link rel="apple-touch-icon" href="./static/physiopro-mark.png">
@@ -103,6 +167,7 @@
 <body>
 <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=984249047745055&ev=PageView&noscript=1"/></noscript>
     <div class="site-shell">
+        <a class="skip-link" href="#main-content">Skip to content</a>
         <header class="topbar" data-topbar>
             <a class="brand" href="#hero">
                 <img class="brand-mark-img" src="./static/physiopro-mark.png" alt="PhysioPro logo mark" width="114" height="134">
@@ -180,7 +245,7 @@
             </button>
         </header>
 
-        <main>
+        <main id="main-content">
 <!-- 1 · HERO -->
             <section class="hero" id="hero">
                 <div class="hero-copy">
@@ -528,11 +593,11 @@
                     <form class="lead-capture__form" data-lead-form id="lead-capture-form">
                         <div class="lead-capture__field">
                             <label class="lead-capture__label" for="lead-full-name">Name</label>
-                            <input class="lead-capture__input" id="lead-full-name" type="text" name="full_name" placeholder="Your name" required>
+                            <input class="lead-capture__input" id="lead-full-name" type="text" name="full_name" placeholder="Your name" required autocomplete="name">
                         </div>
                         <div class="lead-capture__field">
                             <label class="lead-capture__label" for="lead-phone">WhatsApp</label>
-                            <input class="lead-capture__input" id="lead-phone" type="tel" name="phone" placeholder="Your WhatsApp number" required>
+                            <input class="lead-capture__input" id="lead-phone" type="tel" name="phone" placeholder="Your WhatsApp number" required autocomplete="tel">
                         </div>
                         <div class="lead-capture__field">
                             <label class="lead-capture__label" for="lead-goal">What are you looking for?</label>
@@ -599,6 +664,11 @@
                     <a href="./combat-sports-rehab">Combat Sports Rehab</a>
                     <a href="./videos">Videos</a>
                     <a href="./resources">Resources</a>
+                    <a href="./why-physical-therapy-didnt-work-the-first-time">Why PT Didn't Work</a>
+                    <a href="./can-you-keep-training-while-injured">Training While Injured</a>
+                    <a href="./what-happens-during-your-first-session">Your First Session</a>
+                    <a href="./do-you-need-an-mri-before-physical-therapy">MRI Before PT?</a>
+                    <a href="./how-return-to-sport-testing-works">RTS Testing Explained</a>
                     <a href="./faq">FAQ</a>
                     <a href="./success-stories">Success Stories</a>
                     <a href="./contact">Contact</a>
