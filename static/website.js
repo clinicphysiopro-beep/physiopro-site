@@ -12,6 +12,37 @@
 const PHYSIOPRO_API_URL = "";
 // ─────────────────────────────────────────────────────────────────────────────
 
+// ─── i18n: dynamic form/status strings (shared by /en and /es pages) ────────
+// This file is loaded by both English and Spanish pages. LANG is derived
+// from the page's own <html lang="..">, so English pages keep rendering
+// English by default (LANG falls back to "en" for any value other than
+// "es"). Only the small set of dynamic runtime strings below need a
+// translation — static page copy lives in each page's own HTML.
+const I18N = {
+    en: {
+        turnstileLoadFailed: 'Verification could not load. Please refresh the page or <a href="' + "%WHATSAPP_URL%" + '" target="_blank" rel="noopener noreferrer" style="color:var(--orange);">contact us through WhatsApp</a>.',
+        turnstileNotConfigured: "Verification is not configured yet for this environment.",
+        leadSuccess: "Done. We’re sending you to WhatsApp to coordinate your first session.",
+        verifyBeforeSubmit: "Please complete the verification before submitting.",
+        preparingWhatsapp: "Preparing WhatsApp...",
+        leadGenericError: "We couldn't validate the form. Please try again.",
+        askSuccess: "Thank you. Leonardo will review your question and respond as soon as possible.",
+        askGenericError: "We couldn't validate your question. Please try again.",
+    },
+    es: {
+        turnstileLoadFailed: 'La verificación no pudo cargar. Por favor recarga la página o <a href="' + "%WHATSAPP_URL%" + '" target="_blank" rel="noopener noreferrer" style="color:var(--orange);">contáctanos por WhatsApp</a>.',
+        turnstileNotConfigured: "La verificación aún no está configurada para este entorno.",
+        leadSuccess: "Listo. Te estamos enviando a WhatsApp para coordinar tu primera sesión.",
+        verifyBeforeSubmit: "Por favor completa la verificación antes de enviar.",
+        preparingWhatsapp: "Preparando WhatsApp...",
+        leadGenericError: "No pudimos validar el formulario. Por favor intenta de nuevo.",
+        askSuccess: "Gracias. Leonardo revisará tu pregunta y responderá lo antes posible.",
+        askGenericError: "No pudimos validar tu pregunta. Por favor intenta de nuevo.",
+    },
+};
+const LANG = document.documentElement.lang === "es" ? "es" : "en";
+// ─────────────────────────────────────────────────────────────────────────────
+
 const topbar = document.querySelector("[data-topbar]");
 const fab = document.querySelector(".sticky-whatsapp");
 const navToggle = document.querySelector("[data-nav-toggle]");
@@ -140,7 +171,9 @@ const reportTurnstileFailure = (name, error) => {
     const container = document.querySelector(`[data-turnstile-container="${name}"]`);
     if (container) {
         container.innerHTML =
-            '<p class="lead-capture__privacy" role="alert">Verification could not load. Please refresh the page or <a href="' + DEFAULT_WHATSAPP_URL + '" target="_blank" rel="noopener noreferrer" style="color:var(--orange);">contact us through WhatsApp</a>.</p>';
+            '<p class="lead-capture__privacy" role="alert">' +
+            I18N[LANG].turnstileLoadFailed.replace("%WHATSAPP_URL%", DEFAULT_WHATSAPP_URL) +
+            "</p>";
     }
 };
 
@@ -150,7 +183,7 @@ const registerTurnstile = async (name) => {
 
     const config = await getSecurityConfig();
     if (!config.turnstileSiteKey) {
-        container.innerHTML = '<p class="lead-capture__privacy">Verification is not configured yet for this environment.</p>';
+        container.innerHTML = '<p class="lead-capture__privacy">' + I18N[LANG].turnstileNotConfigured + "</p>";
         return null;
     }
 
@@ -271,7 +304,7 @@ const setupLeadCapture = () => {
         const formData = new FormData(leadForm);
         const honeypot = String(formData.get("honeypot") || "").trim();
         if (honeypot) {
-            setLeadStatus("Done. We’re sending you to WhatsApp to coordinate your first session.", "success");
+            setLeadStatus(I18N[LANG].leadSuccess, "success");
             return;
         }
 
@@ -283,11 +316,11 @@ const setupLeadCapture = () => {
 
         if (!name || !phone || !goal || !consent) return;
         if (!turnstileToken) {
-            setLeadStatus("Please complete the verification before submitting.", "error");
+            setLeadStatus(I18N[LANG].verifyBeforeSubmit, "error");
             return;
         }
 
-        setSubmitting(leadForm, leadSubmitButton, "Preparing WhatsApp...");
+        setSubmitting(leadForm, leadSubmitButton, I18N[LANG].preparingWhatsapp);
 
         if (typeof gtag === "function") {
             gtag("event", "lead_form_submit", {
@@ -315,7 +348,7 @@ const setupLeadCapture = () => {
             });
 
             leadForm.classList.add("is-submitted");
-            setLeadStatus(result.message || "Done. We’re sending you to WhatsApp to coordinate your first session.", "success");
+            setLeadStatus(result.message || I18N[LANG].leadSuccess, "success");
 
             if (typeof gtag === "function") {
                 gtag("event", "lead_form_success", {
@@ -333,7 +366,7 @@ const setupLeadCapture = () => {
             }, 700);
         } catch (error) {
             setLeadStatus(
-                (error.body && error.body.message) || "We couldn't validate the form. Please try again.",
+                (error.body && error.body.message) || I18N[LANG].leadGenericError,
                 "error"
             );
             resetTurnstile("lead");
@@ -353,7 +386,7 @@ const setupAskForm = () => {
         const formData = new FormData(askForm);
         const honeypot = String(formData.get("honeypot") || "").trim();
         if (honeypot) {
-            setAskStatus("Thank you. Leonardo will review your question and respond as soon as possible.", "success");
+            setAskStatus(I18N[LANG].askSuccess, "success");
             return;
         }
 
@@ -366,11 +399,11 @@ const setupAskForm = () => {
 
         if (!name || !email || !question || !consent) return;
         if (!turnstileToken) {
-            setAskStatus("Please complete the verification before submitting.", "error");
+            setAskStatus(I18N[LANG].verifyBeforeSubmit, "error");
             return;
         }
 
-        setSubmitting(askForm, askSubmitButton, "Preparing WhatsApp...");
+        setSubmitting(askForm, askSubmitButton, I18N[LANG].preparingWhatsapp);
 
         if (typeof gtag === "function") {
             gtag("event", "ask_leonardo_submit", { event_category: "lead" });
@@ -395,7 +428,7 @@ const setupAskForm = () => {
                 landing_page: landing_page || null,
             });
 
-            setAskStatus(result.message || "Thank you. Leonardo will review your question and respond as soon as possible.", "success");
+            setAskStatus(result.message || I18N[LANG].askSuccess, "success");
             askForm.querySelectorAll(".lead-capture__field, .lead-capture__honeypot, .turnstile-wrap, [type=submit], .lead-capture__consent, .ask-response-note").forEach((el) => {
                 el.style.display = "none";
             });
@@ -417,7 +450,7 @@ const setupAskForm = () => {
             }, 800);
         } catch (error) {
             setAskStatus(
-                (error.body && error.body.message) || "We couldn't validate your question. Please try again.",
+                (error.body && error.body.message) || I18N[LANG].askGenericError,
                 "error"
             );
             resetTurnstile("ask");
