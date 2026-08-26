@@ -10,6 +10,38 @@ import {
   verifyTurnstileToken,
 } from "./_lib/security.js";
 
+// Same durable-handoff pattern as functions/api/lead.js: the clinic API has
+// no public ingress, so every valid Ask-Leonardo submission is written to
+// the same Cloudflare Queue (LEAD_QUEUE) that homepage lead-form submissions
+// use. Without this, a visitor who never follows through on the WhatsApp
+// redirect leaves zero CRM record behind. The question text is carried in
+// the `goal` field (the queue consumer's canonical lead shape has no
+// dedicated "question" field) so it still lands as useful context on the
+// CRM record.
+async function queueTrackedClinicLead(context, ask) {
+  const queue = context.env.LEAD_QUEUE;
+  if (!queue || typeof queue.send !== "function") {
+    throw new Error("lead_queue_not_configured");
+  }
+
+  await queue.send({
+    idempotency_key: crypto.randomUUID(),
+    full_name: ask.full_name,
+    phone: ask.phone || null,
+    email: ask.email,
+    goal: ask.question,
+    consent_whatsapp: true,
+    utm_source: ask.utm_source || null,
+    utm_medium: ask.utm_medium || null,
+    utm_campaign: ask.utm_campaign || null,
+    utm_content: ask.utm_content || null,
+    utm_term: ask.utm_term || null,
+    landing_page: ask.landing_page || null,
+    whatsapp_entry_source: "website_ask_leonardo_form",
+    submitted_at: new Date().toISOString(),
+  });
+}
+
 export async function onRequestOptions(context) {
   return handleCorsPreflight(context.request, context.env);
 }
@@ -60,6 +92,20 @@ export async function onRequestPost(context) {
     );
   }
 
+  // Same independence guarantee as lead.js: the queue write and the
+  // WhatsApp handoff are independent outcomes. A visitor must never be
+  // dead-ended just because the queue is unavailable — if the queue write
+  // fails, we log it for follow-up and still send the visitor to WhatsApp.
+  let crmQueued = true;
+  try {
+    await queueTrackedClinicLead(context, validated.data);
+  } catch (error) {
+    crmQueued = false;
+    await logAbuse(context, "queue_write_rejected_ask", {
+      reason: String(error && error.message ? error.message : error),
+    });
+  }
+
   const whatsappUrl = buildAskWhatsAppUrl({
     name: validated.data.full_name,
     email: validated.data.email,
@@ -72,6 +118,7 @@ export async function onRequestPost(context) {
     {
       ok: true,
       whatsappUrl,
+      crmQueued,
       message: "Thank you. Leonardo will review your question and respond as soon as possible.",
     },
     { origin, env: context.env }

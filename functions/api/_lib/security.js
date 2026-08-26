@@ -375,6 +375,12 @@ export function validateAskPayload(payload) {
       question,
       page_path: pagePath,
       turnstileToken,
+      utm_source: cleanText(payload.utm_source, 64),
+      utm_medium: cleanText(payload.utm_medium, 64),
+      utm_campaign: cleanText(payload.utm_campaign, 80),
+      utm_content: cleanText(payload.utm_content, 80),
+      utm_term: cleanText(payload.utm_term, 80),
+      landing_page: cleanText(payload.landing_page, 120),
     },
   };
 }

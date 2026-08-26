@@ -3007,7 +3007,7 @@ p {
 }
 
 .pchat-input::placeholder {
-    color: #555;
+    color: #8f8f8f;
 }
 
 .pchat-send {
