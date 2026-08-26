@@ -147,6 +147,14 @@
             "@type": "Answer",
             "text": "The most common reason: treatment reduced the pain without rebuilding the capacity. When the load returned, the pain returned. Here, the goal is to restore what the tissue can tolerate — not just to make the pain quiet down temporarily. Assessment identifies the deficit. Treatment builds it back."
           }
+        },
+        {
+          "@type": "Question",
+          "name": "I'm crossing from the U.S. — does that work?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. The clinic is minutes from the border, and sessions are available in English and Spanish."
+          }
         }
       ]
     }
@@ -253,7 +261,7 @@
 
         <main id="main-content">
 <!-- 1 · HERO -->
-            <section class="hero" id="hero">
+            <section class="hero hero--full" id="hero">
                 <div class="hero-copy">
                     <p class="eyebrow hero-reveal">Performance Rehabilitation · Zona Rio, Tijuana</p>
                     <h1>
@@ -275,9 +283,6 @@
                         <span>Return</span>
                     </div>
                 </div>
-                <figure class="hero-photo reveal">
-                    <img src="./static/images/v3/gym.jpg" alt="PhysioPro performance rehabilitation space, Zona Rio Tijuana" loading="eager" fetchpriority="high" width="1152" height="1536">
-                </figure>
                 <a class="hero-scroll-cue hero-reveal" href="#want-back" aria-label="Scroll to what you want back">
                     <span class="hero-scroll-copy">Scroll to continue</span>
                     <span class="hero-scroll-line" aria-hidden="true"></span>
@@ -324,9 +329,29 @@
 <!-- THE FOUNDER -->
             <section class="section section-founder" id="founder">
                 <div class="leonardo-grid">
-                    <figure class="leonardo-portrait reveal">
-                        <img src="./static/images/v3/founder.jpg" alt="Leonardo Machado, founder of PhysioPro" loading="lazy" width="880" height="1100">
-                    </figure>
+                    <div class="leonardo-media reveal">
+                        <figure class="leonardo-portrait">
+                            <img src="./static/images/v3/founder.jpg" alt="Leonardo Machado, founder of PhysioPro" loading="lazy" width="880" height="1100">
+                        </figure>
+                        <div class="founder-video" data-founder-video>
+                            <video
+                                class="founder-video__el"
+                                data-founder-video-el
+                                src="./static/video/founder-intro.mp4"
+                                poster="./static/images/fable5/founder-video-poster.jpg"
+                                muted
+                                loop
+                                playsinline
+                                preload="metadata"
+                                aria-label="Leonardo Machado introducing PhysioPro"
+                            ></video>
+                            <span class="founder-video__tag"><i class="founder-video__dot" aria-hidden="true"></i>Leonardo — in his words</span>
+                            <button class="founder-video__mute" type="button" data-founder-video-mute aria-label="Unmute Leonardo's intro" aria-pressed="false">
+                                <svg class="fv-ic fv-ic--muted" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4z"></path><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>
+                                <svg class="fv-ic fv-ic--sound" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4z"></path><path d="M15.5 8.5a5 5 0 0 1 0 7"></path><path d="M18.5 5.5a9 9 0 0 1 0 13"></path></svg>
+                            </button>
+                        </div>
+                    </div>
                     <div class="leonardo-copy reveal">
                         <p class="quote">
                             "Getting you out of pain matters. The full job is getting you back to loading,
@@ -350,26 +375,36 @@
                     <p class="section-kicker">1 · From Pain To Performance</p>
                     <h2>A clear process from the first session forward.</h2>
                 </div>
-                <div class="process-track" id="process-track">
+                <div class="process-track process-track--six" id="process-track">
                     <article class="pstep reveal">
                         <span class="pn">01</span>
-                        <h3>Assessment</h3>
-                        <p>Your movement, pain pattern, and history mapped in full. The first session sets the direction.</p>
+                        <h3>Pain</h3>
+                        <p>Where you start. A symptom, not a sentence.</p>
                     </article>
                     <article class="pstep reveal">
                         <span class="pn">02</span>
-                        <h3>Intervention</h3>
-                        <p>Treatment that targets your case — not a generic protocol repeated for everyone.</p>
+                        <h3>Assessment</h3>
+                        <p>The real cause, found in how you move, load, and compensate.</p>
                     </article>
                     <article class="pstep reveal">
                         <span class="pn">03</span>
-                        <h3>Progression</h3>
-                        <p>Structured loading, measurable milestones, and a return of physical confidence.</p>
+                        <h3>Recovery</h3>
+                        <p>Symptoms calmed, range restored. Where most clinics call it done.</p>
                     </article>
                     <article class="pstep reveal">
                         <span class="pn">04</span>
+                        <h3>Strength</h3>
+                        <p>Load is the treatment. Tissue adapts, confidence returns.</p>
+                    </article>
+                    <article class="pstep reveal">
+                        <span class="pn">05</span>
+                        <h3>Performance</h3>
+                        <p>Past your pre-injury baseline, with capacity that holds.</p>
+                    </article>
+                    <article class="pstep reveal">
+                        <span class="pn">06</span>
                         <h3>Return</h3>
-                        <p>Back to training, work, and sport — at a higher standard than simply not hurting anymore.</p>
+                        <p>Back to training, sport, and work on objective criteria.</p>
                     </article>
                 </div>
                 <div class="process-cta reveal">
@@ -451,6 +486,29 @@
             </section>
 
 
+<!-- INSIDE PHYSIOPRO (GALLERY) -->
+            <section class="section section-stage" id="clinic">
+                <div class="section-head reveal">
+                    <p class="section-kicker">4 · Inside PhysioPro</p>
+                    <h2>Real treatment spaces. Real clinical work.</h2>
+                </div>
+                <div class="stage-grid">
+                    <figure class="stage-panel stage-panel--wide reveal">
+                        <img src="./static/images/fable5/lobby.jpeg" alt="PhysioPro reception and treatment flow, Zona Rio Tijuana" loading="lazy" width="1536" height="1152">
+                        <figcaption>Reception and treatment flow</figcaption>
+                    </figure>
+                    <figure class="stage-panel reveal">
+                        <img src="./static/images/fable5/gym.jpeg" alt="PhysioPro performance and training floor" loading="lazy" width="1152" height="1536">
+                        <figcaption>Performance floor</figcaption>
+                    </figure>
+                    <figure class="stage-panel reveal">
+                        <img src="./static/images/fable5/treatment-room.jpg" alt="Private treatment room inside PhysioPro" loading="lazy" width="750" height="1000">
+                        <figcaption>Private treatment room</figcaption>
+                    </figure>
+                </div>
+            </section>
+
+
 <!-- MID-PAGE CTA -->
             <section class="section section-cta-mid">
                 <div class="cta-mid-block">
@@ -463,29 +521,46 @@
 <!-- WHY PHYSIOPRO IS DIFFERENT -->
             <section class="section section-difference" id="difference">
                 <div class="section-head reveal">
-                    <p class="section-kicker">4 · Why PhysioPro</p>
-                    <h2>Not a generic clinic.</h2>
+                    <p class="section-kicker">5 · Why PhysioPro</p>
+                    <h2>Movement is medicine. <span class="h2-fade">Pain-free is where everyone else stops and where we start.</span></h2>
+                </div>
+                <div class="position-pillars">
+                    <div class="pillar reveal">
+                        <span class="pillar-mark" aria-hidden="true">M</span>
+                        <h3>Movement</h3>
+                        <p>Full, unguarded range restored first. Everything built after this depends on it.</p>
+                    </div>
+                    <div class="pillar reveal">
+                        <span class="pillar-mark" aria-hidden="true">S</span>
+                        <h3>Strength</h3>
+                        <p>Load is medicine. Capacity is rebuilt with the same tools you already train with.</p>
+                    </div>
+                    <div class="pillar reveal">
+                        <span class="pillar-mark" aria-hidden="true">P</span>
+                        <h3>Performance</h3>
+                        <p>Symptom relief is the halfway point. We keep going until you return with confidence.</p>
+                    </div>
                 </div>
                 <div class="diff-grid">
                     <div class="diff-item reveal">
                         <span class="diff-n">01</span>
                         <h3>Assessment + treatment on day one</h3>
-                        <p>The first session includes clinical assessment and treatment. No intake-only visits. No sessions wasted on paperwork.</p>
+                        <p>The first session includes clinical assessment and treatment. No intake-only visits. No sessions wasted on paperwork before the work starts.</p>
                     </div>
                     <div class="diff-item reveal">
                         <span class="diff-n">02</span>
                         <h3>Every session with Leonardo</h3>
-                        <p>No rotating staff. No handoffs to assistants. The same physiotherapist who assessed you treats you through to return.</p>
+                        <p>No rotating staff. No handoffs to assistants. The same physiotherapist who assessed you loads you, progresses you, and clears you to return.</p>
                     </div>
                     <div class="diff-item reveal">
                         <span class="diff-n">03</span>
                         <h3>Performance as the finish line</h3>
-                        <p>Pain reduction is the start. The goal is loading, training, and moving at a higher standard than before injury.</p>
+                        <p>Pain reduction is the start, not the destination. The goal is loading, training, and moving at a higher standard than before the injury.</p>
                     </div>
                     <div class="diff-item reveal">
                         <span class="diff-n">04</span>
                         <h3>A structured plan from session one</h3>
-                        <p>Not open-ended sessions. A clear progression from assessment to return-to-sport, with measurable milestones at every stage.</p>
+                        <p>Not open-ended sessions. A clear progression from assessment to return-to-sport, with measurable milestones and objective criteria at every stage.</p>
                     </div>
                 </div>
             </section>
@@ -494,7 +569,7 @@
 <!-- PROOF + TRUST -->
             <section class="section section-proof" id="proof">
                 <div class="section-head reveal">
-                    <p class="section-kicker">5 · Trust</p>
+                    <p class="section-kicker">6 · Trust</p>
                     <h2>Real proof is earned.</h2>
                 </div>
                 <div class="proof-grid">
@@ -524,7 +599,7 @@
             <section class="section section-before-book" id="before-book">
                 <div class="before-book-grid">
                     <div class="before-book-faq reveal">
-                        <p class="section-kicker">6 · Before You Book</p>
+                        <p class="section-kicker">7 · Before You Book</p>
                         <h2>The questions that matter before you book.</h2>
                         <div class="faq-list">
                             <details class="faq-item">
@@ -555,6 +630,10 @@
                                 <summary>I've tried physio before and it didn't last. Why would this be different?</summary>
                                 <p>The most common reason: treatment reduced the pain without rebuilding the capacity. When the load returned, the pain returned. Here, the goal is to restore what the tissue can tolerate — not just to make the pain quiet down temporarily. Assessment identifies the deficit. Treatment builds it back.</p>
                             </details>
+                            <details class="faq-item">
+                                <summary>I'm crossing from the U.S. — does that work?</summary>
+                                <p>Yes. The clinic is minutes from the border, and sessions are available in English and Spanish.</p>
+                            </details>
                         </div>
                     </div>
                     <div class="before-book-location reveal">
@@ -584,6 +663,22 @@
                         <a class="button button-primary" href="https://wa.me/526634875859?text=Hello%2C%20I%27m%20interested%20in%20booking%20an%20evaluation%20at%20PhysioPro" target="_blank" rel="noopener noreferrer">Book on WhatsApp</a>
                     </div>
                 </div>
+            </section>
+
+
+<!-- FINAL CTA -->
+            <section class="section section-final" id="book">
+                <p class="final-kicker reveal">One session.</p>
+                <h2 class="final-head reveal">Stop being told to stop.</h2>
+                <div class="final-steps reveal">
+                    <span>Evaluation</span>
+                    <span>Treatment</span>
+                    <span>A plan to get back</span>
+                </div>
+                <div class="final-action reveal">
+                    <a class="button button-primary" href="https://wa.me/526634875859?text=Hello%2C%20I%27m%20interested%20in%20booking%20an%20evaluation%20at%20PhysioPro" target="_blank" rel="noopener noreferrer">Book My First Session →</a>
+                </div>
+                <p class="final-sub reveal">English &amp; Spanish · Direct booking, no referral needed</p>
             </section>
 
 

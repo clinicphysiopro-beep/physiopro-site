@@ -683,6 +683,108 @@ p {
     max-width: 24ch;
 }
 
+/* ---------- 6-step process track (Batch C4) ----------
+   Fable's Pain -> Assessment -> Recovery -> Strength -> Performance -> Return
+   structure, carrying live's scan-speed-tuned short step copy. The scroll-lit
+   mechanism is unchanged: lightProcess() still adds .is-lit to the track and
+   .lit to each .pstep in sequence, and it already iterates every .pstep, so
+   six steps light up with no JS change. */
+
+.process-track--six {
+    grid-template-columns: repeat(6, 1fr);
+}
+
+.process-track--six .pstep {
+    padding-right: 16px;
+}
+
+.process-track--six .pstep p {
+    max-width: 20ch;
+}
+
+/* Six columns get tight before the mobile stack point — go two rows of three,
+   and switch the spine from one long rule to a per-row rule so it still reads
+   as a track rather than a line crossing empty space. */
+@media (max-width: 1180px) and (min-width: 981px) {
+    .process-track--six {
+        grid-template-columns: repeat(3, 1fr);
+        row-gap: 40px;
+    }
+
+    .process-track--six::before,
+    .process-track--six::after {
+        display: none;
+    }
+
+    .process-track--six .pstep {
+        padding-top: 30px;
+    }
+}
+
+/* ---------- Inside PhysioPro gallery (Batch C5) ----------
+   Three panels, not Fable's four: manual-therapy-primary.jpeg and estim.jpg
+   are deliberately withheld pending patient/staff consent confirmation, so
+   this ships with the three real clinic-space photos only. */
+
+.stage-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(12px, 1.6vw, 20px);
+}
+
+.stage-panel {
+    position: relative;
+    overflow: hidden;
+    margin: 0;
+}
+
+.stage-panel--wide {
+    grid-column: 1 / -1;
+}
+
+.stage-panel img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    filter: brightness(var(--photo-bright)) saturate(var(--photo-sat)) contrast(var(--photo-con));
+    transition: transform 0.8s var(--ease);
+}
+
+.stage-panel--wide img {
+    aspect-ratio: 16 / 7;
+}
+
+.stage-panel figcaption {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    padding: 10px 14px;
+    background: rgba(10, 10, 10, 0.74);
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: rgba(245, 245, 245, 0.9);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .stage-panel:hover img {
+        transform: scale(1.04);
+    }
+}
+
+@media (max-width: 720px) {
+    .stage-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .stage-panel--wide img {
+        aspect-ratio: 4 / 3;
+    }
+}
+
 .leonardo-cta {
     align-self: flex-start;
     margin-top: 8px;
@@ -732,6 +834,89 @@ p {
     aspect-ratio: 4 / 5;
     object-fit: cover;
     filter: brightness(var(--photo-bright)) saturate(var(--photo-sat)) contrast(var(--photo-con));
+}
+
+/* ---------- founder video (Batch C2) ----------
+   Fable's founder-intro component, re-authored against live's tokens.
+   Sits under the existing portrait so the credential text and portrait
+   framing are untouched. */
+
+.leonardo-media {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.founder-video {
+    position: relative;
+    overflow: hidden;
+    background: var(--surface);
+}
+
+.founder-video__el {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    filter: brightness(var(--photo-bright)) saturate(var(--photo-sat)) contrast(var(--photo-con));
+}
+
+.founder-video__tag {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 12px;
+    background: rgba(10, 10, 10, 0.72);
+    font-family: var(--font);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(245, 245, 245, 0.92);
+    pointer-events: none;
+}
+
+.founder-video__dot {
+    width: 7px;
+    height: 7px;
+    background: var(--orange);
+    border-radius: 50%;
+}
+
+.founder-video__mute {
+    position: absolute;
+    right: 12px;
+    bottom: 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    padding: 0;
+    border: 1px solid rgba(245, 245, 245, 0.28);
+    background: rgba(10, 10, 10, 0.72);
+    color: rgba(245, 245, 245, 0.92);
+    cursor: pointer;
+    transition: background 0.25s var(--ease), border-color 0.25s var(--ease);
+}
+
+.founder-video__mute:hover,
+.founder-video__mute:focus-visible {
+    background: rgba(10, 10, 10, 0.9);
+    border-color: var(--orange);
+}
+
+/* Icon swap is driven by the .is-unmuted state the mute handler toggles. */
+.founder-video__mute .fv-ic--sound,
+.founder-video.is-unmuted .founder-video__mute .fv-ic--muted {
+    display: none;
+}
+
+.founder-video.is-unmuted .founder-video__mute .fv-ic--sound {
+    display: block;
 }
 
 .leonardo-copy {
@@ -1711,6 +1896,53 @@ p {
     pointer-events: none;
 }
 
+/* ---------- full-bleed "breathing" hero (Batch C1) ----------
+   Replaces the side-panel .hero-photo on the homepage only. The photo now
+   lives entirely in .hero::after (already preloaded), so the headline gets
+   the full column and the image reads as an environment, not a thumbnail.
+   The headline-wipe keyframe is untouched — see @keyframes headline-wipe. */
+
+.hero--full {
+    grid-template-columns: minmax(0, 1fr);
+    align-items: end;
+}
+
+.hero--full .hero-copy {
+    max-width: 46rem;
+}
+
+.hero--full .hero-text {
+    max-width: 52ch;
+}
+
+/* Deeper bottom scrim: with no side panel the copy sits over open photo. */
+.hero--full::before {
+    background:
+        radial-gradient(720px 460px at 12% 62%, rgba(255, 138, 0, 0.06), transparent 62%),
+        linear-gradient(180deg, rgba(10, 10, 10, 0.58) 0%, rgba(10, 10, 10, 0.40) 30%, rgba(10, 10, 10, 0.96) 92%),
+        linear-gradient(78deg, rgba(10, 10, 10, 0.86) 0%, rgba(14, 42, 71, 0.46) 55%, rgba(10, 10, 10, 0.28) 100%);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    /* `scale` is a separate property from `transform`, so this composites with
+       the parallax translate in updateParallax() instead of overwriting it. */
+    .hero--full::after {
+        animation: hero-breathe 26s var(--ease) infinite alternate;
+    }
+}
+
+@keyframes hero-breathe {
+    from { scale: 1; }
+    to { scale: 1.07; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero--full::after {
+        animation: none;
+        scale: 1;
+    }
+}
+
 /* ---------- hero credential chip ---------- */
 
 .hero-credential {
@@ -2640,6 +2872,127 @@ p {
 @media (max-width: 420px) {
     .who-grid,
     .treat-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ---------- final CTA (Batch C7) ----------
+   Fable's dedicated closing section — live previously had none. Fable's
+   own version pointed its CTA at #location, which is a dead end; here it
+   points at the standard WhatsApp booking link with the standard prefill,
+   matching every other booking CTA on the page. */
+
+.section-final {
+    background: var(--surface);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(16px, 2.4vw, 24px);
+}
+
+.final-kicker {
+    font-family: var(--font);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--orange);
+}
+
+.final-head {
+    font-family: var(--font);
+    font-size: clamp(30px, 5.4vw, 62px);
+    line-height: 1.04;
+    letter-spacing: -0.02em;
+    max-width: 16ch;
+}
+
+.final-steps {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: clamp(12px, 2vw, 28px);
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--text-2);
+}
+
+.final-steps span {
+    position: relative;
+    padding-left: 20px;
+}
+
+.final-steps span::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 9px;
+    height: 9px;
+    margin-top: -4.5px;
+    border: 2px solid var(--orange);
+    border-radius: 50%;
+}
+
+.final-sub {
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: var(--text-2);
+}
+
+/* ---------- positioning pillars (Batch C6) ----------
+   Fable's Movement / Strength / Performance category-defining framing,
+   threaded into the existing Why-PhysioPro section as a lead-in above
+   live's four differentiator claims. The .diff-grid markup and all four
+   claims are preserved — this sits above them, it does not replace them. */
+
+.h2-fade {
+    color: var(--text-2);
+}
+
+.position-pillars {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(20px, 3vw, 40px);
+    margin-bottom: clamp(36px, 5vw, 60px);
+}
+
+.pillar {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.pillar-mark {
+    font-family: var(--font);
+    font-size: clamp(30px, 4vw, 44px);
+    font-weight: 800;
+    line-height: 1;
+    color: var(--orange);
+}
+
+.pillar h3 {
+    font-family: var(--font);
+    font-size: clamp(14px, 1.4vw, 17px);
+    letter-spacing: 0.02em;
+    color: var(--text);
+}
+
+.pillar p {
+    font-family: var(--font-body);
+    font-size: 14px;
+    line-height: 1.7;
+    max-width: 32ch;
+    color: var(--text-2);
+}
+
+@media (max-width: 720px) {
+    .position-pillars {
         grid-template-columns: 1fr;
     }
 }
