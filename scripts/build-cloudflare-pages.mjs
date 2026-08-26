@@ -24,6 +24,7 @@ const topLevelFiles = [
   "do-you-need-an-mri-before-physical-therapy.html",
   "faq.html",
   "first-session.html",
+  "hip-pain.html",
   "how-return-to-sport-testing-works.html",
   "knee-pain.html",
   "llms.txt",
