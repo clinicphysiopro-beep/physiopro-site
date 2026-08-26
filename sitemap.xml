@@ -69,6 +69,24 @@
 
   <!-- CONDITION/SERVICE PAGES -->
   <url>
+    <loc>https://physioprotijuana.com/ankle-sprain</loc>
+    <lastmod>2026-08-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://physioprotijuana.com/tennis-golfers-elbow</loc>
+    <lastmod>2026-08-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://physioprotijuana.com/hip-pain</loc>
+    <lastmod>2026-08-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://physioprotijuana.com/knee-pain</loc>
     <lastmod>2026-08-12</lastmod>
     <changefreq>monthly</changefreq>
