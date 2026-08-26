@@ -578,6 +578,70 @@ const setupHamburger = () => {
     });
 };
 
+const setupFounderVideo = () => {
+    const shell = document.querySelector("[data-founder-video]");
+    if (!shell) return;
+
+    const video = shell.querySelector("[data-founder-video-el]");
+    const muteButton = shell.querySelector("[data-founder-video-mute]");
+    if (!video) return;
+
+    // Reduced-motion: never autoplay. The poster frame is the whole experience,
+    // and the mute toggle is hidden since there is nothing playing to unmute.
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (reduceMotion.matches) {
+        shell.classList.add("is-static");
+        if (muteButton) muteButton.hidden = true;
+        return;
+    }
+
+    // Autoplay is only permitted while muted; the mute toggle is the user's
+    // explicit gesture, so unmuting after that point is allowed.
+    video.muted = true;
+
+    const play = () => {
+        const attempt = video.play();
+        if (attempt && typeof attempt.catch === "function") {
+            attempt.catch(() => {
+                // Autoplay refused (data saver, low power mode). Poster stays.
+                shell.classList.add("is-static");
+            });
+        }
+    };
+
+    if (typeof IntersectionObserver === "function") {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        play();
+                    } else {
+                        video.pause();
+                    }
+                });
+            },
+            { threshold: 0.35 }
+        );
+        observer.observe(video);
+    } else {
+        play();
+    }
+
+    if (muteButton) {
+        muteButton.addEventListener("click", () => {
+            video.muted = !video.muted;
+            const isMuted = video.muted;
+            shell.classList.toggle("is-unmuted", !isMuted);
+            muteButton.setAttribute("aria-pressed", String(!isMuted));
+            muteButton.setAttribute(
+                "aria-label",
+                isMuted ? "Unmute Leonardo's intro" : "Mute Leonardo's intro"
+            );
+            if (!isMuted) play();
+        });
+    }
+};
+
 const runInit = (name, fn) => {
     // Each homepage init step is isolated: one throwing (e.g. a DOM lookup
     // that doesn't exist on a given page variant) must never prevent the
@@ -600,6 +664,7 @@ runInit("updateTopbar", updateTopbar);
 runInit("updateFab", updateFab);
 runInit("checkReveals", checkReveals);
 runInit("setupWantList", setupWantList);
+runInit("setupFounderVideo", setupFounderVideo);
 runInit("setupLeadCapture", setupLeadCapture);
 runInit("setupAskForm", setupAskForm);
 runInit("setupHamburger", setupHamburger);
