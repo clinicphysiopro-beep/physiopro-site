@@ -11,6 +11,7 @@ const topLevelFiles = [
   "_routes.json",
   "404.html",
   "about-leonardo.html",
+  "ankle-sprain.html",
   "ask-leonardo.html",
   "aviso-cookies.html",
   "aviso-medico.html",
