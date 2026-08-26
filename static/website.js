@@ -1,23 +1,16 @@
 // ─── Attribution config ──────────────────────────────────────────────────────
-// Replace YOUR_PIXEL_ID with the 15-digit ID from Meta Business Manager →
-// Events Manager → Connect Data Sources → Web → Meta Pixel
-const PHYSIOPRO_META_PIXEL_ID = "984249047745055";
+// Meta Pixel and Microsoft Clarity are intentionally NOT loaded here.
+// aviso-cookies.html §3 ("What We Do Not Use") states in writing that this
+// site does not use Facebook Pixel or session-recording/heatmap tools
+// (Clarity). Do not reintroduce either without first (a) a Leonardo/counsel
+// decision on the pending cookie-consent/CMP question and (b) updating
+// aviso-cookies.html to accurately disclose it. See
+// vault/PHYSIOPRO_VAULT/WEBSITE/LIVE_WEBSITE_GROWTH_IMPLEMENTATION_PLAN.md
+// Batch 2 ("Tracking cleanup gate") and FULL_LIVE_WEBSITE_AUDIT_2026-08-26.md.
 
 // Leave empty to use same-origin Pages Functions at /api/*.
 const PHYSIOPRO_API_URL = "";
 // ─────────────────────────────────────────────────────────────────────────────
-
-// Shared analytics loader so Clarity is injected once across all public pages.
-(function(c, l, a, r, i, t, y) {
-    c[a] = c[a] || function() {
-        (c[a].q = c[a].q || []).push(arguments);
-    };
-    t = l.createElement(r);
-    t.async = 1;
-    t.src = "https://www.clarity.ms/tag/" + i;
-    y = l.getElementsByTagName(r)[0];
-    y.parentNode.insertBefore(t, y);
-})(window, document, "clarity", "script", "xgb53ac4gs");
 
 const topbar = document.querySelector("[data-topbar]");
 const fab = document.querySelector(".sticky-whatsapp");
@@ -32,20 +25,7 @@ const askStatus = document.querySelector("[data-ask-status]");
 const askSubmitButton = document.querySelector("[data-ask-submit]");
 const heroScrollCue = document.querySelector(".hero-scroll-cue");
 const WHATSAPP_NUMBER = "526634875859";
-
-// ─── Meta Pixel ──────────────────────────────────────────────────────────────
-const initMetaPixel = () => {
-    if (!PHYSIOPRO_META_PIXEL_ID || PHYSIOPRO_META_PIXEL_ID === "YOUR_PIXEL_ID") return;
-    if (window.__physioproMetaPixelInitialized) return;
-    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
-    document,'script','https://connect.facebook.net/en_US/fbevents.js');
-    window.__physioproMetaPixelInitialized = true;
-    fbq('init', PHYSIOPRO_META_PIXEL_ID);
-    fbq('track', 'PageView');
-};
+const DEFAULT_WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}`;
 
 // ─── UTM capture ─────────────────────────────────────────────────────────────
 const UTM_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"];
@@ -160,7 +140,7 @@ const reportTurnstileFailure = (name, error) => {
     const container = document.querySelector(`[data-turnstile-container="${name}"]`);
     if (container) {
         container.innerHTML =
-            '<p class="lead-capture__privacy" role="alert">Verification could not load. Please refresh the page or contact us through WhatsApp.</p>';
+            '<p class="lead-capture__privacy" role="alert">Verification could not load. Please refresh the page or <a href="' + DEFAULT_WHATSAPP_URL + '" target="_blank" rel="noopener noreferrer" style="color:var(--orange);">contact us through WhatsApp</a>.</p>';
     }
 };
 
@@ -341,6 +321,17 @@ const setupLeadCapture = () => {
             leadForm.classList.add("is-submitted");
             setLeadStatus(result.message || "Done. We’re sending you to WhatsApp to coordinate your first session.", "success");
 
+            if (typeof gtag === "function") {
+                gtag("event", "lead_form_success", {
+                    event_category: "lead",
+                    event_label: goal,
+                    lead_goal: goal || "general",
+                    source: utms.utm_source || "website",
+                    utm_medium: utms.utm_medium || null,
+                    utm_campaign: utms.utm_campaign || null,
+                });
+            }
+
             setTimeout(() => {
                 window.open(result.whatsappUrl, "_blank", "noopener,noreferrer");
             }, 700);
@@ -389,6 +380,8 @@ const setupAskForm = () => {
             gtag("event", "ask_leonardo_submit", { event_category: "lead" });
         }
 
+        const { utms, landing_page } = getStoredUtms();
+
         try {
             const result = await postJson("/api/ask", {
                 full_name: name,
@@ -397,6 +390,13 @@ const setupAskForm = () => {
                 question,
                 turnstileToken,
                 page_path: window.location.pathname,
+                source: utms.utm_source || "website",
+                utm_source: utms.utm_source || null,
+                utm_medium: utms.utm_medium || null,
+                utm_campaign: utms.utm_campaign || null,
+                utm_content: utms.utm_content || null,
+                utm_term: utms.utm_term || null,
+                landing_page: landing_page || null,
             });
 
             setAskStatus(result.message || "Thank you. Leonardo will review your question and respond as soon as possible.", "success");
@@ -406,6 +406,15 @@ const setupAskForm = () => {
             const privacy = askForm.querySelector(".lead-capture__privacy");
             if (privacy) privacy.style.display = "none";
             askForm.classList.add("is-submitted", "is-success");
+
+            if (typeof gtag === "function") {
+                gtag("event", "ask_leonardo_success", {
+                    event_category: "lead",
+                    source: utms.utm_source || "website",
+                    utm_medium: utms.utm_medium || null,
+                    utm_campaign: utms.utm_campaign || null,
+                });
+            }
 
             setTimeout(() => {
                 window.open(result.whatsappUrl, "_blank", "noopener,noreferrer");
@@ -605,7 +614,6 @@ registerTurnstile("lead").catch((error) => reportTurnstileFailure("lead", error)
 registerTurnstile("ask").catch((error) => reportTurnstileFailure("ask", error));
 
 // Attribution init — runs on every page
-initMetaPixel();
 captureAndStoreUtms();
 
 // Ask-Leonardo form — fire Lead pixel event (form is handled by inline script in ask-leonardo.html)
