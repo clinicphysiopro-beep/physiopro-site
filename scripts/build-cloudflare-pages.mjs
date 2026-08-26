@@ -96,8 +96,6 @@ for (const directory of directories) {
       const relative = path.relative(root, source).split(path.sep).join("/");
       return (
         !relative.includes("node_modules") &&
-        relative !== "static/images/fable5" &&
-        !relative.startsWith("static/images/fable5/") &&
         relative !== "static/images/gallery" &&
         !relative.startsWith("static/images/gallery/") &&
         !excludedPublicPaths.has(relative)
