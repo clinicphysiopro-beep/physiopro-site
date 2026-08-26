@@ -1,12 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
   <!-- HOMEPAGE -->
   <url>
     <loc>https://physioprotijuana.com/</loc>
-    <lastmod>2026-08-12</lastmod>
+    <lastmod>2026-08-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://physioprotijuana.com/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/" />
+  </url>
+
+  <!-- ES PILOT PAGES -->
+  <url>
+    <loc>https://physioprotijuana.com/es/</loc>
+    <lastmod>2026-08-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://physioprotijuana.com/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/" />
+  </url>
+  <url>
+    <loc>https://physioprotijuana.com/es/contacto</loc>
+    <lastmod>2026-08-26</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://physioprotijuana.com/contact" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/contacto" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/contact" />
+  </url>
+  <url>
+    <loc>https://physioprotijuana.com/es/primera-sesion</loc>
+    <lastmod>2026-08-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://physioprotijuana.com/first-session" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/primera-sesion" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/first-session" />
   </url>
 
   <!-- PRIMARY CONVERSION PAGES -->
@@ -15,12 +47,18 @@
     <lastmod>2026-08-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://physioprotijuana.com/first-session" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/primera-sesion" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/first-session" />
   </url>
   <url>
     <loc>https://physioprotijuana.com/contact</loc>
-    <lastmod>2026-08-12</lastmod>
+    <lastmod>2026-08-26</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://physioprotijuana.com/contact" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/contacto" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/contact" />
   </url>
   <url>
     <loc>https://physioprotijuana.com/about-leonardo</loc>
