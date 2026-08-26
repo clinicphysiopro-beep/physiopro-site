@@ -2876,6 +2876,58 @@ p {
     }
 }
 
+/* ---------- positioning pillars (Batch C6) ----------
+   Fable's Movement / Strength / Performance category-defining framing,
+   threaded into the existing Why-PhysioPro section as a lead-in above
+   live's four differentiator claims. The .diff-grid markup and all four
+   claims are preserved — this sits above them, it does not replace them. */
+
+.h2-fade {
+    color: var(--text-2);
+}
+
+.position-pillars {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(20px, 3vw, 40px);
+    margin-bottom: clamp(36px, 5vw, 60px);
+}
+
+.pillar {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.pillar-mark {
+    font-family: var(--font);
+    font-size: clamp(30px, 4vw, 44px);
+    font-weight: 800;
+    line-height: 1;
+    color: var(--orange);
+}
+
+.pillar h3 {
+    font-family: var(--font);
+    font-size: clamp(14px, 1.4vw, 17px);
+    letter-spacing: 0.02em;
+    color: var(--text);
+}
+
+.pillar p {
+    font-family: var(--font-body);
+    font-size: 14px;
+    line-height: 1.7;
+    max-width: 32ch;
+    color: var(--text-2);
+}
+
+@media (max-width: 720px) {
+    .position-pillars {
+        grid-template-columns: 1fr;
+    }
+}
+
 /* ---------- Why PhysioPro Is Different ---------- */
 
 .section-difference {
