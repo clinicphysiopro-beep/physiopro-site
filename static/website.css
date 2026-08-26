@@ -683,6 +683,108 @@ p {
     max-width: 24ch;
 }
 
+/* ---------- 6-step process track (Batch C4) ----------
+   Fable's Pain -> Assessment -> Recovery -> Strength -> Performance -> Return
+   structure, carrying live's scan-speed-tuned short step copy. The scroll-lit
+   mechanism is unchanged: lightProcess() still adds .is-lit to the track and
+   .lit to each .pstep in sequence, and it already iterates every .pstep, so
+   six steps light up with no JS change. */
+
+.process-track--six {
+    grid-template-columns: repeat(6, 1fr);
+}
+
+.process-track--six .pstep {
+    padding-right: 16px;
+}
+
+.process-track--six .pstep p {
+    max-width: 20ch;
+}
+
+/* Six columns get tight before the mobile stack point — go two rows of three,
+   and switch the spine from one long rule to a per-row rule so it still reads
+   as a track rather than a line crossing empty space. */
+@media (max-width: 1180px) and (min-width: 981px) {
+    .process-track--six {
+        grid-template-columns: repeat(3, 1fr);
+        row-gap: 40px;
+    }
+
+    .process-track--six::before,
+    .process-track--six::after {
+        display: none;
+    }
+
+    .process-track--six .pstep {
+        padding-top: 30px;
+    }
+}
+
+/* ---------- Inside PhysioPro gallery (Batch C5) ----------
+   Three panels, not Fable's four: manual-therapy-primary.jpeg and estim.jpg
+   are deliberately withheld pending patient/staff consent confirmation, so
+   this ships with the three real clinic-space photos only. */
+
+.stage-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(12px, 1.6vw, 20px);
+}
+
+.stage-panel {
+    position: relative;
+    overflow: hidden;
+    margin: 0;
+}
+
+.stage-panel--wide {
+    grid-column: 1 / -1;
+}
+
+.stage-panel img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    filter: brightness(var(--photo-bright)) saturate(var(--photo-sat)) contrast(var(--photo-con));
+    transition: transform 0.8s var(--ease);
+}
+
+.stage-panel--wide img {
+    aspect-ratio: 16 / 7;
+}
+
+.stage-panel figcaption {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    padding: 10px 14px;
+    background: rgba(10, 10, 10, 0.74);
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: rgba(245, 245, 245, 0.9);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .stage-panel:hover img {
+        transform: scale(1.04);
+    }
+}
+
+@media (max-width: 720px) {
+    .stage-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .stage-panel--wide img {
+        aspect-ratio: 4 / 3;
+    }
+}
+
 .leonardo-cta {
     align-self: flex-start;
     margin-top: 8px;
