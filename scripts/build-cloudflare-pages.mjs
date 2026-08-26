@@ -44,7 +44,7 @@ const topLevelFiles = [
   "why-physical-therapy-didnt-work-the-first-time.html",
 ];
 
-const directories = ["static"];
+const directories = ["static", "es"];
 
 const excludedPublicPaths = new Set([
   "static/website.turnstile-init.test.js",
