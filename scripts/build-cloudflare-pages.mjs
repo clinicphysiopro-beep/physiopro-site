@@ -38,6 +38,7 @@ const topLevelFiles = [
   "sitemap.xml",
   "sports-injuries.html",
   "success-stories.html",
+  "tennis-golfers-elbow.html",
   "videos.html",
   "what-happens-during-your-first-session.html",
   "what-we-treat.html",
