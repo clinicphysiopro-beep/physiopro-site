@@ -298,10 +298,6 @@ const setupLeadCapture = () => {
 
         const { utms, landing_page } = getStoredUtms();
 
-        if (typeof fbq === "function") {
-            fbq("track", "Lead", { content_category: goal || "general" });
-        }
-
         try {
             const result = await postJson("/api/lead", {
                 full_name: name,
@@ -528,9 +524,6 @@ document.querySelectorAll('a[href*="wa.me"]').forEach((el) => {
                 event_label: el.textContent.trim(),
             });
         }
-        if (typeof fbq === "function") {
-            fbq("track", "Contact");
-        }
     });
 });
 
@@ -615,17 +608,6 @@ registerTurnstile("ask").catch((error) => reportTurnstileFailure("ask", error));
 
 // Attribution init — runs on every page
 captureAndStoreUtms();
-
-// Ask-Leonardo form — fire Lead pixel event (form is handled by inline script in ask-leonardo.html)
-(function () {
-    const askForm = document.getElementById("ask-form");
-    if (!askForm) return;
-    askForm.addEventListener("submit", function () {
-        if (typeof fbq === "function") {
-            fbq("track", "Lead", { content_category: "ask_leonardo" });
-        }
-    });
-})();
 
 // ---------- PhysioPro chat widget ----------
 
