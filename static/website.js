@@ -494,9 +494,18 @@ const animateCount = (el) => {
     if (!Number.isFinite(target)) return;
 
     const suffix = el.dataset.countSuffix || "";
+    el.dataset.counted = "true";
+
+    // Respect reduced-motion the same way every other homepage animation
+    // does (setupFounderVideo, the .reveal/scroll-spine CSS blocks) — jump
+    // straight to the final value instead of running the tick loop.
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        el.textContent = `${target}${suffix}`;
+        return;
+    }
+
     const duration = 1200;
     const start = performance.now();
-    el.dataset.counted = "true";
 
     const tick = (now) => {
         const progress = Math.min((now - start) / duration, 1);
@@ -672,12 +681,30 @@ const setupFounderVideo = () => {
     };
 
     if (typeof IntersectionObserver === "function") {
+        // Founder section sits above the fold, so a naive "play on intersect"
+        // trigger fires the moment the page loads on most viewports — forcing
+        // the full 16.8MB file to download even for a visitor who never
+        // actually watches it (preload="metadata" only survives until the
+        // first .play() call). Require a brief dwell time in view before
+        // committing to the fetch; a fast scroll-past never triggers it.
+        let dwellTimer = null;
+        const DWELL_MS = 400;
+
         const observer = new IntersectionObserver(
             (entries) => {
                 entries.forEach((entry) => {
                     if (entry.isIntersecting) {
-                        play();
+                        if (!dwellTimer) {
+                            dwellTimer = window.setTimeout(() => {
+                                dwellTimer = null;
+                                play();
+                            }, DWELL_MS);
+                        }
                     } else {
+                        if (dwellTimer) {
+                            window.clearTimeout(dwellTimer);
+                            dwellTimer = null;
+                        }
                         video.pause();
                     }
                 });
