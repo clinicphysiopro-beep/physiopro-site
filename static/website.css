@@ -1659,6 +1659,31 @@ p {
     color: var(--text-2);
 }
 
+.trust-chip-note {
+    font-family: var(--font-body);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: none;
+    color: var(--text-2);
+    opacity: 0.72;
+}
+
+.trust-strip-review {
+    display: block;
+    padding: 14px 0 20px;
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--orange);
+    text-decoration: none;
+}
+
+.trust-strip-review:hover {
+    text-decoration: underline;
+}
+
 @media (max-width: 640px) {
     .trust-strip-inner {
         display: grid;
