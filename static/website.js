@@ -7,6 +7,11 @@
 // aviso-cookies.html to accurately disclose it. See
 // vault/PHYSIOPRO_VAULT/WEBSITE/LIVE_WEBSITE_GROWTH_IMPLEMENTATION_PLAN.md
 // Batch 2 ("Tracking cleanup gate") and FULL_LIVE_WEBSITE_AUDIT_2026-08-26.md.
+//
+// GA4 event names fired anywhere in this file follow the canonical funnel
+// taxonomy documented in FUNNEL_TAXONOMY.md (repo root). Add a new event or
+// change an existing one there and here together — that file is the source
+// of truth for what each event means and what parameters it may carry.
 
 // Leave empty to use same-origin Pages Functions at /api/*.
 const PHYSIOPRO_API_URL = "";
@@ -339,10 +344,13 @@ const setupLeadCapture = () => {
         setSubmitting(leadForm, leadSubmitButton, I18N[LANG].preparingWhatsapp);
 
         if (typeof gtag === "function") {
-            gtag("event", "lead_form_submit", {
-                event_category: "lead",
-                event_label: goal,
-            });
+            // lead_form_attempt: client-side submit intent, fires before the
+            // server confirms. Distinct from lead_submit (the real
+            // conversion, fired only on confirmed success below) so a gap
+            // between the two counts is a technical-failure signal, not a
+            // UX one. No form field values (goal is a user-selected health
+            // category) are ever sent to GA4 — see FUNNEL_TAXONOMY.md.
+            gtag("event", "lead_form_attempt", { event_category: "lead" });
         }
 
         const { utms, landing_page } = getStoredUtms();
@@ -367,10 +375,14 @@ const setupLeadCapture = () => {
             setLeadStatus(result.message || I18N[LANG].leadSuccess, "success");
 
             if (typeof gtag === "function") {
-                gtag("event", "lead_form_success", {
+                // lead_submit: the canonical, real conversion event for this
+                // form (confirmed queued to CRM). utm_source/medium/campaign
+                // are marketing-attribution fields already visible in the
+                // URL that brought the visitor here, not patient data — the
+                // "goal" field (a health-category selection) is
+                // deliberately excluded, same as lead_form_attempt above.
+                gtag("event", "lead_submit", {
                     event_category: "lead",
-                    event_label: goal,
-                    lead_goal: goal || "general",
                     source: utms.utm_source || "website",
                     utm_medium: utms.utm_medium || null,
                     utm_campaign: utms.utm_campaign || null,
@@ -422,7 +434,10 @@ const setupAskForm = () => {
         setSubmitting(askForm, askSubmitButton, I18N[LANG].preparingWhatsapp);
 
         if (typeof gtag === "function") {
-            gtag("event", "ask_leonardo_submit", { event_category: "lead" });
+            // ask_leonardo_attempt: client-side submit intent (mirrors
+            // lead_form_attempt). The visitor's typed question is never
+            // sent to GA4.
+            gtag("event", "ask_leonardo_attempt", { event_category: "lead" });
         }
 
         const { utms, landing_page } = getStoredUtms();
@@ -453,7 +468,10 @@ const setupAskForm = () => {
             askForm.classList.add("is-submitted", "is-success");
 
             if (typeof gtag === "function") {
-                gtag("event", "ask_leonardo_success", {
+                // ask_leonardo_submit: the canonical, real conversion event
+                // for this form (confirmed queued to CRM) — named to match
+                // the site-wide funnel taxonomy in FUNNEL_TAXONOMY.md.
+                gtag("event", "ask_leonardo_submit", {
                     event_category: "lead",
                     source: utms.utm_source || "website",
                     utm_medium: utms.utm_medium || null,
@@ -574,15 +592,61 @@ const setupWantList = () => {
     });
 };
 
-document.querySelectorAll('a[href*="wa.me"]').forEach((el) => {
-    el.addEventListener("click", () => {
-        if (typeof gtag === "function") {
-            gtag("event", "whatsapp_cta_click", {
-                event_category: "lead",
-                event_label: el.textContent.trim(),
-            });
-        }
+// ─── CTA attribution (WhatsApp + phone) ──────────────────────────────────────
+// Centralized, page-agnostic click attribution for the two CTA types that
+// leave no other analytics trace: static wa.me links and tel: links. This
+// is deliberately a single shared listener rather than per-page/per-link
+// markup — adding a new WhatsApp or phone link anywhere on the site (any
+// page, any language) is automatically attributed with no HTML changes.
+//
+// Attribution is GA4-click-level only (see FUNNEL_TAXONOMY.md, tier A).
+// It does NOT and cannot follow the visitor into the WhatsApp conversation
+// or the CRM — the visible WhatsApp message text is never touched by this
+// code, and no message content, form-field values, or free/categorical
+// user input is ever placed into a GA4 event param. Only structural,
+// non-personal signals are sent: which page, which on-page zone, which
+// language.
+const CTA_LOCATION_RULES = [
+    { selector: ".sticky-whatsapp", location: "sticky_fab" },
+    { selector: ".topbar, .nav, header", location: "nav" },
+    { selector: ".hero, .hero--full", location: "hero" },
+    { selector: ".footer, footer", location: "footer" },
+    { selector: ".lead-capture, [data-lead-form], #ask-form", location: "form_area" },
+];
+
+const classifyCtaLocation = (el) => {
+    for (const rule of CTA_LOCATION_RULES) {
+        if (el.closest(rule.selector)) return rule.location;
+    }
+    return "body";
+};
+
+const fireCtaEvent = (eventName, el) => {
+    if (typeof gtag !== "function") return;
+    gtag("event", eventName, {
+        event_category: "lead",
+        cta_location: classifyCtaLocation(el),
+        source_page: window.location.pathname,
+        // Note: "language" is a GA4-reserved parameter name and is silently
+        // dropped if used here — confirmed via live-hit inspection during
+        // implementation. site_language avoids the collision.
+        site_language: LANG,
     });
+};
+
+// Delegated on `document`, not bound per-element: this is what makes the
+// "any wa.me/tel link, anywhere" claim actually true, including links
+// rendered after initial page load (e.g. the chat widget's API-driven
+// answers, which can contain a wa.me CTA). A querySelectorAll+forEach
+// binding at load time would silently miss those.
+document.addEventListener("click", (event) => {
+    const waLink = event.target.closest('a[href*="wa.me"]');
+    if (waLink) {
+        fireCtaEvent("whatsapp_click", waLink);
+        return;
+    }
+    const telLink = event.target.closest('a[href^="tel:"]');
+    if (telLink) fireCtaEvent("phone_click", telLink);
 });
 
 // rAF-throttled: this handler previously ran the four calls below directly
@@ -933,7 +997,12 @@ const setupChatWidget = () => {
         }
 
         if (typeof gtag === "function") {
-            gtag("event", "chat_message", { event_category: "chat", event_label: trimmed.substring(0, 60) });
+            // Pre-existing bug fixed in this pass: this previously sent the
+            // first 60 chars of the visitor's own typed chat message to GA4
+            // as event_label — raw user free text, potentially describing
+            // an injury/condition. Removed; only the fact that a message
+            // was sent is now recorded, no content.
+            gtag("event", "chat_message", { event_category: "chat" });
         }
     };
 
