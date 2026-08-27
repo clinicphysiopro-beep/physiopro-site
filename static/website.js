@@ -235,6 +235,7 @@ const resetTurnstile = (name) => {
 
 const revealEls = Array.from(document.querySelectorAll(".reveal:not(.in)"));
 const processTrack = document.getElementById("process-track");
+const scrollSpineFill = processTrack ? processTrack.querySelector(".scroll-spine-fill") : null;
 const trustStrip = document.querySelector("[data-trust-strip]");
 let processTrackDone = false;
 let trustStripDone = false;
@@ -248,6 +249,21 @@ const updateTopbar = () => {
 const updateParallax = () => {
     if (!heroEl || window.scrollY > window.innerHeight * 1.4) return;
     heroEl.style.setProperty("--parallax-y", `${window.scrollY * -0.10}px`);
+};
+
+// Scroll-spine (Batch 2): fill percentage for the 6-step process section's
+// left-edge thread, scoped to #process-track only. 0 when the track's top
+// edge is at the bottom of the viewport, 1 once its bottom edge has scrolled
+// past the top of the viewport. Uses transform: scaleY() only (no
+// layout-triggering properties) and is hidden on mobile via CSS.
+const updateScrollSpine = () => {
+    if (!processTrack || !scrollSpineFill) return;
+    const rect = processTrack.getBoundingClientRect();
+    const vh = window.innerHeight || document.documentElement.clientHeight;
+    const total = rect.height + vh;
+    const progress = total > 0 ? (vh - rect.top) / total : 0;
+    const clamped = Math.min(1, Math.max(0, progress));
+    scrollSpineFill.style.transform = `scaleY(${clamped})`;
 };
 
 const updateFab = () => {
@@ -560,13 +576,24 @@ document.querySelectorAll('a[href*="wa.me"]').forEach((el) => {
     });
 });
 
+// rAF-throttled: this handler previously ran the four calls below directly
+// on every scroll event with no throttling guard. Adding the scroll-spine
+// fill calculation here (Batch 2) is the trigger for adding that guard —
+// it must not become a third, separate, unthrottled scroll listener.
+let mainScrollTicking = false;
 window.addEventListener(
     "scroll",
     () => {
-        updateTopbar();
-        updateFab();
-        checkReveals();
-        updateParallax();
+        if (mainScrollTicking) return;
+        mainScrollTicking = true;
+        requestAnimationFrame(() => {
+            updateTopbar();
+            updateFab();
+            checkReveals();
+            updateParallax();
+            updateScrollSpine();
+            mainScrollTicking = false;
+        });
     },
     { passive: true }
 );
@@ -577,9 +604,11 @@ window.addEventListener("load", () => {
     updateFab();
     checkReveals();
     updateParallax();
+    updateScrollSpine();
 });
 
 setTimeout(checkReveals, 400);
+setTimeout(updateScrollSpine, 400);
 
 const revealPoll = setInterval(() => {
     checkReveals();
@@ -696,6 +725,7 @@ const runInit = (name, fn) => {
 runInit("updateTopbar", updateTopbar);
 runInit("updateFab", updateFab);
 runInit("checkReveals", checkReveals);
+runInit("updateScrollSpine", updateScrollSpine);
 runInit("setupWantList", setupWantList);
 runInit("setupFounderVideo", setupFounderVideo);
 runInit("setupLeadCapture", setupLeadCapture);
