@@ -12,7 +12,6 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/" />
   </url>
 
-  <!-- ES PILOT PAGES -->
   <url>
     <loc>https://physioprotijuana.com/es/</loc>
     <lastmod>2026-08-26</lastmod>
@@ -21,24 +20,6 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://physioprotijuana.com/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/" />
-  </url>
-  <url>
-    <loc>https://physioprotijuana.com/es/contacto</loc>
-    <lastmod>2026-08-26</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://physioprotijuana.com/contact" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/contacto" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/contact" />
-  </url>
-  <url>
-    <loc>https://physioprotijuana.com/es/primera-sesion</loc>
-    <lastmod>2026-08-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://physioprotijuana.com/first-session" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/primera-sesion" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/first-session" />
   </url>
 
   <!-- PRIMARY CONVERSION PAGES -->
@@ -51,6 +32,17 @@
     <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/primera-sesion" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/first-session" />
   </url>
+
+  <url>
+    <loc>https://physioprotijuana.com/es/primera-sesion</loc>
+    <lastmod>2026-08-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://physioprotijuana.com/first-session" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/primera-sesion" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/first-session" />
+  </url>
+
   <url>
     <loc>https://physioprotijuana.com/contact</loc>
     <lastmod>2026-08-26</lastmod>
@@ -60,11 +52,35 @@
     <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/contacto" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/contact" />
   </url>
+
+  <url>
+    <loc>https://physioprotijuana.com/es/contacto</loc>
+    <lastmod>2026-08-26</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://physioprotijuana.com/contact" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/contacto" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/contact" />
+  </url>
+
   <url>
     <loc>https://physioprotijuana.com/about-leonardo</loc>
     <lastmod>2026-08-26</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://physioprotijuana.com/about-leonardo" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/acerca-de-leonardo" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/about-leonardo" />
+  </url>
+
+  <url>
+    <loc>https://physioprotijuana.com/es/acerca-de-leonardo</loc>
+    <lastmod>2026-08-26</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://physioprotijuana.com/about-leonardo" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/acerca-de-leonardo" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/about-leonardo" />
   </url>
 
   <!-- CONDITION/SERVICE PAGES -->
@@ -73,72 +89,239 @@
     <lastmod>2026-08-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://physioprotijuana.com/ankle-sprain" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/esguince-de-tobillo" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/ankle-sprain" />
   </url>
+
+  <url>
+    <loc>https://physioprotijuana.com/es/esguince-de-tobillo</loc>
+    <lastmod>2026-08-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://physioprotijuana.com/ankle-sprain" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/esguince-de-tobillo" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/ankle-sprain" />
+  </url>
+
   <url>
     <loc>https://physioprotijuana.com/tennis-golfers-elbow</loc>
     <lastmod>2026-08-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://physioprotijuana.com/tennis-golfers-elbow" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/codo-de-tenista-y-golfista" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/tennis-golfers-elbow" />
   </url>
+
+  <url>
+    <loc>https://physioprotijuana.com/es/codo-de-tenista-y-golfista</loc>
+    <lastmod>2026-08-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://physioprotijuana.com/tennis-golfers-elbow" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/codo-de-tenista-y-golfista" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/tennis-golfers-elbow" />
+  </url>
+
   <url>
     <loc>https://physioprotijuana.com/hip-pain</loc>
     <lastmod>2026-08-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://physioprotijuana.com/hip-pain" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/dolor-de-cadera" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/hip-pain" />
   </url>
+
+  <url>
+    <loc>https://physioprotijuana.com/es/dolor-de-cadera</loc>
+    <lastmod>2026-08-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://physioprotijuana.com/hip-pain" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/dolor-de-cadera" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/hip-pain" />
+  </url>
+
   <url>
     <loc>https://physioprotijuana.com/knee-pain</loc>
     <lastmod>2026-08-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://physioprotijuana.com/knee-pain" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/dolor-de-rodilla" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/knee-pain" />
   </url>
+
+  <url>
+    <loc>https://physioprotijuana.com/es/dolor-de-rodilla</loc>
+    <lastmod>2026-08-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://physioprotijuana.com/knee-pain" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/dolor-de-rodilla" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/knee-pain" />
+  </url>
+
   <url>
     <loc>https://physioprotijuana.com/back-pain</loc>
     <lastmod>2026-08-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://physioprotijuana.com/back-pain" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/dolor-de-espalda" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/back-pain" />
   </url>
+
+  <url>
+    <loc>https://physioprotijuana.com/es/dolor-de-espalda</loc>
+    <lastmod>2026-08-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://physioprotijuana.com/back-pain" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/dolor-de-espalda" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/back-pain" />
+  </url>
+
   <url>
     <loc>https://physioprotijuana.com/shoulder-pain</loc>
     <lastmod>2026-08-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://physioprotijuana.com/shoulder-pain" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/dolor-de-hombro" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/shoulder-pain" />
   </url>
+
+  <url>
+    <loc>https://physioprotijuana.com/es/dolor-de-hombro</loc>
+    <lastmod>2026-08-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://physioprotijuana.com/shoulder-pain" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/dolor-de-hombro" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/shoulder-pain" />
+  </url>
+
   <url>
     <loc>https://physioprotijuana.com/neck-pain</loc>
     <lastmod>2026-08-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://physioprotijuana.com/neck-pain" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/dolor-de-cuello" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/neck-pain" />
   </url>
+
+  <url>
+    <loc>https://physioprotijuana.com/es/dolor-de-cuello</loc>
+    <lastmod>2026-08-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://physioprotijuana.com/neck-pain" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/dolor-de-cuello" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/neck-pain" />
+  </url>
+
   <url>
     <loc>https://physioprotijuana.com/sports-injuries</loc>
     <lastmod>2026-08-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://physioprotijuana.com/sports-injuries" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/lesiones-deportivas" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/sports-injuries" />
   </url>
+
+  <url>
+    <loc>https://physioprotijuana.com/es/lesiones-deportivas</loc>
+    <lastmod>2026-08-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://physioprotijuana.com/sports-injuries" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/lesiones-deportivas" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/sports-injuries" />
+  </url>
+
   <url>
     <loc>https://physioprotijuana.com/post-surgical-rehab</loc>
     <lastmod>2026-08-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://physioprotijuana.com/post-surgical-rehab" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/rehabilitacion-postquirurgica" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/post-surgical-rehab" />
   </url>
+
+  <url>
+    <loc>https://physioprotijuana.com/es/rehabilitacion-postquirurgica</loc>
+    <lastmod>2026-08-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://physioprotijuana.com/post-surgical-rehab" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/rehabilitacion-postquirurgica" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/post-surgical-rehab" />
+  </url>
+
   <url>
     <loc>https://physioprotijuana.com/return-to-sport</loc>
     <lastmod>2026-08-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://physioprotijuana.com/return-to-sport" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/regreso-al-deporte" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/return-to-sport" />
   </url>
+
+  <url>
+    <loc>https://physioprotijuana.com/es/regreso-al-deporte</loc>
+    <lastmod>2026-08-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://physioprotijuana.com/return-to-sport" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/regreso-al-deporte" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/return-to-sport" />
+  </url>
+
   <url>
     <loc>https://physioprotijuana.com/return-to-running</loc>
     <lastmod>2026-08-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://physioprotijuana.com/return-to-running" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/regreso-a-correr" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/return-to-running" />
   </url>
+
+  <url>
+    <loc>https://physioprotijuana.com/es/regreso-a-correr</loc>
+    <lastmod>2026-08-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://physioprotijuana.com/return-to-running" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/regreso-a-correr" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/return-to-running" />
+  </url>
+
   <url>
     <loc>https://physioprotijuana.com/combat-sports-rehab</loc>
     <lastmod>2026-08-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://physioprotijuana.com/combat-sports-rehab" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/rehabilitacion-en-deportes-de-combate" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/combat-sports-rehab" />
+  </url>
+
+  <url>
+    <loc>https://physioprotijuana.com/es/rehabilitacion-en-deportes-de-combate</loc>
+    <lastmod>2026-08-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://physioprotijuana.com/combat-sports-rehab" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/rehabilitacion-en-deportes-de-combate" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/combat-sports-rehab" />
   </url>
 
   <!-- EDUCATIONAL ARTICLES -->
@@ -147,30 +330,99 @@
     <lastmod>2026-08-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://physioprotijuana.com/why-physical-therapy-didnt-work-the-first-time" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/por-que-la-fisioterapia-no-funciono-la-primera-vez" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/why-physical-therapy-didnt-work-the-first-time" />
   </url>
+
+  <url>
+    <loc>https://physioprotijuana.com/es/por-que-la-fisioterapia-no-funciono-la-primera-vez</loc>
+    <lastmod>2026-08-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://physioprotijuana.com/why-physical-therapy-didnt-work-the-first-time" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/por-que-la-fisioterapia-no-funciono-la-primera-vez" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/why-physical-therapy-didnt-work-the-first-time" />
+  </url>
+
   <url>
     <loc>https://physioprotijuana.com/can-you-keep-training-while-injured</loc>
     <lastmod>2026-08-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://physioprotijuana.com/can-you-keep-training-while-injured" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/puedes-seguir-entrenando-lesionado" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/can-you-keep-training-while-injured" />
   </url>
+
+  <url>
+    <loc>https://physioprotijuana.com/es/puedes-seguir-entrenando-lesionado</loc>
+    <lastmod>2026-08-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://physioprotijuana.com/can-you-keep-training-while-injured" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/puedes-seguir-entrenando-lesionado" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/can-you-keep-training-while-injured" />
+  </url>
+
   <url>
     <loc>https://physioprotijuana.com/what-happens-during-your-first-session</loc>
     <lastmod>2026-08-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://physioprotijuana.com/what-happens-during-your-first-session" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/que-pasa-en-tu-primera-sesion" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/what-happens-during-your-first-session" />
   </url>
+
+  <url>
+    <loc>https://physioprotijuana.com/es/que-pasa-en-tu-primera-sesion</loc>
+    <lastmod>2026-08-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://physioprotijuana.com/what-happens-during-your-first-session" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/que-pasa-en-tu-primera-sesion" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/what-happens-during-your-first-session" />
+  </url>
+
   <url>
     <loc>https://physioprotijuana.com/do-you-need-an-mri-before-physical-therapy</loc>
     <lastmod>2026-08-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://physioprotijuana.com/do-you-need-an-mri-before-physical-therapy" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/necesitas-una-resonancia-antes-de-fisioterapia" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/do-you-need-an-mri-before-physical-therapy" />
   </url>
+
+  <url>
+    <loc>https://physioprotijuana.com/es/necesitas-una-resonancia-antes-de-fisioterapia</loc>
+    <lastmod>2026-08-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://physioprotijuana.com/do-you-need-an-mri-before-physical-therapy" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/necesitas-una-resonancia-antes-de-fisioterapia" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/do-you-need-an-mri-before-physical-therapy" />
+  </url>
+
   <url>
     <loc>https://physioprotijuana.com/how-return-to-sport-testing-works</loc>
     <lastmod>2026-08-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://physioprotijuana.com/how-return-to-sport-testing-works" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/como-funciona-la-evaluacion-de-regreso-al-deporte" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/how-return-to-sport-testing-works" />
+  </url>
+
+  <url>
+    <loc>https://physioprotijuana.com/es/como-funciona-la-evaluacion-de-regreso-al-deporte</loc>
+    <lastmod>2026-08-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://physioprotijuana.com/how-return-to-sport-testing-works" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/como-funciona-la-evaluacion-de-regreso-al-deporte" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/how-return-to-sport-testing-works" />
   </url>
 
   <!-- PROOF AND HUB PAGES -->
@@ -179,24 +431,79 @@
     <lastmod>2026-08-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://physioprotijuana.com/reviews" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/resenas" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/reviews" />
   </url>
+
+  <url>
+    <loc>https://physioprotijuana.com/es/resenas</loc>
+    <lastmod>2026-08-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://physioprotijuana.com/reviews" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/resenas" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/reviews" />
+  </url>
+
   <url>
     <loc>https://physioprotijuana.com/success-stories</loc>
     <lastmod>2026-08-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://physioprotijuana.com/success-stories" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/casos-de-exito" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/success-stories" />
   </url>
+
+  <url>
+    <loc>https://physioprotijuana.com/es/casos-de-exito</loc>
+    <lastmod>2026-08-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://physioprotijuana.com/success-stories" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/casos-de-exito" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/success-stories" />
+  </url>
+
   <url>
     <loc>https://physioprotijuana.com/videos</loc>
     <lastmod>2026-08-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://physioprotijuana.com/videos" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/videos" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/videos" />
   </url>
+
+  <url>
+    <loc>https://physioprotijuana.com/es/videos</loc>
+    <lastmod>2026-08-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://physioprotijuana.com/videos" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/videos" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/videos" />
+  </url>
+
   <url>
     <loc>https://physioprotijuana.com/resources</loc>
     <lastmod>2026-08-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://physioprotijuana.com/resources" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/recursos" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/resources" />
+  </url>
+
+  <url>
+    <loc>https://physioprotijuana.com/es/recursos</loc>
+    <lastmod>2026-08-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://physioprotijuana.com/resources" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/recursos" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/resources" />
   </url>
 
   <!-- SECONDARY CORE PAGES -->
@@ -205,18 +512,59 @@
     <lastmod>2026-08-26</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://physioprotijuana.com/who-we-help" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/a-quien-ayudamos" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/who-we-help" />
   </url>
+
+  <url>
+    <loc>https://physioprotijuana.com/es/a-quien-ayudamos</loc>
+    <lastmod>2026-08-26</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://physioprotijuana.com/who-we-help" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/a-quien-ayudamos" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/who-we-help" />
+  </url>
+
   <url>
     <loc>https://physioprotijuana.com/what-we-treat</loc>
     <lastmod>2026-08-26</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://physioprotijuana.com/what-we-treat" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/que-tratamos" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/what-we-treat" />
   </url>
+
+  <url>
+    <loc>https://physioprotijuana.com/es/que-tratamos</loc>
+    <lastmod>2026-08-26</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://physioprotijuana.com/what-we-treat" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/que-tratamos" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/what-we-treat" />
+  </url>
+
   <url>
     <loc>https://physioprotijuana.com/faq</loc>
     <lastmod>2026-08-12</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://physioprotijuana.com/faq" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/preguntas-frecuentes" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/faq" />
+  </url>
+
+  <url>
+    <loc>https://physioprotijuana.com/es/preguntas-frecuentes</loc>
+    <lastmod>2026-08-12</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://physioprotijuana.com/faq" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/preguntas-frecuentes" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/faq" />
   </url>
 
   <!-- UTILITY PAGES -->
@@ -225,6 +573,19 @@
     <lastmod>2026-08-12</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://physioprotijuana.com/ask-leonardo" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/preguntale-a-leonardo" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/ask-leonardo" />
+  </url>
+
+  <url>
+    <loc>https://physioprotijuana.com/es/preguntale-a-leonardo</loc>
+    <lastmod>2026-08-12</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://physioprotijuana.com/ask-leonardo" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/preguntale-a-leonardo" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/ask-leonardo" />
   </url>
 
 </urlset>
