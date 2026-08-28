@@ -208,37 +208,40 @@
                     <button class="nav-trigger" aria-expanded="false" aria-haspopup="true">Pacientes Nuevos <span class="nav-chevron" aria-hidden="true">&#9660;</span></button>
                     <div class="nav-dropdown">
                         <a href="./primera-sesion">Primera Sesión</a>
-                        <a href="../ask-leonardo">Pregúntale a Leonardo</a>
-                        <a href="../faq">Preguntas Frecuentes</a>
-                        <a href="../who-we-help">A Quién Ayudamos</a>
+                        <a href="./preguntale-a-leonardo">Pregúntale a Leonardo</a>
+                        <a href="./preguntas-frecuentes">Preguntas Frecuentes</a>
+                        <a href="./a-quien-ayudamos">A Quién Ayudamos</a>
                     </div>
                 </div>
 
                 <div class="nav-item" data-nav-item>
                     <button class="nav-trigger" aria-expanded="false" aria-haspopup="true">Dolor y Lesiones <span class="nav-chevron" aria-hidden="true">&#9660;</span></button>
                     <div class="nav-dropdown">
-                        <a href="../what-we-treat">Qué Tratamos</a>
-                        <a href="../knee-pain">Dolor de Rodilla</a>
-                        <a href="../back-pain">Dolor de Espalda</a>
-                        <a href="../shoulder-pain">Dolor de Hombro</a>
-                        <a href="../neck-pain">Dolor de Cuello</a>
-                        <a href="../post-surgical-rehab">Rehabilitación Postquirúrgica</a>
+                        <a href="./que-tratamos">Qué Tratamos</a>
+                        <a href="./dolor-de-rodilla">Dolor de Rodilla</a>
+                        <a href="./dolor-de-espalda">Dolor de Espalda</a>
+                        <a href="./dolor-de-hombro">Dolor de Hombro</a>
+                        <a href="./dolor-de-cuello">Dolor de Cuello</a>
+                        <a href="./rehabilitacion-postquirurgica">Rehabilitación Postquirúrgica</a>
                     </div>
                 </div>
 
                 <div class="nav-item" data-nav-item>
                     <button class="nav-trigger" aria-expanded="false" aria-haspopup="true">Deporte y Rendimiento <span class="nav-chevron" aria-hidden="true">&#9660;</span></button>
                     <div class="nav-dropdown">
-                    <a href="../sports-injuries">Lesiones Deportivas</a>
-                        <a href="../return-to-sport">Regreso al Deporte</a>
-                        <a href="../return-to-running">Regreso a Correr</a>
-                        <a href="../combat-sports-rehab">Rehabilitación en Deportes de Combate</a>
+                    <a href="./lesiones-deportivas">Lesiones Deportivas</a>
+                        <a href="./regreso-al-deporte">Regreso al Deporte</a>
+                        <a href="./regreso-a-correr">Regreso a Correr</a>
+                        <a href="./rehabilitacion-en-deportes-de-combate">Rehabilitación en Deportes de Combate</a>
                     </div>
                 </div>
 
-                <a class="nav-link" href="../about-leonardo">Acerca de Leonardo</a>
+                <a class="nav-link" href="./acerca-de-leonardo">Acerca de Leonardo</a>
 
                 <a class="nav-link" href="./contacto">Contacto</a>
+
+                <a class="nav-link" href="../" hreflang="en" lang="en">English</a>
+
 
                 <a class="nav-cta" href="https://wa.me/526634875859?text=Hola%2C%20me%20interesa%20agendar%20una%20evaluaci%C3%B3n%20en%20PhysioPro" target="_blank" rel="noopener noreferrer">Agenda por WhatsApp</a>
             </nav>
@@ -265,7 +268,7 @@
                     <p class="hero-credential hero-reveal">Leonardo Machado · Fisioterapeuta Licenciado · Rehabilitación Deportiva</p>
                     <div class="hero-actions hero-reveal">
                         <a class="button button-primary" href="https://wa.me/526634875859?text=Hola%2C%20me%20interesa%20agendar%20una%20evaluaci%C3%B3n%20en%20PhysioPro" target="_blank" rel="noopener noreferrer">Agenda por WhatsApp</a>
-                        <a class="button button-secondary" href="../ask-leonardo">Pregúntale a Leonardo →</a>
+                        <a class="button button-secondary" href="./preguntale-a-leonardo">Pregúntale a Leonardo →</a>
                     </div>
                     <div class="hero-rail hero-reveal" aria-label="Enfoque de tratamiento de PhysioPro">
                         <span>Evaluar</span>
@@ -322,9 +325,30 @@
 <!-- THE FOUNDER -->
             <section class="section section-founder" id="founder">
                 <div class="leonardo-grid">
-                    <figure class="leonardo-portrait reveal">
-                        <img src="../static/images/v3/founder.jpg" alt="Leonardo Machado, fundador de PhysioPro" loading="lazy" width="880" height="1100">
-                    </figure>
+                    <div class="leonardo-media reveal">
+                        <figure class="leonardo-portrait">
+                            <img src="../static/images/v3/founder.jpg" alt="Leonardo Machado, fundador de PhysioPro" loading="lazy" width="880" height="1100">
+                        </figure>
+                        <div class="founder-video" data-founder-video>
+                            <!-- Spanish (.vtt) subtitle track not yet available; captions omitted rather than invented. -->
+                            <video
+                                class="founder-video__el"
+                                data-founder-video-el
+                                src="../static/video/founder-intro.mp4"
+                                poster="../static/images/fable5/founder-video-poster.jpg"
+                                muted
+                                loop
+                                playsinline
+                                preload="metadata"
+                                aria-label="Leonardo Machado presentando PhysioPro"
+                            ></video>
+                            <span class="founder-video__tag"><i class="founder-video__dot" aria-hidden="true"></i>Leonardo — en sus palabras</span>
+                            <button class="founder-video__mute" type="button" data-founder-video-mute aria-label="Activar el sonido de la presentación de Leonardo" aria-pressed="false">
+                                <svg class="fv-ic fv-ic--muted" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4z"></path><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>
+                                <svg class="fv-ic fv-ic--sound" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4z"></path><path d="M15.5 8.5a5 5 0 0 1 0 7"></path><path d="M18.5 5.5a9 9 0 0 1 0 13"></path></svg>
+                            </button>
+                        </div>
+                    </div>
                     <div class="leonardo-copy reveal">
                         <p class="quote">
                             "Quitarte el dolor importa. El trabajo completo es regresarte a cargar,
@@ -349,6 +373,9 @@
                     <h2>Un proceso claro desde la primera sesión.</h2>
                 </div>
                 <div class="process-track" id="process-track">
+                    <div class="scroll-spine" aria-hidden="true">
+                        <div class="scroll-spine-fill"></div>
+                    </div>
                     <article class="pstep reveal">
                         <span class="pn">01</span>
                         <h3>Evaluación</h3>
@@ -382,7 +409,7 @@
                 <div class="section-head reveal">
                     <p class="section-kicker">2 · A Quién Ayudamos</p>
                     <h2>Trabajamos con personas que se mueven.</h2>
-                    <a class="soft-link" href="../who-we-help">Ver el detalle completo →</a>
+                    <a class="soft-link" href="./a-quien-ayudamos">Ver el detalle completo →</a>
                 </div>
                 <div class="who-grid">
                     <div class="who-card reveal">
@@ -418,7 +445,7 @@
                 <div class="section-head reveal">
                     <p class="section-kicker">3 · Qué Tratamos</p>
                     <h2>De la lesión aguda a la carga crónica.</h2>
-                    <a class="soft-link" href="../what-we-treat">Ver el detalle completo →</a>
+                    <a class="soft-link" href="./que-tratamos">Ver el detalle completo →</a>
                 </div>
                 <div class="treat-grid">
                     <div class="treat-card reveal">
@@ -445,6 +472,29 @@
                         <h3>Rehabilitación Postquirúrgica</h3>
                         <p>Recuperación estructurada después de cirugía ortopédica o deportiva con supervisión clínica en cada etapa.</p>
                     </div>
+                </div>
+            </section>
+
+
+<!-- INSIDE PHYSIOPRO (GALLERY) -->
+            <section class="section section-stage" id="clinic">
+                <div class="section-head reveal">
+                    <p class="section-kicker">Dentro de PhysioPro</p>
+                    <h2>Espacios reales de tratamiento. Trabajo clínico real.</h2>
+                </div>
+                <div class="stage-grid">
+                    <figure class="stage-panel stage-panel--wide reveal">
+                        <img src="../static/images/fable5/lobby.jpeg" alt="Recepción y flujo de tratamiento de PhysioPro, Zona Río Tijuana" loading="lazy" width="1536" height="1152">
+                        <figcaption>Donde comienza cada evaluación</figcaption>
+                    </figure>
+                    <figure class="stage-panel reveal">
+                        <img src="../static/images/fable5/gym.jpeg" alt="Piso de rendimiento y entrenamiento de PhysioPro" loading="lazy" width="1152" height="1536">
+                        <figcaption>Donde la carga se convierte en fuerza</figcaption>
+                    </figure>
+                    <figure class="stage-panel reveal">
+                        <img src="../static/images/fable5/treatment-room.jpg" alt="Sala de tratamiento privada dentro de PhysioPro" loading="lazy" width="750" height="1000">
+                        <figcaption>Donde se confirma el regreso al deporte</figcaption>
+                    </figure>
                 </div>
             </section>
 
@@ -661,21 +711,21 @@
                     <a href="#founder">Leonardo</a>
                     <a href="#before-book">Ubicación</a>
                     <a href="./primera-sesion">Primera Sesión</a>
-                    <a href="../what-we-treat">Qué Tratamos</a>
-                    <a href="../who-we-help">A Quién Ayudamos</a>
-                    <a href="../about-leonardo">Acerca de Leonardo</a>
-                    <a href="../reviews">Reseñas</a>
-                    <a href="../knee-pain">Dolor de Rodilla</a>
-                    <a href="../back-pain">Dolor de Espalda</a>
-                    <a href="../shoulder-pain">Dolor de Hombro</a>
-                    <a href="../neck-pain">Dolor de Cuello</a>
-                    <a href="../sports-injuries">Lesiones Deportivas</a>
-                    <a href="../post-surgical-rehab">Rehabilitación Postquirúrgica</a>
-                    <a href="../return-to-sport">Regreso al Deporte</a>
-                    <a href="../return-to-running">Regreso a Correr</a>
-                    <a href="../combat-sports-rehab">Rehabilitación en Deportes de Combate</a>
+                    <a href="./que-tratamos">Qué Tratamos</a>
+                    <a href="./a-quien-ayudamos">A Quién Ayudamos</a>
+                    <a href="./acerca-de-leonardo">Acerca de Leonardo</a>
+                    <a href="./resenas">Reseñas</a>
+                    <a href="./dolor-de-rodilla">Dolor de Rodilla</a>
+                    <a href="./dolor-de-espalda">Dolor de Espalda</a>
+                    <a href="./dolor-de-hombro">Dolor de Hombro</a>
+                    <a href="./dolor-de-cuello">Dolor de Cuello</a>
+                    <a href="./lesiones-deportivas">Lesiones Deportivas</a>
+                    <a href="./rehabilitacion-postquirurgica">Rehabilitación Postquirúrgica</a>
+                    <a href="./regreso-al-deporte">Regreso al Deporte</a>
+                    <a href="./regreso-a-correr">Regreso a Correr</a>
+                    <a href="./rehabilitacion-en-deportes-de-combate">Rehabilitación en Deportes de Combate</a>
                     <a href="./contacto">Contacto</a>
-                    <a href="../ask-leonardo">Pregúntale a Leonardo</a>
+                    <a href="./preguntale-a-leonardo">Pregúntale a Leonardo</a>
                 </nav>
                 <div class="footer-contact">
                     <p>Jose Maria Velazco 2632<br>Zona Urbana Río, Tijuana</p>
