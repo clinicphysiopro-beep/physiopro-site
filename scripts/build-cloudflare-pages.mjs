@@ -29,6 +29,7 @@ const topLevelFiles = [
   "how-return-to-sport-testing-works.html",
   "knee-mobility.html",
   "knee-pain.html",
+  "knee-readiness-check.html",
   "knee-return-to-sport.html",
   "knee-strength.html",
   "knee.html",
