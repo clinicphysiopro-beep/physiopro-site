@@ -40,10 +40,30 @@
     {
       "@context": "https://schema.org",
       "@type": "CollectionPage",
-      "name": "Knowledge Base | PhysioPro",
+      "name": "Learn | PhysioPro",
       "url": "https://physioprotijuana.com/resources",
-      "description": "Educational resources from PhysioPro — articles, videos, FAQ, and case studies on rehabilitation and sports recovery.",
+      "description": "PhysioPro's Learn hub — the cross-trunk index to Body & Joint Resources, Sports Performance, Videos, FAQ, and educational articles on rehabilitation and sports recovery.",
       "hasPart": [
+        {
+          "@type": "CollectionPage",
+          "name": "Body & Joint Resources",
+          "url": "https://physioprotijuana.com/body-resources"
+        },
+        {
+          "@type": "CollectionPage",
+          "name": "Sports Performance",
+          "url": "https://physioprotijuana.com/sports-performance"
+        },
+        {
+          "@type": "CollectionPage",
+          "name": "Videos",
+          "url": "https://physioprotijuana.com/videos"
+        },
+        {
+          "@type": "WebPage",
+          "name": "FAQ",
+          "url": "https://physioprotijuana.com/faq"
+        },
         {
           "@type": "Article",
           "name": "Why Physical Therapy Didn't Work The First Time",
@@ -169,6 +189,7 @@
                     <button class="nav-trigger" aria-expanded="false" aria-haspopup="true">Pain &amp; Injury <span class="nav-chevron" aria-hidden="true">&#9660;</span></button>
                     <div class="nav-dropdown">
                         <a href="./what-we-treat">What We Treat</a>
+                        <a href="./knee">Knee</a>
                         <a href="./knee-pain">Knee Pain</a>
                         <a href="./back-pain">Back Pain</a>
                         <a href="./shoulder-pain">Shoulder Pain</a>
@@ -184,6 +205,7 @@
                         <a href="./return-to-sport">Return To Sport</a>
                         <a href="./return-to-running">Return To Running</a>
                         <a href="./combat-sports-rehab">Combat Sports Rehab</a>
+                        <a href="./return-to-performance">Return to Performance</a>
                     </div>
                 </div>
 
@@ -192,6 +214,8 @@
                     <div class="nav-dropdown">
                         <a href="./resources">All Resources</a>
                         <a href="./videos">Videos</a>
+                        <a href="./body-resources">Body &amp; Joint Resources</a>
+                        <a href="./sports-performance">Sports Performance</a>
                         <a href="./why-physical-therapy-didnt-work-the-first-time">Why PT Didn&#39;t Work</a>
                         <a href="./can-you-keep-training-while-injured">Training While Injured</a>
                         <a href="./what-happens-during-your-first-session">Your First Session</a>
@@ -227,9 +251,9 @@
 
             <!-- PAGE HERO -->
             <section class="page-hero">
-                <p class="eyebrow">PhysioPro Knowledge Base</p>
+                <p class="eyebrow">PhysioPro Learn Hub</p>
                 <h1>Clinical knowledge, organized for you.</h1>
-                <p class="page-hero-sub">Five in-depth articles, condition guides, FAQ, and videos — all written by Leonardo Machado, LFT · Zona Rio, Tijuana.</p>
+                <p class="page-hero-sub">The starting point for everything PhysioPro publishes — body-region resource hubs, performance resources, videos, FAQ, and in-depth articles, all written by Leonardo Machado, LFT · Zona Rio, Tijuana.</p>
             </section>
 
             <!-- FEATURED ARTICLE -->
@@ -252,8 +276,42 @@
                 </a>
             </section>
 
-            <!-- CATEGORY 1: NEW PATIENTS -->
+            <!-- TWO TRUNKS: BODY & JOINT / SPORTS PERFORMANCE -->
             <section class="section section-alt">
+                <div class="section-head reveal">
+                    <p class="section-kicker">Two ways to explore</p>
+                    <h2>Pick your starting point.</h2>
+                </div>
+                <div class="resource-grid">
+                    <a class="resource-card resource-card--article reveal" href="./body-resources">
+                        <span class="resource-card-label">Hub · Body &amp; Joint Resources</span>
+                        <h2>Body &amp; Joint Resources</h2>
+                        <p>Organized by body region — knee, ankle, hip, back, neck, shoulder. Understanding, mobility, strength, rehab, and return to activity, region by region.</p>
+                        <span class="resource-card-arrow">→</span>
+                    </a>
+                    <a class="resource-card resource-card--article reveal" href="./sports-performance">
+                        <span class="resource-card-label">Hub · Sports Performance</span>
+                        <h2>Sports Performance</h2>
+                        <p>Organized by capacity — return to performance, strength, running, load management, combat sports. Built for athletes, not just patients.</p>
+                        <span class="resource-card-arrow">→</span>
+                    </a>
+                    <a class="resource-card reveal" href="./videos">
+                        <span class="resource-card-label">Hub · Videos</span>
+                        <h2>Video Library</h2>
+                        <p>Clinical rehabilitation content — injury education, movement progressions, and return-to-sport guidance on YouTube, Instagram, and TikTok.</p>
+                        <span class="resource-card-arrow">→</span>
+                    </a>
+                    <a class="resource-card reveal" href="./faq">
+                        <span class="resource-card-label">FAQ</span>
+                        <h2>Frequently Asked Questions</h2>
+                        <p>22 questions answered — booking, pricing, treatment, imaging, recovery timelines, and more.</p>
+                        <span class="resource-card-arrow">→</span>
+                    </a>
+                </div>
+            </section>
+
+            <!-- NEW PATIENTS -->
+            <section class="section">
                 <div class="section-head reveal">
                     <p class="section-kicker">Starting out</p>
                     <h2>New patients.</h2>
@@ -263,12 +321,6 @@
                         <span class="resource-card-label">Guide</span>
                         <h2>First Session</h2>
                         <p>What to expect on day one — assessment, treatment, pricing, and what you leave with.</p>
-                        <span class="resource-card-arrow">→</span>
-                    </a>
-                    <a class="resource-card reveal" href="./faq">
-                        <span class="resource-card-label">FAQ</span>
-                        <h2>Frequently Asked Questions</h2>
-                        <p>22 questions answered — booking, pricing, treatment, imaging, recovery timelines, and more.</p>
                         <span class="resource-card-arrow">→</span>
                     </a>
                     <a class="resource-card resource-card--article reveal" href="./what-happens-during-your-first-session">
@@ -282,17 +334,29 @@
                         <div class="kb-card-related">Related: <span class="kb-related-title">MRI Before PT?</span></div>
                         <span class="resource-card-arrow">→</span>
                     </a>
+                    <a class="resource-card reveal" href="./who-we-help">
+                        <span class="resource-card-label">Overview</span>
+                        <h2>Who We Help</h2>
+                        <p>Athletes, active adults, runners, combat sports, post-surgical, desk workers — who the approach is designed for.</p>
+                        <span class="resource-card-arrow">→</span>
+                    </a>
+                    <a class="resource-card reveal" href="./ask-leonardo">
+                        <span class="resource-card-label">Direct</span>
+                        <h2>Ask Leonardo</h2>
+                        <p>Get a direct clinical answer before you book. A real response, not a template.</p>
+                        <span class="resource-card-arrow">→</span>
+                    </a>
                 </div>
                 <div class="kb-inline-cta">
                     <p>Ready to book your first session? <a href="https://wa.me/526634875859?text=Hello%2C%20I%27m%20interested%20in%20booking%20an%20evaluation%20at%20PhysioPro" target="_blank" rel="noopener noreferrer">Book on WhatsApp →</a></p>
                 </div>
             </section>
 
-            <!-- CATEGORY 2: UNDERSTANDING PHYSICAL THERAPY -->
-            <section class="section">
+            <!-- BODY & JOINT: CONDITIONS TODAY -->
+            <section class="section section-alt">
                 <div class="section-head reveal">
-                    <p class="section-kicker">Injury education</p>
-                    <h2>Understanding physical therapy.</h2>
+                    <p class="section-kicker">Body &amp; joint resources</p>
+                    <h2>Understanding your condition.</h2>
                 </div>
                 <div class="resource-grid">
                     <a class="resource-card resource-card--article reveal" href="./do-you-need-an-mri-before-physical-therapy">
@@ -310,42 +374,6 @@
                         <span class="resource-card-label">Overview</span>
                         <h2>What We Treat</h2>
                         <p>Full condition overview — from acute injury to chronic load and post-surgical rehab.</p>
-                        <span class="resource-card-arrow">→</span>
-                    </a>
-                    <a class="resource-card reveal" href="./who-we-help">
-                        <span class="resource-card-label">Overview</span>
-                        <h2>Who We Help</h2>
-                        <p>Athletes, active adults, runners, combat sports, post-surgical, desk workers — who the approach is designed for.</p>
-                        <span class="resource-card-arrow">→</span>
-                    </a>
-                </div>
-                <div class="kb-inline-cta">
-                    <p>Have a clinical question? <a href="./ask-leonardo">Ask Leonardo directly →</a></p>
-                </div>
-            </section>
-
-            <!-- CATEGORY 3: TRAINING WHILE INJURED -->
-            <section class="section section-alt">
-                <div class="section-head reveal">
-                    <p class="section-kicker">Active patients</p>
-                    <h2>Training while injured.</h2>
-                </div>
-                <div class="resource-grid">
-                    <a class="resource-card resource-card--article reveal" href="./can-you-keep-training-while-injured">
-                        <span class="resource-card-label">Article · Training &amp; Recovery</span>
-                        <h2>Can You Keep Training While Injured?</h2>
-                        <p>In the large majority of cases, yes — with specific modifications. What load management actually means in practice.</p>
-                        <div class="kb-card-meta">
-                            <span class="kb-author-chip">Leonardo Machado, LFT</span>
-                            <span class="kb-read-time-badge">~8 min</span>
-                        </div>
-                        <div class="kb-card-related">Related: <span class="kb-related-title">Sports Injuries</span></div>
-                        <span class="resource-card-arrow">→</span>
-                    </a>
-                    <a class="resource-card reveal" href="./sports-injuries">
-                        <span class="resource-card-label">Condition</span>
-                        <h2>Sports Injuries</h2>
-                        <p>Sprains, strains, overuse, acute trauma — back to full function and training load.</p>
                         <span class="resource-card-arrow">→</span>
                     </a>
                     <a class="resource-card reveal" href="./knee-pain">
@@ -366,19 +394,36 @@
                         <p>Rotator cuff, impingement, instability — movement-based diagnosis and targeted treatment.</p>
                         <span class="resource-card-arrow">→</span>
                     </a>
+                    <a class="resource-card reveal" href="./post-surgical-rehab">
+                        <span class="resource-card-label">Condition</span>
+                        <h2>Post-Surgical Rehab</h2>
+                        <p>Structured recovery after orthopaedic or sports surgery — clinical oversight at every stage.</p>
+                        <span class="resource-card-arrow">→</span>
+                    </a>
                 </div>
                 <div class="kb-inline-cta">
-                    <p>Still training through pain? <a href="https://wa.me/526634875859?text=Hello%2C%20I%27m%20interested%20in%20booking%20an%20evaluation%20at%20PhysioPro" target="_blank" rel="noopener noreferrer">Get an assessment →</a></p>
+                    <p>See every region, organized by hub. <a href="./body-resources">Body &amp; Joint Resources →</a></p>
                 </div>
             </section>
 
-            <!-- CATEGORY 4: RETURN TO SPORT -->
+            <!-- SPORTS PERFORMANCE: TRAINING, INJURY & RETURN TO SPORT -->
             <section class="section">
                 <div class="section-head reveal">
-                    <p class="section-kicker">Performance</p>
-                    <h2>Return to sport.</h2>
+                    <p class="section-kicker">Sports performance</p>
+                    <h2>Training, injury, and return to sport.</h2>
                 </div>
                 <div class="resource-grid">
+                    <a class="resource-card resource-card--article reveal" href="./can-you-keep-training-while-injured">
+                        <span class="resource-card-label">Article · Training &amp; Recovery</span>
+                        <h2>Can You Keep Training While Injured?</h2>
+                        <p>In the large majority of cases, yes — with specific modifications. What load management actually means in practice.</p>
+                        <div class="kb-card-meta">
+                            <span class="kb-author-chip">Leonardo Machado, LFT</span>
+                            <span class="kb-read-time-badge">~8 min</span>
+                        </div>
+                        <div class="kb-card-related">Related: <span class="kb-related-title">Sports Injuries</span></div>
+                        <span class="resource-card-arrow">→</span>
+                    </a>
                     <a class="resource-card resource-card--article reveal" href="./how-return-to-sport-testing-works">
                         <span class="resource-card-label">Article · Return to Sport</span>
                         <h2>How Return-To-Sport Testing Works</h2>
@@ -388,6 +433,12 @@
                             <span class="kb-read-time-badge">~8 min</span>
                         </div>
                         <div class="kb-card-related">Related: <span class="kb-related-title">Training While Injured</span></div>
+                        <span class="resource-card-arrow">→</span>
+                    </a>
+                    <a class="resource-card reveal" href="./sports-injuries">
+                        <span class="resource-card-label">Condition</span>
+                        <h2>Sports Injuries</h2>
+                        <p>Sprains, strains, overuse, acute trauma — back to full function and training load.</p>
                         <span class="resource-card-arrow">→</span>
                     </a>
                     <a class="resource-card reveal" href="./return-to-sport">
@@ -408,41 +459,23 @@
                         <p>BJJ, boxing, MMA — load tolerance, injury management, and return protocols.</p>
                         <span class="resource-card-arrow">→</span>
                     </a>
-                    <a class="resource-card reveal" href="./post-surgical-rehab">
-                        <span class="resource-card-label">Condition</span>
-                        <h2>Post-Surgical Rehab</h2>
-                        <p>Structured recovery after orthopaedic or sports surgery — clinical oversight at every stage.</p>
-                        <span class="resource-card-arrow">→</span>
-                    </a>
                 </div>
                 <div class="kb-inline-cta">
-                    <p>Cleared to return? Get criteria-based testing. <a href="https://wa.me/526634875859?text=Hello%2C%20I%27m%20interested%20in%20booking%20an%20evaluation%20at%20PhysioPro" target="_blank" rel="noopener noreferrer">Book on WhatsApp →</a></p>
+                    <p>See every capacity, organized by hub. <a href="./sports-performance">Sports Performance →</a></p>
                 </div>
             </section>
 
-            <!-- CATEGORY 5: BOOKING & FIRST SESSION -->
+            <!-- ABOUT & CONTACT -->
             <section class="section section-alt">
                 <div class="section-head reveal">
                     <p class="section-kicker">Ready to start</p>
-                    <h2>Booking &amp; first session.</h2>
+                    <h2>About &amp; booking.</h2>
                 </div>
                 <div class="resource-grid">
-                    <a class="resource-card reveal" href="./ask-leonardo">
-                        <span class="resource-card-label">Direct</span>
-                        <h2>Ask Leonardo</h2>
-                        <p>Get a direct clinical answer before you book. A real response, not a template.</p>
-                        <span class="resource-card-arrow">→</span>
-                    </a>
                     <a class="resource-card reveal" href="./about-leonardo">
                         <span class="resource-card-label">About</span>
                         <h2>About Leonardo</h2>
                         <p>The clinician, the philosophy, and why PhysioPro is built around a single-provider model.</p>
-                        <span class="resource-card-arrow">→</span>
-                    </a>
-                    <a class="resource-card reveal" href="./videos">
-                        <span class="resource-card-label">Hub</span>
-                        <h2>Video Library</h2>
-                        <p>Clinical rehabilitation content — injury education, movement progressions, and return-to-sport guidance on YouTube and Instagram.</p>
                         <span class="resource-card-arrow">→</span>
                     </a>
                 </div>

@@ -588,4 +588,145 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/ask-leonardo" />
   </url>
 
+  <!-- AUTHORITY HUBS — KNEE PILOT + SPORTS PERFORMANCE (P0) -->
+  <url>
+    <loc>https://physioprotijuana.com/body-resources</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://physioprotijuana.com/body-resources" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/recursos-corporales" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/body-resources" />
+  </url>
+
+  <url>
+    <loc>https://physioprotijuana.com/es/recursos-corporales</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://physioprotijuana.com/body-resources" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/recursos-corporales" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/body-resources" />
+  </url>
+
+  <url>
+    <loc>https://physioprotijuana.com/sports-performance</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://physioprotijuana.com/sports-performance" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/rendimiento-deportivo" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/sports-performance" />
+  </url>
+
+  <url>
+    <loc>https://physioprotijuana.com/es/rendimiento-deportivo</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://physioprotijuana.com/sports-performance" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/rendimiento-deportivo" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/sports-performance" />
+  </url>
+
+  <url>
+    <loc>https://physioprotijuana.com/knee</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://physioprotijuana.com/knee" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/rodilla" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/knee" />
+  </url>
+
+  <url>
+    <loc>https://physioprotijuana.com/es/rodilla</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://physioprotijuana.com/knee" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/rodilla" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/knee" />
+  </url>
+
+  <url>
+    <loc>https://physioprotijuana.com/knee-mobility</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://physioprotijuana.com/knee-mobility" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/movilidad-de-rodilla" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/knee-mobility" />
+  </url>
+
+  <url>
+    <loc>https://physioprotijuana.com/es/movilidad-de-rodilla</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://physioprotijuana.com/knee-mobility" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/movilidad-de-rodilla" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/knee-mobility" />
+  </url>
+
+  <url>
+    <loc>https://physioprotijuana.com/knee-strength</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://physioprotijuana.com/knee-strength" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/fuerza-de-rodilla" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/knee-strength" />
+  </url>
+
+  <url>
+    <loc>https://physioprotijuana.com/es/fuerza-de-rodilla</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://physioprotijuana.com/knee-strength" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/fuerza-de-rodilla" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/knee-strength" />
+  </url>
+
+  <url>
+    <loc>https://physioprotijuana.com/knee-return-to-sport</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://physioprotijuana.com/knee-return-to-sport" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/regreso-al-rendimiento-rodilla" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/knee-return-to-sport" />
+  </url>
+
+  <url>
+    <loc>https://physioprotijuana.com/es/regreso-al-rendimiento-rodilla</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://physioprotijuana.com/knee-return-to-sport" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/regreso-al-rendimiento-rodilla" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/knee-return-to-sport" />
+  </url>
+
+  <url>
+    <loc>https://physioprotijuana.com/return-to-performance</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://physioprotijuana.com/return-to-performance" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/regreso-al-rendimiento" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/return-to-performance" />
+  </url>
+
+  <url>
+    <loc>https://physioprotijuana.com/es/regreso-al-rendimiento</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://physioprotijuana.com/return-to-performance" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/regreso-al-rendimiento" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/return-to-performance" />
+  </url>
+
 </urlset>
