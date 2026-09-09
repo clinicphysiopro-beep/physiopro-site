@@ -710,6 +710,86 @@
   </url>
 
   <url>
+    <loc>https://physioprotijuana.com/low-back</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://physioprotijuana.com/low-back" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/espalda-baja" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/low-back" />
+  </url>
+
+  <url>
+    <loc>https://physioprotijuana.com/es/espalda-baja</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://physioprotijuana.com/low-back" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/espalda-baja" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/low-back" />
+  </url>
+
+  <url>
+    <loc>https://physioprotijuana.com/low-back-mobility</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://physioprotijuana.com/low-back-mobility" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/movilidad-de-espalda-baja" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/low-back-mobility" />
+  </url>
+
+  <url>
+    <loc>https://physioprotijuana.com/es/movilidad-de-espalda-baja</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://physioprotijuana.com/low-back-mobility" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/movilidad-de-espalda-baja" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/low-back-mobility" />
+  </url>
+
+  <url>
+    <loc>https://physioprotijuana.com/low-back-strength</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://physioprotijuana.com/low-back-strength" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/fuerza-de-espalda-baja" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/low-back-strength" />
+  </url>
+
+  <url>
+    <loc>https://physioprotijuana.com/es/fuerza-de-espalda-baja</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://physioprotijuana.com/low-back-strength" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/fuerza-de-espalda-baja" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/low-back-strength" />
+  </url>
+
+  <url>
+    <loc>https://physioprotijuana.com/low-back-return-to-sport</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://physioprotijuana.com/low-back-return-to-sport" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/regreso-al-rendimiento-espalda-baja" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/low-back-return-to-sport" />
+  </url>
+
+  <url>
+    <loc>https://physioprotijuana.com/es/regreso-al-rendimiento-espalda-baja</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://physioprotijuana.com/low-back-return-to-sport" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://physioprotijuana.com/es/regreso-al-rendimiento-espalda-baja" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://physioprotijuana.com/low-back-return-to-sport" />
+  </url>
+
+  <url>
     <loc>https://physioprotijuana.com/return-to-performance</loc>
     <lastmod>2026-08-29</lastmod>
     <changefreq>monthly</changefreq>
