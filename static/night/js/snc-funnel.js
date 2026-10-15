@@ -1,5 +1,5 @@
 /* Exercise Prescription funnel routing (shared by the English and Spanish questionnaires; targets and messages come from data attributes, defaulting to the English values). Client-side only: answers are never sent, stored or logged.
-   Rule (explicit stated answers only): BUY_NOW when Q2 is "immediately" or "within_2_weeks" AND Q3 is "yes" AND Q4 is "yes"; every other complete answer set is BUY_LATER.
+   Rule R1 (explicit stated answers only): BUY_NOW when Q2 is not "exploring" AND Q3 is "yes" AND Q4 is not "not_currently"; every other complete answer set is BUY_LATER.
    Q1 (goal) and Q5 (support type) are context only and never affect routing. */
 (() => {
   const form = document.querySelector("[data-snc-funnel]");
@@ -15,9 +15,9 @@
     return checked ? checked.value : null;
   };
   const route = () =>
-    ["immediately", "within_2_weeks"].includes(answer("start_timing")) &&
+    answer("start_timing") !== "exploring" &&
     answer("commitment_readiness") === "yes" &&
-    answer("investment_readiness") === "yes"
+    answer("investment_readiness") !== "not_currently"
       ? nowUrl
       : laterUrl;
   const proceed = () => {
