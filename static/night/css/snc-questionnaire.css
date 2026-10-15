@@ -1,0 +1,40 @@
+/* Immersive questionnaire layout (English + Spanish). Scoped to body.fn-q; replaces the boxed preview presentation from snc.css without editing it.
+   Uses existing night.css tokens only. Desktop: sticky brand/headline column + wide answer column. Tablet/mobile: single full-width column. */
+.fn-q.page--snc-preview .snc-form-wrap { min-height:100svh; padding:0; overflow:visible; isolation:auto; background:radial-gradient(ellipse at 14% 6%,#1d1308 0%,var(--bg) 48%); }
+.fn-q.page--snc-preview .snc-form-wrap::before,
+.fn-q.page--snc-preview .snc-form-wrap::after { content:none; }
+.fn-q.page--snc-preview .snc-form { width:100%; max-width:none; margin:0; padding:0 var(--gutter) clamp(72px,9vw,140px); display:grid; grid-template-columns:minmax(0,5fr) minmax(0,7fr); column-gap:clamp(32px,6vw,120px); align-items:start; }
+.fn-q .snc-form > * { grid-column:2; min-width:0; }
+.fn-q.page--snc-preview .snc-form__intro { grid-column:1; grid-row:1 / span 24; position:sticky; top:0; align-self:start; min-height:100svh; display:flex; flex-direction:column; justify-content:center; padding:clamp(112px,11vw,150px) 0 clamp(40px,5vw,72px); margin:0; border:0; background:none; }
+.fn-q.page--snc-preview .snc-form__intro::after { content:none; }
+.fn-q .snc-form__transition { display:none; }
+.fn-brand { display:flex; align-items:center; gap:clamp(14px,1.6vw,22px); margin:0 0 clamp(28px,4vw,56px); }
+.fn-brand img { width:clamp(48px,4.6vw,68px); height:auto; flex:none; }
+.fn-brand strong { display:block; font:800 clamp(1.35rem,2vw,1.9rem)/1 var(--display); font-stretch:70%; letter-spacing:.06em; text-transform:uppercase; }
+.fn-brand small { display:block; margin-top:6px; color:var(--text-2); font:600 12px/1.3 var(--body); letter-spacing:.12em; text-transform:uppercase; }
+.fn-q .snc-form__intro h1 { font-size:clamp(3.2rem,7vw,8.2rem); max-width:none; overflow-wrap:normal; }
+.fn-q .snc-form__intro p { font-size:clamp(1rem,1.25vw,1.2rem); max-width:44ch; }
+.fn-q .snc-form__intro .snc-preview-note { max-width:44ch; font-size:.95rem; }
+.fn-q.page--snc-preview .snc-question { margin-bottom:clamp(36px,4.5vw,68px); padding-block:clamp(28px,3.4vw,52px) 0; }
+.fn-q.page--snc-preview .snc-question:first-of-type { padding-top:clamp(112px,11vw,150px); border-top-color:transparent; }
+.fn-q.page--snc-preview .snc-question:first-of-type::before { content:none; }
+.fn-q.page--snc-preview .snc-question legend { float:left; width:100%; max-width:none; margin:0; font-size:clamp(2rem,3.5vw,3.8rem); line-height:.98; overflow-wrap:normal; }
+.fn-q .snc-question legend + p { clear:both; padding-top:clamp(12px,1.2vw,18px); }
+.fn-q .snc-question p { margin:14px 0 22px; font-size:1rem; }
+.fn-q.page--snc-preview .snc-options { grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; }
+.fn-q.page--snc-preview .snc-option { min-height:clamp(70px,6vw,92px); padding:14px 18px 14px 66px; font-size:clamp(1.02rem,1.3vw,1.3rem); line-height:1.25; }
+.fn-q .snc-option::before { left:24px; width:22px; height:22px; }
+.fn-q .snc-preview-action .btn__face, .fn-q [data-snc-continue] .btn__face { min-height:64px; padding:0 44px; font-size:15px; }
+.fn-q .snc-form__status { font-size:1.05rem; }
+@media (max-width:1100px) {
+  .fn-q.page--snc-preview .snc-form { grid-template-columns:minmax(0,1fr); }
+  .fn-q .snc-form > *, .fn-q.page--snc-preview .snc-form__intro { grid-column:1; }
+  .fn-q.page--snc-preview .snc-form__intro { grid-row:auto; position:static; min-height:0; justify-content:flex-start; padding:clamp(104px,14vw,140px) 0 clamp(24px,4vw,40px); }
+  .fn-q.page--snc-preview .snc-question:first-of-type { padding-top:clamp(28px,4vw,44px); border-top-color:rgba(245,245,245,.25); }
+}
+@media (max-width:640px) {
+  .fn-q.page--snc-preview .snc-options { grid-template-columns:minmax(0,1fr); }
+  .fn-q.page--snc-preview .snc-option { min-height:64px; }
+  .fn-q .snc-form__intro h1 { font-size:clamp(2.8rem,15vw,4.6rem); }
+  .fn-q .snc-preview-action { width:100%; } .fn-q .snc-preview-action .btn__face { width:100%; justify-content:center; }
+}

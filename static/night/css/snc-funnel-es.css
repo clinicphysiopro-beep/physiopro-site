@@ -1,0 +1,12 @@
+/* Spanish funnel additions: persistent conversion CTA. Additive; loaded only by the /es/ funnel pages. Uses the existing .btn--ember component and tokens. */
+.fn-sticky { position:fixed; z-index:40; right:var(--gutter); bottom:24px; transition:opacity .3s var(--ease), transform .3s var(--ease), visibility 0s linear 0s; }
+.fn-sticky.is-hidden { opacity:0; transform:translateY(14px); visibility:hidden; pointer-events:none; transition:opacity .3s var(--ease), transform .3s var(--ease), visibility 0s linear .3s; }
+.fn-sticky .btn { filter:drop-shadow(0 0 14px rgba(255,138,0,.22)); }
+.fn-sticky .btn__face { min-height:50px; }
+html:has(.fn-sticky) { scroll-padding-bottom:100px; }
+@media (max-width:820px) {
+  .fn-sticky { left:0; right:0; bottom:0; padding:10px var(--gutter) calc(10px + env(safe-area-inset-bottom)); background:rgba(10,10,10,.94); border-top:1px solid var(--line); }
+  .fn-sticky .btn { display:flex; width:100%; filter:none; }
+  .fn-sticky .btn__face { width:100%; justify-content:center; min-height:54px; padding:0 14px; font-size:13px; letter-spacing:.08em; }
+}
+@media (prefers-reduced-motion: reduce) { .fn-sticky, .fn-sticky.is-hidden { transition:none; transform:none; } }
