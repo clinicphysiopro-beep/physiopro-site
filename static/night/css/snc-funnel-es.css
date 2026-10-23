@@ -1,4 +1,4 @@
-/* Spanish funnel additions: persistent conversion CTA. Additive; loaded only by the /es/ funnel pages. Uses the existing .btn--ember component and tokens. */
+/* Funnel additions (EN + ES destination pages): persistent conversion CTA. Additive. Uses the existing .btn--ember component and tokens. */
 .fn-sticky { position:fixed; z-index:40; right:var(--gutter); bottom:24px; transition:opacity .3s var(--ease), transform .3s var(--ease), visibility 0s linear 0s; }
 .fn-sticky.is-hidden { opacity:0; transform:translateY(14px); visibility:hidden; pointer-events:none; transition:opacity .3s var(--ease), transform .3s var(--ease), visibility 0s linear .3s; }
 .fn-sticky .btn { filter:drop-shadow(0 0 14px rgba(255,138,0,.22)); }

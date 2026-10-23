@@ -39,3 +39,9 @@
   .fn-q .snc-preview-action { width:100%; } .fn-q .snc-preview-action .btn__face { width:100%; justify-content:center; }
 }
 @media (prefers-reduced-motion: reduce) { .fn-q *, .fn-q *::before, .fn-q *::after { transition:none !important; animation:none !important; scroll-behavior:auto !important; } }
+
+/* Unanswered question after a failed Continue (set by snc-funnel.js; cleared on change). Colour is not the only cue: the status line names the problem. */
+.snc-question.is-invalid { outline:1px solid #ffb1a4; outline-offset:6px; }
+.snc-question.is-invalid legend { color:#ffb1a4; }
+/* Phase 3.1: no first paint of the default heading while an ad hook is pending (class set by the inline head script; cleared by snc-entry-hook.js or a 3 s fail-open timer). Layout space is kept. */
+html.snc-hook-pending [data-entry-hook]{visibility:hidden}
