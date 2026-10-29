@@ -1,47 +1,86 @@
-/* Immersive questionnaire layout (English + Spanish). Scoped to body.fn-q; replaces the boxed preview presentation from snc.css without editing it.
-   Uses existing night.css tokens only. Desktop: sticky brand/headline column + wide answer column. Tablet/mobile: single full-width column. */
-.fn-q.page--snc-preview .snc-form-wrap { min-height:100svh; padding:0; overflow:visible; isolation:auto; background:radial-gradient(ellipse at 14% 6%,#1d1308 0%,var(--bg) 48%); }
-.fn-q.page--snc-preview .snc-form-wrap::before,
-.fn-q.page--snc-preview .snc-form-wrap::after { content:none; }
-.fn-q.page--snc-preview .snc-form { width:100%; max-width:none; margin:0; padding:0 var(--gutter) clamp(72px,9vw,140px); display:grid; grid-template-columns:minmax(0,5fr) minmax(0,7fr); column-gap:clamp(32px,6vw,120px); align-items:start; }
-.fn-q .snc-form > * { grid-column:2; min-width:0; }
-.fn-q.page--snc-preview .snc-form__intro { grid-column:1; grid-row:1 / span 24; position:sticky; top:0; align-self:start; min-height:100svh; display:flex; flex-direction:column; justify-content:center; padding:clamp(112px,11vw,150px) 0 clamp(40px,5vw,72px); margin:0; border:0; background:none; }
-.fn-q.page--snc-preview .snc-form__intro::after { content:none; }
-.fn-q .snc-form__transition { display:none; }
-.fn-brand { display:flex; align-items:center; gap:clamp(14px,1.6vw,22px); margin:0 0 clamp(28px,4vw,56px); }
-.fn-brand img { width:clamp(48px,4.6vw,68px); height:auto; flex:none; }
-.fn-brand strong { display:block; font:800 clamp(1.35rem,2vw,1.9rem)/1 var(--display); font-stretch:70%; letter-spacing:.06em; text-transform:uppercase; }
-.fn-brand small { display:block; margin-top:6px; color:var(--text-2); font:600 12px/1.3 var(--body); letter-spacing:.12em; text-transform:uppercase; }
-.fn-q .snc-form__intro h1 { font-size:clamp(3.2rem,7vw,8.2rem); max-width:none; overflow-wrap:normal; }
-.fn-q .snc-form__intro p { font-size:clamp(1rem,1.25vw,1.2rem); max-width:44ch; }
-.fn-q .snc-form__intro .snc-preview-note { max-width:44ch; font-size:.95rem; }
-.fn-q.page--snc-preview .snc-question { margin-bottom:clamp(36px,4.5vw,68px); padding-block:clamp(28px,3.4vw,52px) 0; }
-.fn-q.page--snc-preview .snc-question:first-of-type { padding-top:clamp(112px,11vw,150px); border-top-color:transparent; }
-.fn-q.page--snc-preview .snc-question:first-of-type::before { content:none; }
-.fn-q.page--snc-preview .snc-question legend { float:left; width:100%; max-width:none; margin:0; font-size:clamp(2rem,3.5vw,3.8rem); line-height:.98; overflow-wrap:normal; }
-.fn-q .snc-question legend + p { clear:both; padding-top:clamp(12px,1.2vw,18px); }
-.fn-q .snc-question p { margin:14px 0 22px; font-size:1rem; }
-.fn-q.page--snc-preview .snc-options { grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; }
-.fn-q.page--snc-preview .snc-option { min-height:clamp(70px,6vw,92px); padding:14px 18px 14px 66px; font-size:clamp(1.02rem,1.3vw,1.3rem); line-height:1.25; }
-.fn-q .snc-option::before { left:24px; width:22px; height:22px; }
-.fn-q .snc-preview-action .btn__face, .fn-q [data-snc-continue] .btn__face { min-height:64px; padding:0 44px; font-size:15px; }
-.fn-q .snc-form__status { font-size:1.05rem; }
-@media (max-width:1100px) {
-  .fn-q.page--snc-preview .snc-form { grid-template-columns:minmax(0,1fr); }
-  .fn-q .snc-form > *, .fn-q.page--snc-preview .snc-form__intro { grid-column:1; }
-  .fn-q.page--snc-preview .snc-form__intro { grid-row:auto; position:static; min-height:0; justify-content:flex-start; padding:clamp(104px,14vw,140px) 0 clamp(24px,4vw,40px); }
-  .fn-q.page--snc-preview .snc-question:first-of-type { padding-top:clamp(28px,4vw,44px); border-top-color:rgba(245,245,245,.25); }
+/* Exercise Prescription questionnaire (EN + ES): conversion-first opening + one-question-at-a-time stepper. Scoped to body.fn-q / .fq-*.
+   Mobile first (390x844: headline, promise, consultation line and the start of question 1 on the first screen). Uses night.css tokens only.
+   No-JS: every question stays visible (the stepper script adds .is-stepper). */
+.fq-page { background:radial-gradient(ellipse at 90% -4%,#2a1805 0%,var(--bg) 52%); background-color:var(--bg); }
+.fq-bar { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:6px var(--gutter); min-height:56px; border-bottom:1px solid var(--line); }
+.fq-brand { display:inline-flex; align-items:center; gap:10px; font:800 15px/1 var(--display); font-stretch:70%; letter-spacing:.1em; text-transform:uppercase; }
+.fq-lang { display:inline-grid; place-items:center; min-width:48px; min-height:44px; padding:0 12px; border:1px solid rgba(245,245,245,.4); color:var(--text); text-decoration:none; font:700 13px/1 var(--body); letter-spacing:.1em; }
+.fq-lang:focus-visible, .fq a:focus-visible, .fq button:focus-visible, .foot a:focus-visible { outline:2px solid var(--glow); outline-offset:3px; }
+.fq { max-width:1360px; margin:0 auto; padding:18px var(--gutter) clamp(48px,7vw,96px); }
+.fq-form { display:grid; grid-template-columns:minmax(0,1fr); gap:16px; width:100%; max-width:none; margin:0; padding:0; }
+.fq-form > * { min-width:0; }
+/* ---- opening copy ---- */
+.fq-cue { margin:0 0 10px; display:flex; align-items:center; gap:10px; color:var(--glow); font:700 12px/1.3 var(--body); letter-spacing:.12em; text-transform:uppercase; }
+.fq-cue::before { content:""; flex:none; width:22px; height:3px; background:var(--ember); }
+.fq-copy h1 { margin:0; font:850 clamp(2rem,9.4vw,3.1rem)/.98 var(--display); font-stretch:62%; text-transform:uppercase; letter-spacing:-.005em; overflow-wrap:normal; }
+.fq-h1__sub { color:var(--ember); }
+.fq-promise { margin:12px 0 0; max-width:36ch; color:var(--text-on-image); font-size:1rem; line-height:1.45; }
+.fq-consult { display:inline-flex; align-items:center; gap:10px; margin:12px 0 0; padding:8px 12px; border:1px solid rgba(255,138,0,.55); background:rgba(255,138,0,.08); color:var(--text); font:700 13px/1.3 var(--body); }
+.fq-consult__dot { flex:none; width:8px; height:8px; border-radius:50%; background:var(--ember); box-shadow:0 0 10px rgba(255,138,0,.7); }
+/* ---- question panel ---- */
+.fq-panel { border:1px solid var(--line); border-top:3px solid var(--ember); background:rgba(18,18,18,.86); padding:14px 14px 16px; }
+.fq-progress { margin-bottom:10px; }
+.fq-progress__label { margin:0 0 8px; color:var(--text-2); font:700 12px/1 var(--body); letter-spacing:.12em; text-transform:uppercase; }
+.fq-progress__track { height:4px; background:rgba(245,245,245,.16); }
+.fq-progress__track span { display:block; height:100%; width:20%; background:var(--ember); transition:width .3s var(--ease); }
+.fq-form:not(.is-stepper) .fq-progress { display:none; }
+.fq-panel .snc-question { border:0; margin:0; padding:0; min-width:0; }
+.fq-panel .snc-question[hidden] { display:none; }
+.fq-panel .snc-question:focus { outline:none; }
+.fq-panel .snc-question:focus-visible { outline:2px solid var(--glow); outline-offset:6px; }
+.fq-form:not(.is-stepper) .snc-question + .snc-question { margin-top:28px; padding-top:22px; border-top:1px solid var(--line); }
+.fq-panel legend { float:left; width:100%; padding:0; font:800 clamp(1.45rem,6.2vw,2rem)/1.02 var(--display); font-stretch:62%; text-transform:uppercase; }
+.fq-hint { clear:both; margin:10px 0 14px; padding:0; color:var(--text-2); font-size:.88rem; line-height:1.4; }
+.fq-panel .snc-options { display:grid; grid-template-columns:minmax(0,1fr); gap:8px; }
+.fq-panel .snc-option { position:relative; display:flex; align-items:center; min-height:52px; padding:10px 14px 10px 52px; border:1px solid rgba(245,245,245,.34); background:rgba(10,10,10,.4); color:var(--text-on-image); font-size:1rem; line-height:1.25; cursor:pointer; transition:border-color .2s var(--ease), background .2s var(--ease), color .2s var(--ease); }
+.fq-panel .snc-option::before { content:""; position:absolute; left:16px; top:50%; width:20px; height:20px; margin-top:-10px; border:1.5px solid rgba(245,245,245,.7); border-radius:50%; background:transparent; box-shadow:none; transition:background .2s var(--ease), border-color .2s var(--ease), box-shadow .2s var(--ease); }
+.fq-panel .snc-option:has(input:checked) { border-color:var(--ember); background:rgba(255,138,0,.13); color:var(--text); }
+.fq-panel .snc-option:has(input:checked)::before { border-color:var(--ember); background:var(--ember); box-shadow:inset 0 0 0 4px #1a1006; }
+.fq-panel .snc-option:has(input:focus-visible) { outline:2px solid var(--glow); outline-offset:2px; }
+@media (hover:hover) { .fq-panel .snc-option:hover { border-color:rgba(255,138,0,.8); background:rgba(255,138,0,.08); } }
+.fq-panel .snc-question.is-invalid { outline:1px solid #ffb1a4; outline-offset:6px; }
+.fq-panel .snc-question.is-invalid legend { color:#ffb1a4; }
+/* step transition (disabled for reduced motion below) */
+.fq-form.is-stepper .snc-question:not([hidden]) { animation:fq-in .28s var(--ease); }
+@keyframes fq-in { from { opacity:0; transform:translateX(14px); } to { opacity:1; transform:none; } }
+.fq-actions { display:flex; align-items:center; gap:12px; margin-top:16px; }
+.fq-actions [hidden] { display:none !important; }
+.fq-back { min-height:52px; padding:0 18px; border:1px solid rgba(245,245,245,.4); background:transparent; color:var(--text); font:700 14px/1 var(--body); letter-spacing:.1em; text-transform:uppercase; cursor:pointer; }
+.fq-next { flex:1 1 auto; }
+.fq-next .btn__face { width:100%; justify-content:center; min-height:52px; }
+.fq-panel .snc-form__status { min-height:1.4em; margin:12px 0 0; font-size:.95rem; color:var(--text-on-image); }
+.fq-panel .snc-form__status.is-error { color:#ffb1a4; }
+.fq-form.is-complete .fq-progress__track span { background:var(--glow); }
+.fq-note { margin:12px 0 0; color:var(--text-2); font-size:.82rem; line-height:1.5; max-width:62ch; }
+.fq-note--flow { margin-top:0; }
+.fq-proof { list-style:none; margin:0; padding:0; display:grid; gap:0; border-top:1px solid var(--line); }
+.fq-proof li { display:grid; gap:2px; padding:12px 0; border-bottom:1px solid var(--line); }
+.fq-proof strong { font:800 1.05rem/1.1 var(--display); font-stretch:70%; letter-spacing:.04em; text-transform:uppercase; }
+.fq-proof span { color:var(--text-2); font-size:.88rem; }
+.fq-media { position:relative; margin:0; overflow:hidden; border:1px solid var(--line); aspect-ratio:3 / 2; background:#111; }
+.fq-media img { display:block; width:100%; height:100%; object-fit:cover; filter:saturate(.85) contrast(1.05) brightness(.82); }
+.fq-media::after { content:""; position:absolute; inset:0; background:linear-gradient(180deg,transparent 45%,rgba(10,10,10,.85) 100%); }
+.fq-media figcaption { position:absolute; z-index:1; left:14px; right:14px; bottom:12px; font:700 11px/1.3 var(--body); letter-spacing:.12em; text-transform:uppercase; color:var(--text); }
+/* ---- tablet ---- */
+@media (min-width:700px) {
+  .fq { padding-top:32px; }
+  .fq-copy h1 { font-size:clamp(2.6rem,6.4vw,4.2rem); }
+  .fq-panel { padding:22px; }
+  .fq-proof { grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; border-top:0; }
+  .fq-proof li { border-top:1px solid var(--line); border-bottom:0; padding:14px 0 0; }
+  .fq-media { aspect-ratio:16 / 7; }
 }
-@media (max-width:640px) {
-  .fn-q.page--snc-preview .snc-options { grid-template-columns:minmax(0,1fr); }
-  .fn-q.page--snc-preview .snc-option { min-height:64px; }
-  .fn-q .snc-form__intro h1 { font-size:clamp(2.8rem,15vw,4.6rem); }
-  .fn-q .snc-preview-action { width:100%; } .fn-q .snc-preview-action .btn__face { width:100%; justify-content:center; }
+/* ---- desktop: balanced two columns; copy + proof + photo left, question panel right ---- */
+@media (min-width:1024px) {
+  .fq { padding-top:clamp(36px,5vw,72px); }
+  .fq-form { grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr); grid-template-areas:"copy panel" "media panel" "proof panel" "flow panel"; grid-template-rows:auto auto auto 1fr; column-gap:clamp(40px,6vw,104px); row-gap:24px; align-items:start; }
+  .fq-copy { grid-area:copy; } .fq-panel { grid-area:panel; position:sticky; top:24px; padding:clamp(22px,2.4vw,36px); } .fq-media { grid-area:media; } .fq-proof { grid-area:proof; } .fq-note--flow { grid-area:flow; }
+  .fq-copy h1 { font-size:clamp(3rem,4.6vw,4.7rem); }
+  .fq-promise { font-size:1.15rem; max-width:40ch; }
+  .fq-consult { font-size:14px; padding:10px 16px; }
+  .fq-media { aspect-ratio:16 / 6.5; }
+  .fq-panel legend { font-size:clamp(1.9rem,2.5vw,2.6rem); }
+  .fq-panel .snc-option { min-height:60px; font-size:1.08rem; }
+  .fq-hint { font-size:.95rem; }
 }
-@media (prefers-reduced-motion: reduce) { .fn-q *, .fn-q *::before, .fn-q *::after { transition:none !important; animation:none !important; scroll-behavior:auto !important; } }
-
-/* Unanswered question after a failed Continue (set by snc-funnel.js; cleared on change). Colour is not the only cue: the status line names the problem. */
-.snc-question.is-invalid { outline:1px solid #ffb1a4; outline-offset:6px; }
-.snc-question.is-invalid legend { color:#ffb1a4; }
-/* Phase 3.1: no first paint of the default heading while an ad hook is pending (class set by the inline head script; cleared by snc-entry-hook.js or a 3 s fail-open timer). Layout space is kept. */
-html.snc-hook-pending [data-entry-hook]{visibility:hidden}
+@media (prefers-reduced-motion: reduce) { .fq-page *, .fq-page *::before, .fq-page *::after, .fn-q *, .fn-q *::before, .fn-q *::after { transition:none !important; animation:none !important; scroll-behavior:auto !important; } }
