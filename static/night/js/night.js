@@ -24,11 +24,13 @@
   const inView = (el) => { const r = el.getBoundingClientRect(); return r.top < innerHeight && r.bottom > 0; };
   const onScroll = () => {
     const y = scrollY, down = y - lastY > 4, up = lastY - y > 4;
-    nav.classList.toggle("is-solid", y > 40);
-    const menuOpen = document.querySelector(".menu[open]");
-    if (!menuOpen && nav.contains(document.activeElement) === false) {
-      if (down && y > innerHeight * 0.6) nav.classList.add("is-hidden");
-      else if (up || y < 80) nav.classList.remove("is-hidden");
+    if (nav) {
+      nav.classList.toggle("is-solid", y > 40);
+      const menuOpen = document.querySelector(".menu[open]");
+      if (!menuOpen && nav.contains(document.activeElement) === false) {
+        if (down && y > innerHeight * 0.6) nav.classList.add("is-hidden");
+        else if (up || y < 80) nav.classList.remove("is-hidden");
+      }
     }
     if (dock) {
       const typing = document.activeElement && document.activeElement.closest("form");
@@ -45,7 +47,7 @@
     lastY = y; ticking = false;
   };
   addEventListener("scroll", () => { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
-  nav.addEventListener("focusin", () => nav.classList.remove("is-hidden"));
+  if (nav) nav.addEventListener("focusin", () => nav.classList.remove("is-hidden"));
   // Never let the fixed dock sit over a field the reader is filling in.
   document.addEventListener("focusin", () => requestAnimationFrame(onScroll));
   document.addEventListener("focusout", () => setTimeout(() => requestAnimationFrame(onScroll), 0));
@@ -54,11 +56,13 @@
   /* ---------- Full-screen menu (native <dialog>: focus trap, Esc, focus return) ---------- */
   const menu = document.getElementById("menu");
   const opener = document.querySelector("[data-menu-open]");
-  opener.setAttribute("aria-expanded", "false");
-  opener.addEventListener("click", () => { menu.showModal(); opener.setAttribute("aria-expanded", "true"); });
-  menu.addEventListener("close", () => opener.setAttribute("aria-expanded", "false"));
-  menu.querySelector("[data-menu-close]").addEventListener("click", () => menu.close());
-  menu.querySelectorAll("a").forEach((a) => a.addEventListener("click", () => menu.close()));
+  if (opener && menu) {
+    opener.setAttribute("aria-expanded", "false");
+    opener.addEventListener("click", () => { menu.showModal(); opener.setAttribute("aria-expanded", "true"); });
+    menu.addEventListener("close", () => opener.setAttribute("aria-expanded", "false"));
+    menu.querySelector("[data-menu-close]").addEventListener("click", () => menu.close());
+    menu.querySelectorAll("a").forEach((a) => a.addEventListener("click", () => menu.close()));
+  }
 
   /* ---------- On-this-page TOC: active section marker ---------- */
   const tocLinks = [...document.querySelectorAll("[data-toc] a[href^='#']")];
